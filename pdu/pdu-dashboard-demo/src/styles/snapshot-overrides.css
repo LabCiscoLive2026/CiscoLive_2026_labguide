@@ -1,0 +1,86 @@
+.snapshot-shell {
+  width: 100%;
+  height: 100%;
+  font-size: clamp(13px, 0.9vw, 16px);
+}
+
+.snapshot-shell img {
+  max-width: 100%;
+  height: auto;
+}
+
+.snapshot-shell #bottom-half {
+  max-width: none !important;
+  position: relative !important;
+  top: auto !important;
+  bottom: auto !important;
+  width: 100% !important;
+}
+
+.snapshot-shell .container {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* Glyphicon font files are missing; provide readable fallbacks. */
+.snapshot-shell .glyphicon::before {
+  font-family: inherit !important;
+  font-style: normal;
+}
+.snapshot-shell .glyphicon-adjust::before { content: "◐" !important; }
+.snapshot-shell .glyphicon-globe::before { content: "◎" !important; }
+.snapshot-shell .glyphicon-user::before { content: "◉" !important; }
+.snapshot-shell .glyphicon-log-out::before { content: "↪" !important; }
+.snapshot-shell .glyphicon-save::before { content: "⬇" !important; }
+.snapshot-shell .glyphicon-new-window::before { content: "↗" !important; }
+.snapshot-shell .glyphicon-option-vertical::before { content: "⋮" !important; }
+.snapshot-shell .glyphicon-list-alt::before { content: "≣" !important; }
+.snapshot-shell .glyphicon-chevron-right::before { content: "›" !important; }
+.snapshot-shell .glyphicon-chevron-down::before { content: "⌄" !important; }
+.snapshot-shell .glyphicon-chevron-up::before { content: "⌃" !important; }
+.snapshot-shell .glyphicon-info-sign::before { content: "i" !important; }
+.snapshot-shell .glyphicon-alert::before { content: "⚠" !important; }
+.snapshot-shell .glyphicon-ok::before { content: "✓" !important; }
+.snapshot-shell .glyphicon-minus::before { content: "−" !important; }
+.snapshot-shell .glyphicon-plus::before { content: "+" !important; }
+.snapshot-shell .glyphicon-off::before { content: "⏻" !important; }
+.snapshot-shell .glyphicon-refresh::before { content: "↻" !important; }
+
+/* Divider between rows; no cell borders. */
+.snapshot-shell form.settings-view rr-setting-row > .setting-row,
+.snapshot-shell div.settings-view rr-setting-row > .setting-row,
+.snapshot-shell .setting-row {
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: 1px solid lightgray !important;
+}
+html.dark .snapshot-shell form.settings-view rr-setting-row > .setting-row,
+html.dark .snapshot-shell div.settings-view rr-setting-row > .setting-row,
+html.dark .snapshot-shell .setting-row {
+  border-bottom: 1px solid #4b5563 !important;
+}
+
+.snapshot-shell form.settings-view rr-setting-row:last-child > .setting-row,
+.snapshot-shell div.settings-view rr-setting-row:last-child > .setting-row {
+  border-bottom: none !important;
+}
+
+.snapshot-shell .setting-cell {
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .snapshot-shell {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1366px) {
+  .snapshot-shell {
+    font-size: 14px;
+  }
+}
