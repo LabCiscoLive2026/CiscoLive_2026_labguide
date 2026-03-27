@@ -1,0 +1,98 @@
+# ============================================================================
+#  LAB GUIDE CONFIGURATION
+# ============================================================================
+#
+#  This is the ONLY file you need to edit to customize your lab guide.
+#  After making changes, run:  mkdocs serve
+#
+#  TIPS:
+#    - Wrap text in quotes if it contains special characters like : # [ ]
+#    - Indentation matters — use spaces, not tabs
+#    - Lines starting with # are comments (ignored by the system)
+#
+# ============================================================================
+
+
+# --- Lab Identity -----------------------------------------------------------
+
+lab_id: "LABDCN-2026"
+lab_title: "AI ERA Data Center Power Management Dashboard"
+authors: "Author 1, Author 2"
+
+
+# --- Event Details ----------------------------------------------------------
+
+event_name: "Cisco Live 2026"
+lab_type: "Demo Guide"
+
+
+# --- Smart PDU Access -------------------------------------------------------
+
+smart_pdu:
+  url: "http://10.201.62.181:8081/#/login"
+  username: "admin"
+  password: "CiscoLive2026!"
+
+
+# --- Splunk Cloud Access ----------------------------------------------------
+
+splunk:
+  username: "CiscoLiveUser"
+  password: "CiscoLive2026!"
+
+
+# --- PDF Export (set to false to disable PDF generation) --------------------
+
+pdf_enabled: true
+
+
+# --- Navigation — Defines the lab guide page structure ----------------------
+#
+#  Format:
+#    - "Page Title": "filename.md"             (single page)
+#    - "Section Title":                         (section with sub-pages)
+#        - "Sub Page Title": "filename.md"
+#
+#  All .md files must be in the docs/ folder.
+#
+# ----------------------------------------------------------------------------
+
+nav:
+  - "Home": "index.md"
+  - "Lab":
+      - "Overview": "overview.md"
+      - "Getting Started": "getting_started.md"
+      - "Navigating Smart PDU Dashboard": "scenario01.md"
+      - "Scenario 2 - Navigating Splunk Cloud Dashboard": "scenario02.md"
+      - "Scenario 3 - Power Infrastructure & Topology Analysis": "scenario03.md"
+      - "Scenario 4 - Environmental Monitoring & Temperature": "scenario04.md"
+      - "Scenario 5 - PDU Operational Status & Availability": "scenario05.md"
+      - "Scenario 6 - PDU Outlet View & Phase Balancing": "scenario06.md"
+      - "Task 1 - Interact with Data Using the CLI Script": "task01.md"
+      - "Conclusion": "conclusion.md"
+
+
+# --- Learning Objectives (shown on the Overview page) ----------------------
+
+learning_objectives:
+  - "Navigate and interpret Smart PDU dashboards for real-time power metrics."
+  - "Use Splunk Cloud to monitor Data Center power capacity, consumption, and headroom."
+  - "Visualize power flow topology from transformers to individual racks."
+  - "Monitor environmental conditions using Meraki sensor data in Splunk."
+  - "Track PDU operational status and availability across the data center."
+  - "Analyze outlet-level power distribution and phase balancing on individual PDUs."
+
+
+# --- Related Sessions (shown on Conclusion page) ---------------------------
+
+related_sessions: []
+
+
+# --- Custom Variables -------------------------------------------------------
+#
+#  Add any extra variables here. Use them in .md files as {{ variable_name }}.
+#
+# ----------------------------------------------------------------------------
+
+# software_version: "10.4(1)"
+# platform: "Nexus 9000"
