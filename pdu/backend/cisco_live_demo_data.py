@@ -1,3 +1,11 @@
+# SPLUNK_INDEX=zabbix_pdu
+# SPLUNK_SOURCE=pdu_hosts_demo_dump
+# SPLUNK_BASE_URL=https://splunk-analytics-cxlabs.cisco.com:8089
+# SPLUNK_VERIFY_SSL=false
+# SPLUNK_TIMEOUT_SECONDS=30
+# SPLUNK_USERNAME=rbhaviri
+# SPLUNK_PASSWORD=
+
 import requests
 import json
 
