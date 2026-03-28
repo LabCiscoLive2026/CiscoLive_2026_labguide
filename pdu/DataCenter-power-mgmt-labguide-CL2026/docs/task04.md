@@ -13,13 +13,6 @@ Open a terminal and run the script:
 python3 cisco_live_demo_data.py
 ```
 
-!!! tip "Efficiency Tip"
-      Streamline your reporting by piping the script output directly to a file for offline analysis:
-      ```bash
-      python3 cisco_live_demo_data.py > dc_report.txt
-      ```
-
-
 You will see the application banner and a site selection menu:
 
 ```
