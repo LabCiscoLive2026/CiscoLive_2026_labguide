@@ -1,16 +1,10 @@
-## What's Next?
+Throughout this lab, you have mastered the techniques required to identify and resolve power imbalances within your PDU infrastructure. By utilizing the Inlet, Overview, and Outlets dashboards, you now possess the ability to:
 
-Congratulations on completing the {{ lab_title }} lab!
+- **Detect Imbalances:** Use the Inlet view to proactively identify phases that are exceeding safe operating thresholds.
+- **Ensure Operational Health:** Use the Overview dashboard to verify that your PDUs are properly configured and ready for high-density workloads.
+- **Execute Precision Balancing:** Use the Outlets view to pinpoint specific high-draw devices and migrate them to underutilized phases, ensuring an even distribution of power.
 
-You have gained hands-on experience with:
-
-- Dashboard Navigation: Interpreting real-time power metrics via Smart PDU interfaces.
-- Capacity Planning: Using Splunk Cloud to monitor power capacity, consumption, and headroom.
-- Topology Visualization: Mapping power flow from transformers down to individual racks.
-- Environmental Oversight: Integrating and monitoring Meraki sensor data within Splunk.
-- Operational Health: Tracking PDU availability across the entire data center.
-- Load Management: Analyzing outlet-level power distribution and optimizing phase balancing.
-
+By applying these skills, you can optimize the power capacity of your PDUs, prevent hardware throttling, and ensure your data center is fully prepared for the rigorous demands of AI server deployments. We hope that the experience gained here will be an asset in your daily professional responsibilities, enabling you to maintain a more efficient, reliable, and high-performing data center environment.
 
 <figure markdown>
   ![Cisco](./template_assets/cisco_logo.png){ .off-glb }

@@ -17,18 +17,11 @@
 
 @media screen and (min-width: 60.25em) {
     .md-sidebar--primary {
-        width: 250px;
+        width: 280px;
     }
     /* .md-sidebar--secondary {
         margin-left: auto;
     } */
-}
-
-.img-bg-dark {
-    background-color: #f3f4f6;
-    padding: 0.15rem;
-    border-radius: 0.5rem;
-    color: #191919;
 }
 
 [data-md-color-scheme="default"] {

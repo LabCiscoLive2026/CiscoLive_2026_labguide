@@ -1,257 +1,71 @@
-# Task 1: Interact with Data Using the CLI Script
+# Task 1: Validate SEA01-103 Electrical and Thermal Readiness for 300kW AI Deployment
 
-**Objective:** Use the Python-based CLI tool to programmatically query and analyze real-time power management and environmental data across Data Center sites.
+**Objective:** Evaluate the electrical and thermal capacity of the SEA01-103 data center to support a 300kW high-density AI server deployment. Given the intensive power requirements of modern AI workloads, this assessment is critical to validating that our existing infrastructure can sustain this load without compromising our 100% uptime commitment.
 
-**Context:** While the Splunk dashboards provide a rich visual interface, this script offers a lightweight, terminal-based alternative for querying the same underlying data. It is ideal for quick operational checks, scripted automation, and scenarios where dashboard access is unavailable.
 
+## Step 1: Check the Total Power Capacity for Seattle Site — SEA01-103
 
-## Step 1: Launch the Script
+Login to the AI Era Power Management Dashboard, utilize the global filter to select the **Seattle** site and the **SEA01-103** data center. Ensure the view is fully loaded before proceeding with the power and thermal assessment to guarantee the accuracy of your data.
 
-Open a terminal and run the script:
+<figure markdown>
+  ![SEA01-103 Dashboard](./assets/t1_sea_dashboard.png)
+</figure>
 
-```bash
-python3 cisco_live_demo_data.py
-```
+The following three panels provide a real-time overview of the data center's power profile:
 
-!!! tip "Efficiency Tip"
-      Streamline your reporting by piping the script output directly to a file for offline analysis:
-      ```bash
-      python3 cisco_live_demo_data.py > dc_report.txt
-      ```
+- **Total Power Capacity:** Represents 80% of the total rated load, serving as the optimal safety threshold for the facility.
+- **Total Active Power Drawn:** Displays the current aggregate power consumption of the data center.
+- **Total Available Active Power:** Indicates the remaining power headroom available for additional equipment deployment.
 
+### Power Utilization Analysis: SEA01-103
 
-You will see the application banner and a site selection menu:
+Based on the current dashboard metrics for the SEA01-103 data center, the power profile is as follows:
 
-```
-------------------------------------
-| AI ERA POWER MANAGEMENT LAB DEMO |
-------------------------------------
+| Metric                      | Value         |
+| --------------------------- | ------------- |
+| Total Power Capacity        | 1,315 kW      |
+| Current Power Load          | 601.1070 kW   |
+| Available Power Headroom    | 713.8210 kW   |
+| Current Utilization         | 45.71%        |
 
-SELECT A SITE:
---------------
-  1. SEATTLE (Preferred)
-  2. CHICAGO
-  3. DELHI
-  4. FRANCE
-  5. SINGAPORE
-```
+To visualize the power distribution topology for the Smart PDUs, click the metric value displayed under **Total Active Power Drawn**.
 
+<figure markdown>
+  ![Topology View](./assets/t1_topology_view.png)
+  <figcaption>SEA01-103 Transformer Feed — Power Flow Topology</figcaption>
+</figure>
 
-## Step 2: Select a Site
+The topology dashboard serves as a critical real-time heatmap for our power distribution, providing clear visibility into the health of our electrical infrastructure:
 
-Enter `1` to select **SEATTLE** (the preferred site for this lab). The script will automatically map the site to its Data Center identifier:
+- **Critical Alerts (Red Tiles):** Indicates PDU utilization exceeding the 80% threshold. Immediate remediation — including device migration or the decommissioning of idle hardware — is required to mitigate overload risks.
+- **Warning Indicators (Orange Tiles):** Denotes racks approaching capacity limits, necessitating pre-emptive load management.
+- **Optimal Capacity (Green Tiles):** Identifies racks with sufficient headroom for high-density integration.
 
-```
-> Select an option: 1
+Going back to the main dashboard, the **Active Power Drawn Trend** panel displays historical load data from the past seven days.
 
-Data Center auto selected: SEA01-103
-```
+!!! success "Capacity Verification"
+    The SEA01-103 data center is confirmed to have sufficient electrical capacity, with **713.82 kW** of available headroom, to support the proposed 300 kW AI server deployment. By cross-referencing our current load distribution with the topology heatmap, we can strategically allocate these workloads to "Green" racks, ensuring optimal power distribution and load balancing.
 
-After selection, the scenario menu is displayed:
 
-```
-SCENARIOS:
-----------
-  1. Power capacity
-  2. PDU details overview
-  3. Offline PDUs
-  4. PDUs exceeding 90% capacity
-  5. Data Center Temperature
-  6. Row Temperature
-  7. Rack Temperature
-  8. Exit
-```
+## Step 2: Validate Thermal Compliance for AI Infrastructure in SEA01-103
 
+Monitor data center health by reviewing average temperature, humidity, and battery readings across all sensors.
 
-## Step 3: Query Power Capacity
+Click on the **temperature value** to view the list of sensors in the data center to see the temperature, humidity, and their battery level.
 
-Enter `1` to view the data center's power capacity summary. The output displays total capacity (at 80% NEC threshold), active draw, and available headroom:
+<figure markdown>
+  ![Temperature Sensor Details](./assets/t1_sensor_details.png)
+</figure>
 
-```
-> Select a scenario: 1
+Click the page numbers or the **Next** button located at the bottom right of the interface to navigate through the complete list of temperature sensors.
 
-Power capacity for Data Center SEA01-103:
------------------------------------------
-Power Capacity     : 1,315 kW
-Active Power Drawn : 601.4330 kW
-Available Power    : 716.9320 kW
-```
-
-!!! tip
-    Compare these values with the Splunk dashboard (Scenario 3) to verify consistency between the script and the visual interface.
-
-Press "Enter" to return to the scenario menu.
-
-
-## Step 4: Query PDU Details Overview
-
-Enter `2` to retrieve a summary of PDU fleet status, including total count and breakdown by operational state:
-
-```
-> Select a scenario: 2
-
-PDU details overview for Data Center SEA01-103:
------------------------------------------------
-Total PDU count   : 272
-In-use PDUs       : 217
-Available PDUs    : 43
-Offline PDUs      : 12
-```
-
-!!! tip
-    These values correspond directly to the PDU status panels in the Splunk dashboard (Scenario 5).
-
-
-## Step 5: Identify Offline PDUs
-
-Enter `3` to list all PDUs currently in an offline state. Each entry includes the rack name and host IP address for troubleshooting:
-
-```
-> Select a scenario: 3
-
-Offline PDUs for Data Center SEA01-103:
----------------------------------------
-
-[1]
-    Data_Center: SEA01-103
-    Rack: SEA01-103-AM-6-PDU-2
-    Host_ip: 10.0.153.77
-
-[2]
-    Data_Center: SEA01-103
-    Rack: SEA01-103-AM-10-PDU-1
-    Host_ip: 10.0.153.86
-...
-```
-
-!!! warning
-    Offline PDUs may indicate network connectivity issues or hardware failures. Cross-reference these IPs with your network monitoring tools.
-
-Press "Enter" to return to the scenario menu.
-
-
-## Step 6: Identify PDUs Exceeding 90% Capacity
-
-Enter `4` to view PDUs that are operating above the 90% load threshold. Each entry displays the current amperage and consumption percentage:
-
-```
-> Select a scenario: 4
-
-PDUs exceeding 90% capacity for Data Center SEA01-103:
-------------------------------------------------------
-
-Count : 10
-
-Details:
---------
-
-[1]
-    Data_Center: SEA01-103
-    Row: AU
-    Rack: SEA01-103-AU-7-PDU-2
-    Value: 22.04 amps
-    PDU_consumption: 91.838%
-...
-[10]
-    Data_Center: SEA01-103
-    Row: AY
-    Rack: SEA01-103-AY-4-PDU-2
-    Value: 26.20 amps
-    PDU_consumption: 109%
-```
-
-!!! danger
-    PDUs at or above 100% consumption (e.g., 105%, 109%) are exceeding their rated capacity and pose a risk of breaker trips. Immediate load redistribution is recommended.
-
-Press "Enter" to return to the scenario menu.
-
-
-## Step 7: Query Data Center Temperature
-
-Enter `5` to retrieve the average temperature across the entire data center:
-
-```
-> Select a scenario: 5
-
-Temperature for Data Center SEA01-103:
---------------------------------------
-81.54°F / 27.52°C
-```
-
-
-## Step 8: Query Row Temperature
-
-Enter `6` to drill down into a specific row or aisle. When prompted, enter a row identifier (e.g., `ac`):
-
-```
-> Select a scenario: 6
-
-Row Temperature for Data Center SEA01-103:
-------------------------------------------
-
-Specify the Row/Aisle to monitor (Enter:'ac'): ac
-
-Temperature data:
------------------
-
-  [1]
-    Data_Center: SEA01-103
-    Row: AC
-    Temp: 83.7°F / 28.72°C
-    Humidity: 8%
-    MT10_sensor_battery_life: 100%
-
-  [2]
-    Data_Center: SEA01-103
-    Row: AC
-    Temp: 79.5°F / 26.39°C
-    Humidity: 9%
-    MT10_sensor_battery_life: 100%
-...
-```
-
-The output includes temperature, humidity, and Meraki MT10 sensor battery status for each rack in the selected row.
-
-Press "Enter" to return to the scenario menu.
-
-
-## Step 9: Query Rack Temperature
-
-Enter `7` to inspect a specific rack. When prompted, enter the rack identifier in the format `row-number` (e.g., `ac-4`):
-
-```
-> Select a scenario: 7
-
-Rack Temperature for Data Center SEA01-103:
--------------------------------------------
-
-Specify the Rack to monitor (Enter:'ac-4'): ac-4
-
-Rack Temperature:
------------------
-    Data_Center: SEA01-103
-    Row: AC
-    Rack: SEA01-103-AC-4-PDU-1
-    Temp: 83.7°F / 28.72°C
-    Humidity: 8%
-    MT10_sensor_battery_life: 100%
-```
-
-
-## Step 10: Exit the Script
-
-When finished, enter `8` to exit:
-
-```
-> Select a scenario: 8
-
-✨Thank you for exploring our AI Era Power Management Lab Demo!
-  Have an incredible time at Cisco Live and enjoy the rest of your experience!✨
-```
+!!! info "Thermal Compliance"
+    Current telemetry confirms that ambient temperatures within the lab are within the optimal range for high-density AI hardware. To ensure peak performance and hardware longevity, the environment must be maintained between **64°F and 80°F (18°C–27°C)**. Proactive management of these thermal parameters is essential to prevent hardware throttling, mitigate equipment failure risks, and ensure the long-term reliability of our AI infrastructure.
 
 
 ## Result
 
-You have used the CLI script to programmatically query all key data center metrics -- power capacity, PDU fleet status, overloaded PDUs, and environmental conditions -- providing a complementary, script-based approach to the Splunk dashboard workflows covered in the earlier scenarios.
+!!! success "Capacity Summary"
+    Based on current power availability and thermal performance metrics, location **SEA01-103** is verified as capable of supporting a **300kW AI server load**.
 
 ---

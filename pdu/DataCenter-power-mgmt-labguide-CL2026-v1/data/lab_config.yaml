@@ -15,7 +15,7 @@
 
 # --- Lab Identity -----------------------------------------------------------
 
-lab_id: "LABATO-2001"
+lab_id: "LABDCN-2026"
 lab_title: "AI ERA Data Center Power Management Dashboard"
 authors: "Author 1, Author 2"
 
@@ -23,13 +23,13 @@ authors: "Author 1, Author 2"
 # --- Event Details ----------------------------------------------------------
 
 event_name: "Cisco Live 2026"
-lab_type: "Walk-In Labs"
+lab_type: "Demo Guide"
 
 
 # --- Smart PDU Access -------------------------------------------------------
 
 smart_pdu:
-  url: "http://173.37.192.195:5222/#/login"
+  url: "http://10.201.62.181:8081/#/login"
   username: "admin"
   password: "CiscoLive2026!"
 
@@ -37,7 +37,6 @@ smart_pdu:
 # --- Splunk Cloud Access ----------------------------------------------------
 
 splunk:
-  url: "https://cisco-it.splunkcloud.com/en-US/app/CALOLABSUTILIZATIONMONITORING/ai_era_power_management_demo"
   username: "CiscoLiveUser"
   password: "CiscoLive2026!"
 
@@ -63,19 +62,25 @@ nav:
   - "Lab":
       - "Overview": "overview.md"
       - "Getting Started": "getting_started.md"
-      - "Task 1 - Power & Thermal Readiness": "task01.md"
-      - "Task 2 - PDU Load Audit & Remediation": "task02.md"
-      - "Task 3 - PDU Capacity Optimization": "task03.md"
-      - "Task 4 - CLI Script Data Extraction": "task04.md"
+      - "Navigating Smart PDU Dashboard": "scenario01.md"
+      - "Scenario 2 - Navigating Splunk Cloud Dashboard": "scenario02.md"
+      - "Scenario 3 - Power Infrastructure & Topology Analysis": "scenario03.md"
+      - "Scenario 4 - Environmental Monitoring & Temperature": "scenario04.md"
+      - "Scenario 5 - PDU Operational Status & Availability": "scenario05.md"
+      - "Scenario 6 - PDU Outlet View & Phase Balancing": "scenario06.md"
+      - "Task 1 - Interact with Data Using the CLI Script": "task01.md"
       - "Conclusion": "conclusion.md"
 
 
 # --- Learning Objectives (shown on the Overview page) ----------------------
 
 learning_objectives:
-  - "Identify PDU overload conditions by analyzing real-time telemetry from the Power Management Dashboard."
-  - "Evaluate data center power utilization patterns to assess overall infrastructure health and efficiency."
-  - "Formulate effective load-balancing strategies to mitigate power imbalances and ensure optimal rack performance."
+  - "Navigate and interpret Smart PDU dashboards for real-time power metrics."
+  - "Use Splunk Cloud to monitor Data Center power capacity, consumption, and headroom."
+  - "Visualize power flow topology from transformers to individual racks."
+  - "Monitor environmental conditions using Meraki sensor data in Splunk."
+  - "Track PDU operational status and availability across the data center."
+  - "Analyze outlet-level power distribution and phase balancing on individual PDUs."
 
 
 # --- Related Sessions (shown on Conclusion page) ---------------------------

@@ -24,13 +24,13 @@ theme:
     - toc.integrate
   custom_dir: docs/overrides
   palette:
-    - media: "(prefers-color-scheme: dark)"
+    - media: "(prefers-color-scheme: light)"
       scheme: default
       primary: custom
       toggle:
         icon: material/brightness-7
-        name: Switch to Light mode
-    - media: "(prefers-color-scheme: light)"
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: custom
       toggle:

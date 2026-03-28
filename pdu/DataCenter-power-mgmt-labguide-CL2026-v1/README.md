@@ -12,6 +12,25 @@ pip install -r requirements.txt
 
 # Preview the lab guide locally
 mkdocs serve
+
+cd /Users/rbhaviri/Documents/Ongoing/labguide/DataCenter-power-mgmt-labguide-CL2026
+podman build -t labguide:latest -f Containerfile .
+
+podman run -d --name labguide -p 8002:8002 labguide:latest
+
+podman ps                 # check status
+podman logs labguide      # view nginx logs
+podman stop labguide      # stop
+podman start labguide     # restart
+podman rm labguide        # remove (must stop first)
+
+podman stop labguide && podman rm labguide
+podman build -t labguide:latest -f Containerfile .
+podman run -d --name labguide -p 8002:8002 labguide:latest
+
+podman generate systemd --name labguide --new > ~/.config/systemd/user/labguide.service
+systemctl --user daemon-reload
+systemctl --user enable labguide.service
 ```
 
 Open <http://localhost:8000> to view the lab guide.
