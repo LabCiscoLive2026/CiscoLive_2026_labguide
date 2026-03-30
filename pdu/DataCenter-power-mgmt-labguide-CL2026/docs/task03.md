@@ -20,6 +20,11 @@ This section provides an overview of PDU CHG01-101-D-17-PDU-1, including 3-phase
 Click the **PDU** tab on the left side navigation bar. This view provides the Overview dashboard for PDU CHG01-101-D-17-PDU-1. It serves as the primary information hub for the device, consolidating hardware identification, firmware status, and operational configuration settings.
 
 <figure markdown>
+  ![PDU Tab](./assets/t3_pdu_dashboard_2.png)
+  <figcaption>PDU CHG01-101-D-17-PDU-1 — Dashboard with 3-phase current monitoring</figcaption>
+</figure>
+
+<figure markdown>
   ![PDU Tab](./assets/t3_pdu_tab.png)
 </figure>
 
@@ -41,6 +46,11 @@ Click the **Inlet** tab from the left-hand navigation menu to view detailed info
 </figure>
 
 This view provides a granular, real-time analysis of the PDU's electrical performance at the inlet level. It is designed for monitoring load distribution and identifying potential power issues across the three phases.
+
+<figure markdown>
+  ![Inlet Tab](./assets/t3_inlet_tab_2.png)
+</figure>
+
 
 **Key Sections of the View:**
 
@@ -65,6 +75,10 @@ Click the **Outlets** tab from the left-hand navigation menu to view detailed in
 </figure>
 
 This table allows lab technicians to monitor the status and power draw of every individual outlet (1 through 24) on the PDU.
+
+<figure markdown>
+  ![Outlets Tab](./assets/t3_outlets_tab_2.png)
+</figure>
 
 **Column Definitions:**
 

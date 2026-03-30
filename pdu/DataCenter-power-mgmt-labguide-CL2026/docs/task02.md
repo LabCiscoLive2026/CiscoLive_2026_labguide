@@ -19,17 +19,21 @@ This panel provides an operational summary of all lab PDUs, categorizing them by
 !!! note
     As these are smart PDUs, stable network connectivity is required to ensure continuous data transmission and real-time monitoring.
 
+<!-- <div class="dashboard-imgs" markdown> -->
 <figure markdown>
-  ![Main Dashboard - PDU Section](./assets/t1_main_dashboard.png)
+  ![Main Dashboard - PDU Section](./assets/t2_sea_dashboard.png)
 </figure>
+<!-- </div> -->
 
 To view a comprehensive list of PDUs by category, select the corresponding value from the dashboard:
 
 - **In-Use PDUs:** Click to view a detailed list of all currently active units.
 
+<!-- <div class="dashboard-imgs" markdown> -->
 <figure markdown>
   ![In-Use PDU List](./assets/t2_inuse_pdu_list.png)
 </figure>
+<!-- </div> -->
 
 - **Available PDUs:** Click to view a detailed list of all available units.
 
@@ -55,13 +59,21 @@ This panel provides real-time visibility into the current amperage draw for all 
 | :yellow_circle: Caution       | ≥ 70% load |
 | :green_circle: Normal         | < 70% load |
 
-Click on the **orange bar graph** for **SEA01-103-AU-5-PDU-2** in the Capacity Warning ≥ 80% panel.
-
 <figure markdown>
   ![PDU Outlet View - Phase Load](./assets/t2_outlet_view.png)
 </figure>
 
+Click on the **orange bar graph** for **SEA01-103-AU-5-PDU-2** in the Capacity Warning ≥ 80% panel.
+
+<figure markdown>
+  ![PDU Outlet View - Phase Load](./assets/t2_outlet_view_2.png)
+</figure>
+
 The **Power Consumption for "SEA01-103-AU-5-PDU-2" (Last 7 days)** shows the historical view of kW trend for the last 7 days for this PDU.
+
+<figure markdown>
+  ![PDU Outlet View - Phase Load](./assets/t2_outlet_view_3.png)
+</figure>
 
 ### PDU Phase Load Analysis
 
@@ -72,6 +84,10 @@ The **Power Consumption for "SEA01-103-AU-5-PDU-2" (Last 7 days)** shows the his
 | Phase A (L1)   | 11.65 A  |
 | Phase B (L2)   | 20.49 A  |
 | Phase C (L3)   | 16.11 A  |
+
+<figure markdown>
+  ![PDU Outlet View - Phase Load](./assets/t2_outlet_view_4.png)
+</figure>
 
 !!! note
     The data center maintains an inventory of lab devices and their power mapping details. This information allows us to map each Device PID to its corresponding outlet on the dashboard.
@@ -89,6 +105,11 @@ Click on **N9k-C93180YC(17)** to view the outlet trend.
 **Analysis:**
 
 The PDU is currently exhibiting a significant phase imbalance. Phase B is carrying a disproportionately high load compared to Phase A, creating an uneven distribution that risks localized thermal stress and potential breaker trips. To maintain optimal electrical efficiency and infrastructure longevity, we must rebalance these phases.
+
+<figure markdown>
+  ![Outlet Trend](./assets/t2_outlet_trend_2.png)
+  <figcaption>Outlet #17 — Historical trend (last 30 days)</figcaption>
+</figure>
 
 **Remediation Strategy:**
 

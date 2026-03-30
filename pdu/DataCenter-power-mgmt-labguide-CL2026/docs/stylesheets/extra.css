@@ -31,6 +31,12 @@
     color: #191919;
 }
 
+.dashboard-imgs img{
+    border-radius: 0.5rem;
+    color: #191919;
+    overflow: hidden;
+}
+
 [data-md-color-scheme="default"] {
     --md-typeset-a-color: #3a7fff;
     --md-accent-fg-color: #00bdeb;

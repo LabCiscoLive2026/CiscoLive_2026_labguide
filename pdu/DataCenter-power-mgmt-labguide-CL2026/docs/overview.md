@@ -7,7 +7,7 @@ This lab guides engineers through the implementation of Smart PDUs to achieve gr
 
 ## Scenario: Unified Power Management Across Distributed Data Centers
 
-As a Senior Engineer at Data Pac Networks, your mission is to execute a comprehensive power and thermal readiness audit across six global sites — SEA01-103, CHG01-101, CHG01-102, DEL01-102, FRA01-104, and SGP01-04 — within a 45-minute maintenance window to ensure 100% uptime while scaling infrastructure for high-density AI server deployments.
+As a Senior Engineer at Data Pac Networks, your task would be to execute a comprehensive power and thermal readiness audit across six global sites — SEA01-103, CHG01-101, CHG01-102, DEL01-102, FRA01-104, and SGP01-04 — within a 45-minute maintenance window to ensure 100% uptime while scaling infrastructure for high-density AI server deployments.
 
 You will leverage the AI Era Data Center Power Management Dashboard to conduct a high-level load distribution review, verifying that all PDU power loads remain within optimal operating thresholds and identifying any racks exhibiting significant phase variance or overload risk.
 
@@ -41,6 +41,8 @@ To gain hands-on experience with this infrastructure, progress through the follo
 4. [Interact with Data Using the CLI Script](task04.md)
 
 
+
+
 ## What is a Smart PDU?
 
 - **Intelligent Power Distribution:** Unlike standard PDUs, a Smart PDU provides real-time telemetry and remote management capabilities for power distribution at the rack level.
@@ -48,7 +50,7 @@ To gain hands-on experience with this infrastructure, progress through the follo
 - **Remote Control:** It allows engineers to remotely cycle power to individual outlets, facilitating hard reboots of unresponsive equipment without physical intervention.
 - **Alerting:** It provides proactive notifications when power thresholds are exceeded, preventing potential circuit overloads.
 
-### Visibility into Power Utilization Solves Three Critical Problems
+## Visibility into Power Utilization Solves Three Critical Problems
 
 - **Capacity Planning:** It prevents overloading circuits by identifying available headroom, ensuring that new hardware can be deployed safely without tripping breakers.
 - **Operational Efficiency:** It helps identify "zombie" servers or inefficient hardware, allowing for better Power Usage Effectiveness (PUE) and reduced operational costs.
@@ -62,8 +64,8 @@ To gain hands-on experience with this infrastructure, progress through the follo
 - **Historical Analysis:** Unlike local PDU logs, Splunk provides long-term data retention, enabling trend analysis to predict future power requirements and capacity needs.
 - **Robust Alerting:** Splunk's powerful query language allows for custom, complex alerting rules that go beyond the basic threshold alerts provided by native PDU firmware.
 
-!!! info "Disclaimer"
-    This lab is designed exclusively for educational and training purposes. All activities performed within this environment are conducted in controlled dashboards and do not reflect real-time changes to live production infrastructure.
-
 !!! note
     The smart PDU infrastructure and the AI Era Power Management Dashboard are fully provisioned and integrated for this environment. No initial configuration is required; you may proceed directly to the assessment and monitoring tasks.
+
+!!! info "Disclaimer"
+    This lab is designed exclusively for educational and training purposes. All activities performed within this environment are conducted in controlled dashboards and do not reflect real-time changes to live production infrastructure.

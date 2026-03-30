@@ -28,7 +28,7 @@
     .tx-hero {
         margin: 0 auto;
         padding: 0.9rem 2rem 3rem;
-        max-width: 72rem;
+        max-width: 62rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -37,8 +37,9 @@
 
     .tx-hero__image {
         flex: 1 1 50%;
-        max-width: 750px;
+        max-width: 550px;
         padding-right: 2.5rem;
+        padding-top: 5.5rem;
     }
 
     .tx-hero__image img {
@@ -55,9 +56,10 @@
         width: 100%;
         margin-bottom: 2rem;
     }
-
+    
     .tx-hero__logo img {
         width: 100%;
+        padding-right: 1rem;
         height: auto;
     }
 
@@ -80,12 +82,12 @@
         margin: 0 0 0.5rem;
         color: currentColor;
         font-weight: 500;
-        font-size: 1.8rem;
+        font-size: 1.2rem;
         line-height: 1.2;
     }
 
     .tx-hero__subtitle {
-        font-size: 1rem;
+        font-size: 0.8rem;
         line-height: 1.6;
         opacity: 0.85;
         margin-bottom: 2rem;
@@ -221,7 +223,7 @@
             <div class="tx-hero__logo">
                 <img src="template_assets/Event_General_Logo.png" draggable="false" alt="Event Logo">
             </div>
-            <span class="tx-hero__badge">Walk-In Lab</span>
+            <!-- <span class="tx-hero__badge">Walk-In Lab</span> -->
             <h1>
                 {% set lab_id = config.lab_id %}
                 {% set lab_title = config.lab_title %}
@@ -229,7 +231,7 @@
                 {{ lab_title }}
             </h1>
             <p class="tx-hero__subtitle">
-                Monitor, analyze, and optimize data center power distribution using Smart PDUs and Splunk Cloud dashboards.
+                (Monitor, analyze, and optimize data center power distribution using Smart PDUs and Splunk Cloud dashboards)
             </p>
             <a href="overview/" class="md-button md-button--primary">
                 Get Started
