@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from splunk_connect import (
     get_exceeding_capacity,
     get_offline_pdus,
