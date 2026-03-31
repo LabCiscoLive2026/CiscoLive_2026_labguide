@@ -8,9 +8,10 @@
 Login to the AI Era Power Management Dashboard, utilize the global filter to select the **Seattle** site and the **SEA01-103** data center. Ensure the view is fully loaded before proceeding with the power and thermal assessment to guarantee the accuracy of your data.
 
 <figure markdown>
-  ![SEA01-103 Dashboard](./assets/t1_sea_dashboard.png)
-  <figcaption>AI Era Power Management Dashboard(SEA01-103)</figcaption>
+  ![SEA01-103 Dashboard](./assets/task1/pdu_dashboard1.png)
+  <!-- <figcaption>AI Era Power Management Dashboard(SEA01-103)</figcaption> -->
 </figure>
+
 
 The following three panels provide a real-time overview of the data center's power profile:
 
@@ -19,7 +20,7 @@ The following three panels provide a real-time overview of the data center's pow
 - **Total Available Active Power:** Indicates the remaining power headroom available for additional equipment deployment.
 
 <figure markdown>
-  ![SEA01-103 Dashboard](./assets/t1_sea_dashboard_2.png)
+  ![SEA01-103 Dashboard](./assets/task1/pdu_dashboard2.png)
   <figcaption>AI Era Power Management Dashboard(SEA01-103)</figcaption>
 </figure>
 
@@ -37,7 +38,7 @@ Based on the current dashboard metrics for the SEA01-103 data center, the power 
 To visualize the power distribution topology for the Smart PDUs, click the metric value displayed under **Total Active Power Drawn**.
 
 <figure markdown>
-  ![Topology View](./assets/t1_topology_view.png)
+  ![Topology View](./assets/task1/pdu_topology.png)
   <figcaption>SEA01-103 Transformer Feed — Power Flow Topology</figcaption>
 </figure>
 
@@ -50,7 +51,7 @@ The topology dashboard serves as a critical real-time heatmap for our power dist
 Going back to the main dashboard, the **Active Power Drawn Trend** panel displays historical load data from the past seven days.
 
 <figure markdown>
-  ![SEA01-103 Dashboard](./assets/t1_sea_dashboard_3.png)
+  ![SEA01-103 Dashboard](./assets/task1/pdu_dashboard3.png)
   <figcaption>AI Era Power Management Dashboard(SEA01-103)</figcaption>
 </figure>
 
@@ -66,7 +67,7 @@ Click on the **temperature value** to view the list of sensors in the data cente
 
 
 <figure markdown>
-  ![SEA01-103 Dashboard](./assets/t1_sea_dashboard_4.png)
+  ![SEA01-103 Dashboard](./assets/task1/pdu_dashboard4.png)
   <figcaption>AI Era Power Management Dashboard(SEA01-103)</figcaption>
 </figure>
 
@@ -74,7 +75,7 @@ Click on the **temperature value** to view the list of sensors in the data cente
 Click the page numbers or the **Next** button located at the bottom right of the interface to navigate through the complete list of temperature sensors.
 
 <figure markdown>
-  ![Temperature Sensor Details](./assets/t1_sensor_details.png)
+  ![Temperature Sensor Details](./assets/task1/pdu_temperature.png)
 </figure>
 
 <!-- !!! info "Thermal Compliance" -->

@@ -8,7 +8,7 @@
 Login to the Smart PDU GUI. The primary dashboard provides a centralized view of the unit's real-time electrical telemetry. The interface displays critical load data across the three-phase power distribution lines — designated as **L1**, **L2**, and **L3** — allowing for granular monitoring of current (Amps), voltage, and phase-specific load distribution.
 
 <figure markdown>
-  ![Smart PDU Dashboard](./assets/t3_pdu_dashboard.png)
+  ![Smart PDU Dashboard](./assets/task3/pdu_ui1.png)
   <figcaption>PDU CHG01-101-D-17-PDU-1 — Dashboard with 3-phase current monitoring</figcaption>
 </figure>
 
@@ -20,12 +20,12 @@ This section provides an overview of PDU CHG01-101-D-17-PDU-1, including 3-phase
 Click the **PDU** tab on the left side navigation bar. This view provides the Overview dashboard for PDU CHG01-101-D-17-PDU-1. It serves as the primary information hub for the device, consolidating hardware identification, firmware status, and operational configuration settings.
 
 <figure markdown>
-  ![PDU Tab](./assets/t3_pdu_dashboard_2.png)
+  ![PDU Tab](./assets/task3/pdu_ui2.png)
   <figcaption>PDU CHG01-101-D-17-PDU-1 — Dashboard with 3-phase current monitoring</figcaption>
 </figure>
 
 <figure markdown>
-  ![PDU Tab](./assets/t3_pdu_tab.png)
+  ![PDU Tab](./assets/task3/pdu_view1.png)
 </figure>
 
 **Details Section** — This area displays the core asset information required for inventory management and troubleshooting:
@@ -42,13 +42,13 @@ Click the **PDU** tab on the left side navigation bar. This view provides the Ov
 Click the **Inlet** tab from the left-hand navigation menu to view detailed information regarding the PDU inlets.
 
 <figure markdown>
-  ![Inlet Tab](./assets/t3_inlet_tab.png)
+  ![Inlet Tab](./assets/task3/pdu_view2.png)
 </figure>
 
 This view provides a granular, real-time analysis of the PDU's electrical performance at the inlet level. It is designed for monitoring load distribution and identifying potential power issues across the three phases.
 
 <figure markdown>
-  ![Inlet Tab](./assets/t3_inlet_tab_2.png)
+  ![Inlet Tab](./assets/task3/pdu_inlet1.png)
 </figure>
 
 
@@ -71,13 +71,13 @@ This view provides a granular, real-time analysis of the PDU's electrical perfor
 Click the **Outlets** tab from the left-hand navigation menu to view detailed information regarding the PDU outlets.
 
 <figure markdown>
-  ![Outlets Tab](./assets/t3_outlets_tab.png)
+  ![Outlets Tab](./assets/task3/pdu_inlet2.png)
 </figure>
 
 This table allows lab technicians to monitor the status and power draw of every individual outlet (1 through 24) on the PDU.
 
 <figure markdown>
-  ![Outlets Tab](./assets/t3_outlets_tab_2.png)
+  ![Outlets Tab](./assets/task3/pdu_outlet.png)
 </figure>
 
 **Column Definitions:**

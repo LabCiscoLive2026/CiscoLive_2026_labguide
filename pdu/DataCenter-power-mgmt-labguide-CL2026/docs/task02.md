@@ -19,33 +19,37 @@ This panel provides an operational summary of all lab PDUs, categorizing them by
 !!! note
     As these are smart PDUs, stable network connectivity is required to ensure continuous data transmission and real-time monitoring.
 
-<!-- <div class="dashboard-imgs" markdown> -->
+<div class="dashboard-imgs" markdown>
 <figure markdown>
-  ![Main Dashboard - PDU Section](./assets/t2_sea_dashboard.png)
+  ![Main Dashboard - PDU Section](./assets/task2/pdu_dashboard1.png)
 </figure>
-<!-- </div> -->
+</div>
 
 To view a comprehensive list of PDUs by category, select the corresponding value from the dashboard:
 
 - **In-Use PDUs:** Click to view a detailed list of all currently active units.
 
-<!-- <div class="dashboard-imgs" markdown> -->
+<div class="dashboard-imgs" markdown>
 <figure markdown>
-  ![In-Use PDU List](./assets/t2_inuse_pdu_list.png)
+  ![In-Use PDU List](./assets/task2/pdu_inuse.png)
 </figure>
-<!-- </div> -->
+</div>
 
 - **Available PDUs:** Click to view a detailed list of all available units.
 
+<div class="dashboard-imgs" markdown>
 <figure markdown>
-  ![Available PDU List](./assets/t2_available_pdu_list.png)
+  ![Available PDU List](./assets/task2/pdu_available.png)
 </figure>
+</div>
 
 - **Offline PDUs:** Click to view a detailed list of all offline units.
 
+<div class="dashboard-imgs" markdown>
 <figure markdown>
-  ![Offline PDU List](./assets/t2_offline_pdu_list.png)
+  ![Offline PDU List](./assets/task2/pdu_offline.png)
 </figure>
+</div>
 
 
 ## Step 2: Examine SEA01-103-AU-5-PDU-2 Phase Load Balance
@@ -60,19 +64,19 @@ This panel provides real-time visibility into the current amperage draw for all 
 | :green_circle: Normal         | < 70% load |
 
 <figure markdown>
-  ![PDU Outlet View - Phase Load](./assets/t2_outlet_view.png)
+  ![PDU Outlet View - Phase Load](./assets/task2/pdu_dashboard2.png)
 </figure>
 
 Click on the **orange bar graph** for **SEA01-103-AU-5-PDU-2** in the Capacity Warning ≥ 80% panel.
 
 <figure markdown>
-  ![PDU Outlet View - Phase Load](./assets/t2_outlet_view_2.png)
+  ![PDU Outlet View - Phase Load](./assets/task2/pdu_dashboard3.png)
 </figure>
 
 The **Power Consumption for "SEA01-103-AU-5-PDU-2" (Last 7 days)** shows the historical view of kW trend for the last 7 days for this PDU.
 
 <figure markdown>
-  ![PDU Outlet View - Phase Load](./assets/t2_outlet_view_3.png)
+  ![PDU Outlet View - Phase Load](./assets/task2/pdu_outlet1.png)
 </figure>
 
 ### PDU Phase Load Analysis
@@ -86,7 +90,7 @@ The **Power Consumption for "SEA01-103-AU-5-PDU-2" (Last 7 days)** shows the his
 | Phase C (L3)   | 16.11 A  |
 
 <figure markdown>
-  ![PDU Outlet View - Phase Load](./assets/t2_outlet_view_4.png)
+  ![PDU Outlet View - Phase Load](./assets/task2/pdu_outlet2.png)
 </figure>
 
 !!! note
@@ -95,7 +99,7 @@ The **Power Consumption for "SEA01-103-AU-5-PDU-2" (Last 7 days)** shows the his
 Click on **N9k-C93180YC(17)** to view the outlet trend.
 
 <figure markdown>
-  ![Outlet Trend](./assets/t2_outlet_trend.png)
+  ![Outlet Trend](./assets/task2/pdu_outlet3.png)
   <figcaption>Outlet #17 — Historical trend (last 30 days)</figcaption>
 </figure>
 
@@ -107,7 +111,7 @@ Click on **N9k-C93180YC(17)** to view the outlet trend.
 The PDU is currently exhibiting a significant phase imbalance. Phase B is carrying a disproportionately high load compared to Phase A, creating an uneven distribution that risks localized thermal stress and potential breaker trips. To maintain optimal electrical efficiency and infrastructure longevity, we must rebalance these phases.
 
 <figure markdown>
-  ![Outlet Trend](./assets/t2_outlet_trend_2.png)
+  ![Outlet Trend](./assets/task2/pdu_outlet4.png)
   <figcaption>Outlet #17 — Historical trend (last 30 days)</figcaption>
 </figure>
 
