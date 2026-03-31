@@ -14,7 +14,7 @@ To access the Data Center Dashboard, please use **Google Chrome**. Chrome is the
 
 | <!-- -->     | <!-- -->                   |
 | ------------ | -------------------------- |
-| `URL`        | [AI Era Power Management Dashboard]({{ splunk.url }}) |
+| `URL`        | [AI Era Power Management Dashboard]({{ splunk.url }}){target=_blank} |
 | `Username`   | {{ splunk.username }}      |
 | `Password`   | {{ splunk.password }}      |
 
@@ -25,6 +25,6 @@ To access the Smart PDU dashboard, please use the following credentials:
 
 | <!-- -->     | <!-- -->                   |
 | ------------ | -------------------------- |
-| `URL`        | [{{ smart_pdu.url }}]({{ smart_pdu.url }}) |
+| `URL`        | [{{ smart_pdu.url }}]({{ smart_pdu.url }}){target=_blank} |
 | `Username`   | {{ smart_pdu.username }}   |
 | `Password`   | {{ smart_pdu.password }}   |

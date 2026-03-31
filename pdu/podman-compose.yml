@@ -1,0 +1,31 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8001:8001"
+    env_file:
+      - ./backend/.env
+    volumes:
+      - backend-cache:/app/exports
+    restart: unless-stopped
+
+  dashboard:
+    build:
+      context: ./pdu-dashboard-demo
+    ports:
+      - "8080:8080"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  labguide:
+    build:
+      context: ./DataCenter-power-mgmt-labguide-CL2026
+      dockerfile: Containerfile
+    ports:
+      - "8002:8002"
+    restart: unless-stopped
+
+volumes:
+  backend-cache:
