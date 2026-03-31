@@ -14,10 +14,9 @@ To access the Data Center Dashboard, please use **Google Chrome**. Chrome is the
 
 | <!-- -->     | <!-- -->                   |
 | ------------ | -------------------------- |
-| `URL`        | [AI Era Power Management Dashboard]({{ splunk.url }}){target=_blank} |
+| `URL`        | [Splunk Dashboard: AI Era Power Management Demo]({{ splunk.url }}){target=_blank} |
 | `Username`   | {{ splunk.username }}      |
 | `Password`   | {{ splunk.password }}      |
-
 
 ## Step 2: Accessing the Smart PDU Dashboard GUI
 
