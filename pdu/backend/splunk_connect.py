@@ -1,11 +1,10 @@
-from __future__ import annotations
-
 import csv
 import json
 import os
 import re
 from datetime import datetime
 from pathlib import Path
+from typing import Optional, Tuple
 from urllib import parse
 
 import requests
@@ -203,7 +202,7 @@ def _filter_sea_lab_df(df: pd.DataFrame) -> pd.DataFrame:
     return df[mask].copy()
 
 
-def _parse_numeric(value: str | None) -> float | None:
+def _parse_numeric(value: Optional[str]) -> Optional[float]:
     if value is None:
         return None
     text = str(value).replace(",", "")
@@ -235,7 +234,7 @@ def _strip_raw_fields_from_records(records: list[dict], fields_included: set = s
     return [{k: v for k, v in row.items() if k not in excludes} for row in records]
 
 
-def _find_numeric_by_key_patterns(row: dict, patterns: list[str]) -> float | None:
+def _find_numeric_by_key_patterns(row: dict, patterns: list) -> Optional[float]:
     for key, value in row.items():
         key_norm = _normalize_status(key)
         if any(pattern in key_norm for pattern in patterns):
@@ -245,7 +244,7 @@ def _find_numeric_by_key_patterns(row: dict, patterns: list[str]) -> float | Non
     return None
 
 
-def _ensure_cache() -> tuple[Path, dict | None]:
+def _ensure_cache() -> Tuple[Path, Optional[dict]]:
     cache_path = _get_cache_path()
     if cache_path.exists():
         return cache_path, None
@@ -416,7 +415,7 @@ def get_exceeding_capacity(threshold: int = 90) -> dict:
     }
 
 
-def get_temperature_for_row(row_label: str | None = None, rack: str | None = None) -> dict:
+def get_temperature_for_row(row_label: Optional[str] = None, rack: Optional[str] = None) -> dict:
     cache_path, err = _ensure_cache()
     if err:
         return err
