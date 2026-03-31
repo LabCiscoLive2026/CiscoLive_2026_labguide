@@ -1,4 +1,4 @@
-from __future__ import annotations
+from typing import Optional
 
 from splunk_connect import (
     get_exceeding_capacity,
@@ -23,8 +23,8 @@ def get_offline_pdus_route():
 
 @router.get('/temperature')
 def get_temperature_for_row_route(
-    row: str | None = Query(default=None),
-    rack: str | None = Query(default=None),
+    row: Optional[str] = Query(default=None),
+    rack: Optional[str] = Query(default=None),
 ):
     return get_temperature_for_row(row_label=row, rack=rack)
 
