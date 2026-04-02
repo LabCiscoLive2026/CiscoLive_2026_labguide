@@ -1,28 +1,32 @@
 import { useEffect, useRef } from 'react'
+import { createRoot } from 'react-dom/client'
 import SnapshotView from '../shared/SnapshotView'
-import inletHistoryImg from '../../assets/inlet_history.png'
+import InletHistoryChart from '../shared/InletHistoryChart'
 
 export default function DashboardView() {
   const containerRef = useRef(null)
 
   useEffect(() => {
+    let root = null
     const observer = new MutationObserver(() => {
       const container = containerRef.current
       if (!container) return
       const chartEl = container.querySelector('ngx-chartjs')
       if (chartEl) {
-        const img = document.createElement('img')
-        img.src = inletHistoryImg
-        img.alt = 'Inlet History Chart'
-        img.style.cssText = 'display:block;width:100%;height:auto;image-rendering:auto;user-select:none;pointer-events:none;-webkit-user-drag:none;'
-        chartEl.replaceWith(img)
+        const wrapper = document.createElement('div')
+        chartEl.replaceWith(wrapper)
+        root = createRoot(wrapper)
+        root.render(<InletHistoryChart />)
         observer.disconnect()
       }
     })
     if (containerRef.current) {
       observer.observe(containerRef.current, { childList: true, subtree: true })
     }
-    return () => observer.disconnect()
+    return () => {
+      observer.disconnect()
+      if (root) root.unmount()
+    }
   }, [])
 
   return (

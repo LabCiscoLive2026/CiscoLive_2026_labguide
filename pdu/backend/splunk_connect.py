@@ -215,8 +215,19 @@ def _parse_numeric(value: Optional[str]) -> Optional[float]:
         return None
 
 
+def _round_value(value: str) -> str:
+    """Round any floating-point numbers in a string to 1 decimal place."""
+    def _replace_float(m):
+        return str(round(float(m.group(0)), 1))
+    return re.sub(r"-?\d+\.\d{2,}", _replace_float, str(value))
+
+
+def _round_record(record: dict) -> dict:
+    return {k: _round_value(v) if isinstance(v, str) else v for k, v in record.items()}
+
+
 def _strip_raw_fields_from_records(records: list[dict], fields_included: set = set()) -> list[dict]:
-    """Remove _raw field from outgoing records."""
+    """Remove _raw field from outgoing records and round floats to 1 decimal."""
     fields_excluded = {
         "event_time",
         "info_min_time",
@@ -231,7 +242,7 @@ def _strip_raw_fields_from_records(records: list[dict], fields_included: set = s
         "_raw"
     }
     excludes = fields_excluded - fields_included
-    return [{k: v for k, v in row.items() if k not in excludes} for row in records]
+    return [_round_record({k: v for k, v in row.items() if k not in excludes}) for row in records]
 
 
 def _find_numeric_by_key_patterns(row: dict, patterns: list) -> Optional[float]:
@@ -404,8 +415,8 @@ def get_exceeding_capacity(threshold: int = 90) -> dict:
 
     available_fields = [f for f in ["Labs", "Row", "Host_name", "Value", "Perc"] if f in exceeded_df.columns]
     exceeded_df = exceeded_df[available_fields].rename(columns={"Labs": "Data_Center", "Perc": "PDU_consumption", "Host_name": "Rack"})
-    exceeded_df['Value'] = exceeded_df['Value'].astype(str).str.rstrip('%') + ' amps'
-    exceeded_df['PDU_consumption'] = exceeded_df['PDU_consumption'].astype(str).str.rstrip('%') + '%'
+    exceeded_df['Value'] = exceeded_df['Value'].astype(str).str.rstrip('%').apply(_round_value) + ' amps'
+    exceeded_df['PDU_consumption'] = exceeded_df['PDU_consumption'].astype(str).str.rstrip('%').apply(_round_value) + '%'
 
     exceeded_rows = _strip_raw_fields_from_records(exceeded_df.to_dict(orient="records"))
 
@@ -438,13 +449,21 @@ def get_temperature_for_row(row_label: Optional[str] = None, rack: Optional[str]
     mask &= temp_series.str.strip().ne("")
 
     filtered_rows = df[mask].copy()
-    results: list[dict] = []
+    results = []
+    temps_f = []
+    temps_c = []
+    humidities = []
     for row in filtered_rows.to_dict(orient="records"):
-        source_row = str(row.get("row", row.get("Row", ""))).strip()
-        hostname = str(row.get("host_name", row.get("host_hostname", ""))).strip()
-        temp_text = str(row.get("temp", row.get("temperature", ""))).strip()
-        temp_c = _parse_numeric(temp_text.split("/")[-1])
-        temp_f = _parse_numeric(temp_text.split("/")[0])
+        temp_text = str(row.get("temp", row.get("temperature", row.get("Temp", "")))).strip()
+        val_f = _parse_numeric(temp_text.split("/")[0])
+        val_c = _parse_numeric(temp_text.split("/")[-1])
+        if val_f is not None:
+            temps_f.append(val_f)
+        if val_c is not None:
+            temps_c.append(val_c)
+        hum = _parse_numeric(str(row.get("humidity", row.get("Humidity", ""))).strip())
+        if hum is not None:
+            humidities.append(hum)
         row['MT10_sensor_battery_life'] = row['Battery']
         row['Rack'] = row['Host_name']
         row["Data_Center"] = row["Lab"]
@@ -452,28 +471,25 @@ def get_temperature_for_row(row_label: Optional[str] = None, rack: Optional[str]
             ordered_keys = ["Data_Center", "Row", "Temp", "Humidity", "MT10_sensor_battery_life"]
         else:
             ordered_keys = ["Data_Center", "Row", "Rack", "Temp", "Humidity", "MT10_sensor_battery_life"]
-        results.append(
-            # {
-            #     "row": source_row,
-            #     "rack": hostname,
-            #     "temperature_raw": temp_text,
-            #     "temperature_c": temp_c,
-            #     "temperature_f": temp_f,
-            #     "row_data": {k: v for k, v in row.items() if k != "_raw"},
-            # }
-            # {k: v for k, v in row.items() if k != "_raw"}
-            # _strip_raw_fields_from_records(row)
-            {
-                key:row[key]
-                for key in ordered_keys
-            }
+        results.append(_round_record({key: row[key] for key in ordered_keys}))
 
-        )
+    if row_label and not rack:
+        avg_f = round(sum(temps_f) / len(temps_f), 1) if temps_f else 0
+        avg_c = round(sum(temps_c) / len(temps_c), 1) if temps_c else 0
+        avg_hum = round(sum(humidities) / len(humidities), 1) if humidities else 0
+        first = results[0] if results else {}
+        aggregate = {
+            "Data_Center": first.get("Data_Center", ""),
+            "Row": first.get("Row", ""),
+            "Avg_Temp": f"{avg_f}\u00b0F / {avg_c}\u00b0C",
+            "Avg_Humidity": f"{avg_hum}%",
+        }
+        return {
+            "Temperature_monitoring": [aggregate],
+            "count": 1,
+        }
 
     return {
-        # "row": row_label,
-        # "rack": rack,
-        f"Temperature_monitoring": _strip_raw_fields_from_records(results, fields_included={'row'}),
+        "Temperature_monitoring": _strip_raw_fields_from_records(results, fields_included={'row'}),
         "count": len(results),
-        # "excel_path": str(cache_path.resolve()),
     }

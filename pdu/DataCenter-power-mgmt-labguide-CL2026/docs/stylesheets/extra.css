@@ -25,10 +25,16 @@
 }
 
 .img-bg-dark {
-    background-color: #f3f4f6;
-    padding: 0.1rem;
+    background-color: #f8f9fb;
+    padding: 0rem;
     border-radius: 0.5rem;
     color: #191919;
+}
+
+.img-bg-dark img {
+    border-radius: 0.5rem;
+    width: 90%;
+    height: 90%;
 }
 
 .dashboard-imgs img{

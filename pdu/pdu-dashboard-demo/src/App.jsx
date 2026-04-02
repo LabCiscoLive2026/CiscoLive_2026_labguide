@@ -54,7 +54,7 @@ function App() {
     <AuthProvider>
       <ThemeProvider>
         <HashRouter>
-          <div className="h-full min-h-screen w-full">
+            <div className="h-full min-h-screen w-full max-w-[1800px] mx-auto">
             <Routes>
               <Route path="/login" element={<LoginView />} />
               <Route element={<ProtectedRoute />}>

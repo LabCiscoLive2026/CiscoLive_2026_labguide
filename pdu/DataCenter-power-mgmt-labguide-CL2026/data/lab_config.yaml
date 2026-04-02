@@ -33,6 +33,13 @@ smart_pdu:
   username: "admin"
   password: "CiscoLive2026!"
 
+be_script:
+  username: "cisco_live_user"
+  password: "CiscoLive2026!"
+
+be_script_vpn:
+  username: "user01@ciscolivevegas.com"
+  password: "eaHZP_a8zphk*ty"
 
 # --- Splunk Cloud Access ----------------------------------------------------
 
@@ -63,10 +70,10 @@ nav:
   - "Lab":
       - "Overview": "overview.md"
       - "Getting Started": "getting_started.md"
-      - "Task 1 - Power & Thermal Readiness": "task01.md"
+      - "Task 1 - Power & Cooling Capacity": "task01.md"
       - "Task 2 - PDU Load Audit & Remediation": "task02.md"
       - "Task 3 - PDU Capacity Optimization": "task03.md"
-      - "Task 4 - CLI Script Data Extraction": "task04.md"
+      - "Task 4 - Execute Python Script to Query Splunk Data": "task04.md"
       - "Conclusion": "conclusion.md"
 
 

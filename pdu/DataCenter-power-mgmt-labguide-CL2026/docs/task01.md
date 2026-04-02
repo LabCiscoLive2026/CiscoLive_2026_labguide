@@ -1,9 +1,19 @@
-# Task 1: Validate SEA01-103 Electrical and Thermal Readiness for 300kW AI Deployment
+# Task 1: Validate DC SEA01-103 Power and Cooling capacity for 300kW AI Deployment
 
 **Objective:** Evaluate the electrical and thermal capacity of the SEA01-103 data center to support a 300kW high-density AI server deployment. Given the intensive power requirements of modern AI workloads, this assessment is critical to validating that our existing infrastructure can sustain this load without compromising our 100% uptime commitment.
 
+## Step 1: Accessing the AI Era Power Management Dashboard
 
-## Step 1: Check the Total Power Capacity for Seattle Site — SEA01-103
+To access the Data Center Dashboard, please use **Google Chrome**. Chrome is the preferred browser for this lab to ensure optimal dashboard functionality and system stability.
+
+| <!-- -->     | <!-- -->                   |
+| ------------ | -------------------------- |
+| `URL`        | [Splunk Dashboard: AI Era Power Management Demo]({{ splunk.url }}){target=_blank} |
+| `Username`   | {{ splunk.username }}      |
+| `Password`   | {{ splunk.password }}      |
+
+
+## Step 2: Check the Total Power Capacity for Seattle Site — SEA01-103
 
 Login to the AI Era Power Management Dashboard, utilize the global filter to select the **Seattle** site and the **SEA01-103** data center. Ensure the view is fully loaded before proceeding with the power and thermal assessment to guarantee the accuracy of your data.
 
@@ -59,7 +69,7 @@ Going back to the main dashboard, the **Active Power Drawn Trend** panel display
 The SEA01-103 data center is confirmed to have sufficient electrical capacity, with **713.82 kW** of available headroom, to support the proposed 300 kW AI server deployment. By cross-referencing our current load distribution with the topology heatmap, we can strategically allocate these workloads to "Green" racks, ensuring optimal power distribution and load balancing.
 
 
-## Step 2: Validate Thermal Compliance for AI Infrastructure in SEA01-103
+## Step 3: Validate Thermal Compliance for AI Infrastructure in SEA01-103
 
 Monitor data center health by reviewing average temperature, humidity, and battery readings across all sensors.
 

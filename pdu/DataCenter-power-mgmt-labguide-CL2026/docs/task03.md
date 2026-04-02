@@ -3,7 +3,18 @@
 **Objective:** The CHG01-101 facility is currently reporting threshold alerts for **CHG01-101-D-17-PDU-1**. As we prepare for high-density AI server integration, maintaining optimal power headroom is critical. You are tasked with conducting a deep-dive investigation to mitigate overload risks and stabilize power distribution.
 
 
-## Step 1: Explore the Smart PDU GUI — Dashboard
+## Step 1: Accessing the Smart PDU Dashboard GUI
+
+To access the Smart PDU dashboard, please use the following credentials:
+
+| <!-- -->     | <!-- -->                   |
+| ------------ | -------------------------- |
+| `URL`        | [{{ smart_pdu.url }}]({{ smart_pdu.url }}){target=_blank} |
+| `Username`   | {{ smart_pdu.username }}   |
+| `Password`   | {{ smart_pdu.password }}   |
+
+
+## Step 2: Explore the Smart PDU GUI — Dashboard
 
 Login to the Smart PDU GUI. The primary dashboard provides a centralized view of the unit's real-time electrical telemetry. The interface displays critical load data across the three-phase power distribution lines — designated as **L1**, **L2**, and **L3** — allowing for granular monitoring of current (Amps), voltage, and phase-specific load distribution.
 
@@ -15,7 +26,7 @@ Login to the Smart PDU GUI. The primary dashboard provides a centralized view of
 This section provides an overview of PDU CHG01-101-D-17-PDU-1, including 3-phase current monitoring and total power consumption (kW). The L3 phase is currently indicating a high-load state; to mitigate this, we recommend rebalancing the load by migrating devices from L3 to L2.
 
 
-## Step 2: Explore the Smart PDU GUI — PDU Tab
+## Step 3: Explore the Smart PDU GUI — PDU Tab
 
 Click the **PDU** tab on the left side navigation bar. This view provides the Overview dashboard for PDU CHG01-101-D-17-PDU-1. It serves as the primary information hub for the device, consolidating hardware identification, firmware status, and operational configuration settings.
 
@@ -37,7 +48,7 @@ Click the **PDU** tab on the left side navigation bar. This view provides the Ov
 - **Rating:** Specifies the power input rating (Voltage, Phase, and Frequency).
 
 
-## Step 3: Explore the Smart PDU GUI — Inlet
+## Step 4: Explore the Smart PDU GUI — Inlet
 
 Click the **Inlet** tab from the left-hand navigation menu to view detailed information regarding the PDU inlets.
 
@@ -66,7 +77,7 @@ This view provides a granular, real-time analysis of the PDU's electrical perfor
     - A visual representation of power consumption (measured in Watts) over time. This graph is essential for identifying historical load patterns and verifying the impact of load-balancing adjustments.
 
 
-## Step 4: Explore the Smart PDU GUI — Outlets
+## Step 5: Explore the Smart PDU GUI — Outlets
 
 Click the **Outlets** tab from the left-hand navigation menu to view detailed information regarding the PDU outlets.
 

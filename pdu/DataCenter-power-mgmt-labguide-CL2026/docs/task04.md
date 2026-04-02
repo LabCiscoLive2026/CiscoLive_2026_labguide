@@ -1,13 +1,32 @@
-# Task 4: Interact with Data Using the CLI Script
+# Task 4: Execute Python Script to Query Splunk Data
 
 **Objective:** Use the Python-based CLI tool to programmatically query and analyze real-time power management and environmental data across Data Center sites.
 
 **Context:** While the Splunk dashboards provide a rich visual interface, this script offers a lightweight, terminal-based alternative for querying the same underlying data. It is ideal for quick operational checks, scripted automation, and scenarios where dashboard access is unavailable.
 
 
-## Step 1: Launch the Script
+## Step 1: Connect to the Lab Environment
 
-Open a terminal and run the script:
+Before launching the script, you need to connect to the lab VM where the tool is hosted.
+
+**1a.** Establish a VPN connection to `173.37.192.194` using the following credentials:
+
+| <!-- -->     | <!-- -->                   |
+| ------------ | -------------------------- |
+| `Username`   | {{ be_script_vpn.username }}   |
+| `Password`   | {{ be_script_vpn.password }}   |
+
+**1b.** RDP into the lab VM and log in as `cisco_live_user`:
+
+| <!-- -->     | <!-- -->                   |
+| ------------ | -------------------------- |
+| `Username`   | {{ be_script.username }}   |
+| `Password`   | {{ be_script.password }}   |
+
+
+## Step 2: Launch the Script
+
+Open a terminal on the VM. Verify the script is present by running `ls` — you should see `cisco_live_demo_data.py` in the current directory. Then launch it:
 
 ```bash
 python3 cisco_live_demo_data.py
@@ -30,7 +49,7 @@ SELECT A SITE:
 ```
 
 
-## Step 2: Select a Site
+## Step 3: Select a Site
 
 Enter **1** to select **SEATTLE** (the preferred site for this lab). The script will automatically map the site to its Data Center identifier:
 
@@ -56,7 +75,7 @@ SCENARIOS:
 ```
 
 
-## Step 3: Query Power Capacity
+## Step 4: Query Power Capacity
 
 Enter **1** to view the data center's power capacity summary. The output displays total capacity (at 80% NEC threshold), active draw, and available headroom:
 
@@ -76,9 +95,9 @@ Available Power    : 716.9320 kW
 Press "Enter" to return to the scenario menu.
 
 
-## Step 4: Query PDU Details Overview
+## Step 5: Query PDU Details Overview
 
-Enter **2** to retrieve a summary of PDU fleet status, including total count and breakdown by operational state:
+Enter **2** to retrieve a high-level summary of PDU fleet status. This provides a quick snapshot of how many PDUs are deployed, actively in use, available for provisioning, or currently offline:
 
 ```
 > Select a scenario: 2
@@ -95,9 +114,9 @@ Offline PDUs      : 12
     These values correspond directly to the PDU status panels in the Splunk dashboard (Scenario 5).
 
 
-## Step 5: Identify Offline PDUs
+## Step 6: Identify Offline PDUs
 
-Enter **3** to list all PDUs currently in an offline state. Each entry includes the rack name and host IP address for troubleshooting:
+Enter **3** to list all PDUs currently in an offline state. Each entry includes the data center, rack name, and host IP address to help pinpoint the affected device for troubleshooting:
 
 ```
 > Select a scenario: 3
@@ -123,9 +142,9 @@ Offline PDUs for Data Center SEA01-103:
 Press "Enter" to return to the scenario menu.
 
 
-## Step 6: Identify PDUs Exceeding 90% Capacity
+## Step 7: Identify PDUs Exceeding 90% Capacity
 
-Enter **4** to view PDUs that are operating above the 90% load threshold. Each entry displays the current amperage and consumption percentage:
+Enter **4** to identify PDUs that are operating above the 90% load threshold. Each entry displays the row, rack, current amperage, and consumption percentage — helping you prioritize which units need immediate load redistribution:
 
 ```
 > Select a scenario: 4
@@ -143,7 +162,7 @@ Details:
     Row: AU
     Rack: SEA01-103-AU-7-PDU-2
     Value: 22.04 amps
-    PDU_consumption: 91.838%
+    PDU_consumption: 91.8%
 ...
 [10]
     Data_Center: SEA01-103
@@ -159,22 +178,27 @@ Details:
 Press "Enter" to return to the scenario menu.
 
 
-## Step 7: Query Data Center Temperature
+## Step 8: Query Data Center Temperature
 
-Enter **5** to retrieve the average temperature across the entire data center:
+Enter **5** to retrieve the average ambient temperature across the entire data center. This value is computed from all Meraki MT10 environmental sensors deployed in the facility:
 
 ```
 > Select a scenario: 5
 
 Temperature for Data Center SEA01-103:
 --------------------------------------
-81.54°F / 27.52°C
+81.5°F / 27.5°C
 ```
 
+!!! tip
+    This aggregate gives a quick health check — ASHRAE recommends maintaining data center inlet temperatures between 64.4°F and 80.6°F (18–27°C).
 
-## Step 8: Query Row Temperature
+Press "Enter" to return to the scenario menu.
 
-Enter **6** to drill down into a specific row or aisle. When prompted, enter a row identifier (e.g., `ac`):
+
+## Step 9: Query Row Temperature
+
+Enter **6** to drill down into a specific row or aisle. This returns the average temperature and humidity across all sensors in that row, giving you a more granular view of environmental conditions:
 
 ```
 > Select a scenario: 6
@@ -190,27 +214,16 @@ Temperature data:
   [1]
     Data_Center: SEA01-103
     Row: AC
-    Temp: 83.7°F / 28.72°C
-    Humidity: 8%
-    MT10_sensor_battery_life: 100%
-
-  [2]
-    Data_Center: SEA01-103
-    Row: AC
-    Temp: 79.5°F / 26.39°C
-    Humidity: 9%
-    MT10_sensor_battery_life: 100%
-...
+    Avg_Temp: 80.9°F / 27.2°C
+    Avg_Humidity: 8.7%
 ```
-
-The output includes temperature, humidity, and Meraki MT10 sensor battery status for each rack in the selected row.
 
 Press "Enter" to return to the scenario menu.
 
 
-## Step 9: Query Rack Temperature
+## Step 10: Query Rack Temperature
 
-Enter **7** to inspect a specific rack. When prompted, enter the rack identifier in the format `row-number` (e.g., `ac-4`):
+Enter **7** to inspect a specific rack's environmental readings. When prompted, enter the rack identifier in the format `row-number` (e.g., `ac-4`). This returns the individual sensor data for that rack, including temperature, humidity, and sensor battery life:
 
 ```
 > Select a scenario: 7
@@ -225,15 +238,17 @@ Rack Temperature:
     Data_Center: SEA01-103
     Row: AC
     Rack: SEA01-103-AC-4-PDU-1
-    Temp: 83.7°F / 28.72°C
+    Temp: 83.7°F / 28.7°C
     Humidity: 8%
     MT10_sensor_battery_life: 100%
 ```
 
+Press "Enter" to return to the scenario menu.
 
-## Step 10: Exit the Script
 
-When finished, enter **8** to exit:
+## Step 11: Exit the Script
+
+When finished exploring, enter **8** to exit the script:
 
 ```
 > Select a scenario: 8
@@ -245,6 +260,6 @@ When finished, enter **8** to exit:
 
 ## Result
 
-You have used the CLI script to programmatically query all key data center metrics -- power capacity, PDU fleet status, overloaded PDUs, and environmental conditions -- providing a complementary, script-based approach to the Splunk dashboard workflows covered in the earlier scenarios.
+You have used the CLI script to programmatically query all key data center metrics — power capacity, PDU fleet status, overloaded PDUs, and environmental conditions — providing a complementary, script-based approach to the Splunk dashboard workflows covered in the earlier tasks.
 
 ---
