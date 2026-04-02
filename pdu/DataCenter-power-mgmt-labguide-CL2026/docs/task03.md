@@ -1,11 +1,13 @@
 # Task 3: Optimize PDU Capacity and Phase Balance for CHG01-101 AI Readiness
 
-**Objective:** The CHG01-101 facility is currently reporting threshold alerts for **CHG01-101-D-17-PDU-1**. As we prepare for high-density AI server integration, maintaining optimal power headroom is critical. You are tasked with conducting a deep-dive investigation to mitigate overload risks and stabilize power distribution.
+**Objective:** The CHG01-101 facility is currently reporting PDU threshold alerts for CHG01-101-D-17-PDU-1. As we prepare for high-density AI server integration, maintaining optimal power headroom is critical. You are tasked with conducting a deep-dive investigation to mitigate overload risks and stabilize power distribution.
 
 
-## Step 1: Accessing the Smart PDU Dashboard GUI
+## Step 1: PDU Dashboard Access
 
-To access the Smart PDU dashboard, please use the following credentials:
+To access the Smart PDU dashboard, please follow the instructions below:
+
+Open chrome browser to access the smart PDU dashboard and login to the dashboard using the following credentials.
 
 | <!-- -->     | <!-- -->                   |
 | ------------ | -------------------------- |
@@ -14,54 +16,64 @@ To access the Smart PDU dashboard, please use the following credentials:
 | `Password`   | {{ smart_pdu.password }}   |
 
 
-## Step 2: Explore the Smart PDU GUI — Dashboard
+## Step 2:  Explore the Smart PDU GUI - Dashboard
 
-Login to the Smart PDU GUI. The primary dashboard provides a centralized view of the unit's real-time electrical telemetry. The interface displays critical load data across the three-phase power distribution lines — designated as **L1**, **L2**, and **L3** — allowing for granular monitoring of current (Amps), voltage, and phase-specific load distribution.
+For this exercise, we are selecting PDU CHG01-101-D-17-PDU-1 from the CHG data center. The dashboard displays critical load data
+across the three-phase power distribution lines, designated as L1, L2, and L3, enabling granular monitoring of current (amps), voltage, and phase-specific load distribution. This layout is essential for identifying phase imbalances and ensuring the PDU operates within defined safety thresholds.
 
+<div class="dashboard-imgs" markdown>
 <figure markdown>
   ![Smart PDU Dashboard](./assets/task3/pdu_ui1.png)
   <figcaption>PDU CHG01-101-D-17-PDU-1 — Dashboard with 3-phase current monitoring</figcaption>
 </figure>
+</div>
 
-This section provides an overview of PDU CHG01-101-D-17-PDU-1, including 3-phase current monitoring and total power consumption (kW). The L3 phase is currently indicating a high-load state; to mitigate this, we recommend rebalancing the load by migrating devices from L3 to L2.
+In this example, PDU CHG01-101-D-17-PDU-1 the L3 phase is currently showing a high-load condition. To mitigate this imbalance, we
+recommend rebalancing the load by migrating selected devices from L3 to L2.
 
 
 ## Step 3: Explore the Smart PDU GUI — PDU Tab
 
-Click the **PDU** tab on the left side navigation bar. This view provides the Overview dashboard for PDU CHG01-101-D-17-PDU-1. It serves as the primary information hub for the device, consolidating hardware identification, firmware status, and operational configuration settings.
+Now click the **PDU** tab on the left side navigation bar. This is where we can see information about this PDU. This view presents the Overview dashboard for PDU CHG01-101-D-17-PDU-1, serving as the main reference point for device-level information. It consolidates key hardware details, firmware status, and operational configuration settings for quick access.
 
+<div class="dashboard-imgs" markdown>
 <figure markdown>
   ![PDU Tab](./assets/task3/pdu_ui2.png)
   <figcaption>PDU CHG01-101-D-17-PDU-1 — Dashboard with 3-phase current monitoring</figcaption>
 </figure>
+</div>
 
+<div class="dashboard-imgs" markdown>
 <figure markdown>
   ![PDU Tab](./assets/task3/pdu_view1.png)
 </figure>
+</div>
+**Details Section** — This section displays the core asset information needed for inventory management and troubleshooting:
 
-**Details Section** — This area displays the core asset information required for inventory management and troubleshooting:
-
-- **Firmware Version:** Displays the current software build installed on the PDU.
-- **Model:** Identifies the specific hardware model (e.g., PX3-5561).
-- **Serial Number:** The unique identifier for the physical unit.
-- **Active Network Interfaces:** Lists the communication ports currently in use (e.g., eth0, eth1).
-- **Rating:** Specifies the power input rating (Voltage, Phase, and Frequency).
+- **Firmware Version:** The current software build running on the PDU. 
+- **Model:** The specific hardware model of the unit
+- **Serial Number:** The unique hardware identifier for the PDU. 
+- **Active Network Interfaces:** The network ports currently active on the device, such as eth0 and eth1. 
+- **Rating:** The input power rating of the PDU, including voltage, phase, and frequency.
 
 
 ## Step 4: Explore the Smart PDU GUI — Inlet
 
 Click the **Inlet** tab from the left-hand navigation menu to view detailed information regarding the PDU inlets.
 
+<div class="dashboard-imgs" markdown>
 <figure markdown>
   ![Inlet Tab](./assets/task3/pdu_view2.png)
 </figure>
+</div>
 
 This view provides a granular, real-time analysis of the PDU's electrical performance at the inlet level. It is designed for monitoring load distribution and identifying potential power issues across the three phases.
 
+<div class="dashboard-imgs" markdown>
 <figure markdown>
   ![Inlet Tab](./assets/task3/pdu_inlet1.png)
 </figure>
-
+</div>
 
 **Key Sections of the View:**
 
@@ -81,41 +93,53 @@ This view provides a granular, real-time analysis of the PDU's electrical perfor
 
 Click the **Outlets** tab from the left-hand navigation menu to view detailed information regarding the PDU outlets.
 
+<div class="dashboard-imgs" markdown>
 <figure markdown>
   ![Outlets Tab](./assets/task3/pdu_inlet2.png)
 </figure>
+</div>
 
-This table allows lab technicians to monitor the status and power draw of every individual outlet (1 through 24) on the PDU.
+This information helps identify which outlets are actively drawing power and which are energized but currently unused. It also helps
+correlate outlet usage with the PDU’s phase distribution, making it easier to detect uneven loading, validate connected equipment power consumption, and plan load rebalancing across phases when needed.
 
+<div class="dashboard-imgs" markdown>
 <figure markdown>
   ![Outlets Tab](./assets/task3/pdu_outlet.png)
 </figure>
+</div>
 
-**Column Definitions:**
+**Column/Label Definitions:**
 
 | Column          | Description |
 | --------------- | ----------- |
-| ID & Name       | Identifies the specific physical outlet on the PDU |
-| Status          | Indicates whether the outlet is currently powered on (green icon) |
-| RMS Current (A) | Displays the real-time electrical current draw for the connected device |
-| Active Power (W)| Shows the actual power consumption in Watts |
-| Power Factor    | Indicates the efficiency of the power usage for the connected device |
-| Line            | Identifies which phase (L1, L2, or L3) the outlet is connected to |
+| Status          | shows whether the outlet is currently on.|
+| RMS Current (A) | shows the current drawn by the connected device in amps.|
+| Active Power (W)| shows the real-time power consumption in watts. |
+| Power Factor    | indicates how efficiently the connected load is using power. |
+| Line            | identifies which phase pair or phase-to-neutral connection the outlet is using.Line: Identifies which phase      (L1,L2, or L3) the outlet is connected to.|
 
 
 ## Putting It All Together
 
-By leveraging these three primary views, you can execute a systematic approach to optimize PDU capacity and balance the electrical phases for CHG01-101-D-17-PDU-1:
+By leveraging these three primary views, you can take a systematic approach to optimizing PDU capacity and balancing the electrical
+phases for CHG01-101-D-17-PDU-1:
 
-1. **Identify the Issue (Inlet View):** Use the Inlet dashboard to monitor real-time phase health. This view acts as your primary alert system, allowing you to quickly spot phases — such as L3 — that are nearing or exceeding safe operating thresholds.
+1. **Identify the Issue (Inlet View):** Use the Inlet dashboard to monitor real-time phase conditions. This view serves as the
+primary indicator for spotting phases, such as L3, that are approaching or exceeding safe operating thresholds.
 
-2. **Verify Asset Integrity (Overview View):** Use the Overview dashboard to confirm the PDU's hardware status, firmware version, and operational settings. This ensures the unit is healthy and properly configured for capacity optimization before you perform any load-balancing adjustments.
+2. **Verify Asset Integrity (Overview View):** Use the Overview dashboard to confirm the PDU’s hardware status, firmware version, and
+operational settings. This helps ensure the unit is healthy and properly configured before making any load-balancing
+adjustments. 
 
-3. **Execute the Solution (Outlets View):** Use the Outlets dashboard to perform granular analysis. By reviewing the power draw (Amps/Watts) of individual outlets, you can pinpoint specific high-load devices contributing to phase imbalances and determine which can be safely migrated to underutilized phases.
+3. **Execute the Solution (Outlets View):** Use the Outlets dashboard for detailed outlet-level analysis. By reviewing the power
+draw in amps and watts for individual outlets, you can identify specific high-load devices contributing to the phase imbalance
+and determine which devices can be safely migrated to less-utilized phases.
 
 
 ## Result
 
-By synthesizing these high-level phase alerts with granular outlet-level data, you can proactively prevent hardware throttling, mitigate the risk of equipment failure, and maximize the power density of CHG01-101-D-17-PDU-1. Consistent monitoring through these tabs ensures that your infrastructure operates at peak efficiency and reliability.
+By combining real-time phase monitoring with outlet-level power analysis, you can optimize load distribution with in a Data Center to
+reduce the chance of a PDU trip, and help prevent service interruptions. Ongoing monitoring ensures the PDU remains within safe
+operating thresholds while supporting reliable infrastructure performance.
 
 ---

@@ -80,8 +80,8 @@ nav:
 # --- Learning Objectives (shown on the Overview page) ----------------------
 
 learning_objectives:
-  - "Identify PDU overload conditions by analyzing real-time telemetry from the Power Management Dashboard."
-  - "Evaluate data center power utilization patterns to assess overall infrastructure health and efficiency."
+  - "Identify PDU overload conditions by analyzing real-time telemetry from the AI Era Power Management Dashboard in splunk."
+  - "Evaluate Data Center power utilization patterns to assess the trends."
   - "Formulate effective load-balancing strategies to mitigate power imbalances and ensure optimal rack performance."
 
 

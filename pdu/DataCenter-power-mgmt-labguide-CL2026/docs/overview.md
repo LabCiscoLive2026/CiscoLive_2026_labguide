@@ -31,6 +31,7 @@ Upon completion of this lab, you will be able to:
 {% endfor %}
 
 
+
 !!! tip "Quick Notes"
     ## What is a Smart PDU?
 
@@ -49,8 +50,8 @@ Upon completion of this lab, you will be able to:
     ## Why Use Splunk?
 
     - **Centralized Aggregation:** Splunk acts as a single pane of glass, collecting SNMP traps and polling data from thousands of PDUs across global sites into one unified platform.
-    - **Historical Analysis:** Unlike local PDU logs, Splunk provides long-term data retention, enabling trend analysis to predict future power requirements and capacity needs.
-    - **Robust Alerting:** Splunk's powerful query language allows for custom, complex alerting rules that go beyond the basic threshold alerts provided by native PDU firmware.
+    - **Historical Analysis:** Splunk provides long term retention period which will help data center operators understand the power usage and trends to make informed decision..
+    - **Robust Alerting:** Splunk's powerful query language allows for custom, complex alerting rules help identify and mitigate issues faster.
 
 
 !!! note
@@ -58,12 +59,20 @@ Upon completion of this lab, you will be able to:
 
 
 ## Tasks
-To gain hands-on experience with this infrastructure, progress through the following tasks:
+To gain hands-on experience, progress through the following tasks:
 
-1. [Validate SEA01-103 Electrical and Thermal Readiness for 300kW AI Deployment](task01.md)
+1. [Validate SEA01-103 Electrical and Cooling Readiness for 300kW AI Deployment](task01.md)
 2. [Audit PDU Load Distribution and Formulate Remediation Strategy for SEA01-103](task02.md)
-3. [Optimize PDU Capacity and Phase Balance for CHG01-101 AI Readiness](task03.md)
-4. [Execute Python Script to Query Splunk Data](task04.md)
+3. [Visualize PDU Capacity and Phase imbalance for CHG01-101 AI Readiness](task03.md)
+4. [Run Python Script to Query Splunk Data](task04.md)
+
+
+<!-- ## Getting Started: Access Requirements
+### Connectivity and Hardware
+
+- **Network Access:** All lab dashboards are hosted on the public network. Please ensure you have a stable internet connection for the duration of the session.
+- **Recommended Hardware:** A laptop or tablet is recommended to ensure full compatibility and optimal interaction with the dashboard interfaces. -->
+
 
 !!! info "Disclaimer"
-    This lab is designed exclusively for educational and training purposes. All activities performed within this environment are conducted in controlled dashboards and do not reflect real-time changes to live production infrastructure.
+    This training document is intended to familiarize participants with Smart PDU power visibility, Splunk dashboard analysis, and basic data center power and cooling validation workflows. The lab design, data, and configuration examples have been adjusted to support the learning objectives of the lab and do not represent a production-ready or fully optimized data center design. As a result, not all recommended features,thresholds, or operational practices may be implemented exactly as they would be in a live deployment. For design-specific guidance or production deployment questions, please contact your Cisco representative.

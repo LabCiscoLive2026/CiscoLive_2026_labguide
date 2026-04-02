@@ -169,7 +169,7 @@ def process_temperature_row():
     print(f"{'-' * len('Temperature data:')}")
     if records:
         for i, record in enumerate(records, 1):
-            print(f"\n  [{i}]")
+            # print(f"\n  [{i}]")
             print(json_formatter(record))
     else:
         print("  No temperature data available.")

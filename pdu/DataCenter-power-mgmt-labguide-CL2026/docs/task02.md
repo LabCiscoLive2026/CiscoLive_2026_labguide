@@ -3,11 +3,14 @@
 **Objective:** Conduct a comprehensive audit of PDU phase load distribution within the SEA01-103 data center to identify and rectify significant imbalances. Proactive load management is critical to maintaining operational resilience, mitigating the risk of unplanned power outages, and preventing network downtime. This assessment will utilize **SEA01-103-AU-5-PDU-2** as the primary reference case for establishing standardized remediation protocols.
 
 
-## Step 1: Examine the PDU Section of the Dashboard
+## Step 1: Examine the AI Era Power Management Dashboard PDU Section
 
-This panel provides an operational summary of all lab PDUs, categorizing them by status: Total, Active, Available, and Offline.
+The highlighted panel provides an operational summary of SEA01-103 data center PDUs, grouped by status: Total, Active, Available, and
+Offline.
 
 **PDU Inventory Summary:**
+Now, switch tab to the main dashboard, look for the Total, In-use, Available and offline PDU’s
+The dashboard reports a total of 272 PDUs within the data center, with the following status breakdown:
 
 | Status         | Count |
 | -------------- | ----- |
@@ -25,9 +28,9 @@ This panel provides an operational summary of all lab PDUs, categorizing them by
 </figure>
 </div>
 
-To view a comprehensive list of PDUs by category, select the corresponding value from the dashboard:
+To view the full list of PDUs for a specific category, click on the corresponding value—217, 43, or 12.
 
-- **In-Use PDUs:** Click to view a detailed list of all currently active units.
+- **In-Use PDUs:** Click the number 217 to view In-use PDUs:.
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
@@ -35,7 +38,7 @@ To view a comprehensive list of PDUs by category, select the corresponding value
 </figure>
 </div>
 
-- **Available PDUs:** Click to view a detailed list of all available units.
+- **Available PDUs:** Click the number 43 to view Available PDUs: 
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
@@ -43,7 +46,7 @@ To view a comprehensive list of PDUs by category, select the corresponding value
 </figure>
 </div>
 
-- **Offline PDUs:** Click to view a detailed list of all offline units.
+- **Offline PDUs:** Click the number 12 to view Offline PDUs.
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
@@ -52,9 +55,9 @@ To view a comprehensive list of PDUs by category, select the corresponding value
 </div>
 
 
-## Step 2: Examine SEA01-103-AU-5-PDU-2 Phase Load Balance
+## Step 2: Examine the SEA01-103-AU-5-PDU-2 to see if the phase is load balanced
 
-This panel provides real-time visibility into the current amperage draw for all PDUs in the lab. Use the following status indicators to monitor load levels and identify PDUs at risk of overloading:
+This panel provides real-time visibility into the current amperage drawn for all PDUs in the lab. Use the following status indicators to monitor PDU load and identify PDUs at risk of overloading:
 
 | Status                        | Threshold  |
 | ----------------------------- | ---------- |
@@ -63,24 +66,31 @@ This panel provides real-time visibility into the current amperage draw for all 
 | :yellow_circle: Caution       | ≥ 70% load |
 | :green_circle: Normal         | < 70% load |
 
+<div class="dashboard-imgs" markdown>
 <figure markdown>
   ![PDU Outlet View - Phase Load](./assets/task2/pdu_dashboard2.png)
 </figure>
+</div>
 
 Click on the **orange bar graph** for **SEA01-103-AU-5-PDU-2** in the Capacity Warning ≥ 80% panel.
 
+<div class="dashboard-imgs" markdown>
 <figure markdown>
   ![PDU Outlet View - Phase Load](./assets/task2/pdu_dashboard3.png)
 </figure>
+</div>
 
-The **Power Consumption for "SEA01-103-AU-5-PDU-2" (Last 7 days)** shows the historical view of kW trend for the last 7 days for this PDU.
+When it is clicked, you will see the Power Consumption for “SEA01-103-AU-5-PDU-2” panel showing the historical power usage in kW
+for the last seven days. trend for the last 7 days for this PDU
 
+<div class="dashboard-imgs" markdown>
 <figure markdown>
   ![PDU Outlet View - Phase Load](./assets/task2/pdu_outlet1.png)
 </figure>
+</div>
 
 ### PDU Phase Load Analysis
-
+PDU Phase Load Analysis and Remediation Strategy
 **Current Load Distribution:**
 
 | Phase          | Current  |
@@ -89,31 +99,36 @@ The **Power Consumption for "SEA01-103-AU-5-PDU-2" (Last 7 days)** shows the his
 | Phase B (L2)   | 20.49 A  |
 | Phase C (L3)   | 16.11 A  |
 
+<div class="dashboard-imgs" markdown>
 <figure markdown>
   ![PDU Outlet View - Phase Load](./assets/task2/pdu_outlet2.png)
 </figure>
+</div>
 
 !!! note
     The data center maintains an inventory of lab devices and their power mapping details. This information allows us to map each Device PID to its corresponding outlet on the dashboard.
 
-Click on **N9k-C93180YC(17)** to view the outlet trend.
+Hover over on the phase B, and click the first bar- outlet 17 and Click to view the outlet and power consumption for **N9k-C93180YC(17)**.
 
+<div class="dashboard-imgs" markdown>
 <figure markdown>
   ![Outlet Trend](./assets/task2/pdu_outlet3.png)
-  <figcaption>Outlet #17 — Historical trend (last 30 days)</figcaption>
+  <!-- <figcaption>Outlet #17 — Historical trend (last 30 days)</figcaption> -->
 </figure>
+</div>
 
-
-## Step 3: Strategize Load Balancing for SEA01-103-AU-5-PDU-2
+## Step 3: trategize how we can balance the load for SEA01-103-AU-5-PDU-2
 
 **Analysis:**
 
 The PDU is currently exhibiting a significant phase imbalance. Phase B is carrying a disproportionately high load compared to Phase A, creating an uneven distribution that risks localized thermal stress and potential breaker trips. To maintain optimal electrical efficiency and infrastructure longevity, we must rebalance these phases.
 
+<div class="dashboard-imgs" markdown>
 <figure markdown>
   ![Outlet Trend](./assets/task2/pdu_outlet4.png)
-  <figcaption>Outlet #17 — Historical trend (last 30 days)</figcaption>
+  <!-- <figcaption>Outlet #17 — Historical trend (last 30 days)</figcaption> -->
 </figure>
+</div>
 
 **Remediation Strategy:**
 
