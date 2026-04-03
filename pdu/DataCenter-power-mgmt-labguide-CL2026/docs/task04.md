@@ -6,23 +6,77 @@ Splunk dashboards is also available through script-based access for automation, 
 and CLI-driven workflows. 
 
 
-## Step 1: Connect to the Lab Environment
+## Step 1: Connect to VPN
 
-Before launching the script, you need to connect to the lab VM where the tool is hosted.
+First, establish a VPN connection to the lab network.
 
-**1a.** Establish a VPN connection to `173.37.192.194` using the following credentials:
+**1a.** Open **Cisco Secure Client** and enter the VPN address: `173.37.192.194`
 
-| <!-- -->     | <!-- -->                   |
-| ------------ | -------------------------- |
-| `Username`   | {{ be_script_vpn.username }}   |
-| `Password`   | {{ be_script_vpn.password }}   |
+<div class="dashboard-imgs" style="max-width:450px; margin:auto;" markdown>
+<figure markdown>
+  ![Cisco Secure Client - Enter VPN Address](./assets/task4/vpn1.png)
+</figure>
+</div>
 
-Additional login details can be found here: [Click Here](creds.md)
+**1b.** If prompted with a security warning, select **Connect Anyway** to proceed.
 
+<div class="dashboard-imgs" style="max-width:450px; margin:auto;" markdown>
+<figure markdown>
+  ![Cisco Secure Client - Connect Anyway](./assets/task4/vpn2.png)
+</figure>
+</div>
 
-## Step 2: Launch the Script
+**1c.** Enter the credentials below and click **OK** to connect.
 
-Open Putty and run the script:
+| Field      | Value                        |
+|------------|------------------------------|
+| `Username` | {{ be_script_vpn.username }} |
+| `Password` | {{ be_script_vpn.password }} |
+
+<div class="dashboard-imgs" style="max-width:450px; margin:auto;" markdown>
+<figure markdown>
+  ![Cisco Secure Client - Enter Credentials](./assets/task4/vpn3.png)
+</figure>
+</div>
+
+!!! info "Need credentials?"
+    Additional login details for all lab users can be found on the [Credentials](creds.md) page.
+
+## Step 2: SSH into the Lab VM
+
+Once the VPN is connected, use **PuTTY** (or any SSH client) to connect to the lab VM.
+
+**2a.** Open **PuTTY**, enter the lab VM IP address, and click **Open**.
+
+<div class="dashboard-imgs" style="max-width:750px; margin:auto;" markdown>
+<figure markdown>
+  ![PuTTY - Enter IP Address](./assets/task4/ip_address.png)
+</figure>
+</div>
+
+**2b.** At the login prompt, enter the same credentials from Step 1.
+
+<div class="dashboard-imgs" style="max-width:750px; margin:auto;" markdown>
+<figure markdown>
+  ![PuTTY - Login Prompt](./assets/task4/putty_login.png)
+</figure>
+</div>
+
+<div class="dashboard-imgs" style="max-width:750px; margin:auto;" markdown>
+<figure markdown>
+  ![PuTTY - User Login](./assets/task4/user_login.png)
+</figure>
+</div>
+
+## Step 3: Launch the Script
+
+Once logged in, verify the script is present and launch it:
+
+```bash
+ls
+```
+
+You should see `cisco_live_demo_data.py` in the file listing. Run it with:
 
 ```bash
 python3 cisco_live_demo_data.py
@@ -44,7 +98,7 @@ SELECT A SITE:
 ```
 
 
-## Step 3: Select a Site
+## Step 4: Select a Site
 
 Enter **1** to select **SEATTLE** (the preferred site for this lab). The script will automatically map the site to its Data Center identifier:
 
@@ -70,7 +124,7 @@ SCENARIOS:
 ```
 
 
-## Step 4: Query Power Capacity
+## Step 5: Query Power Capacity
 
 Choose **1** to display a summary of the data center's power capacity. This will show the total capacity (at the 80% safety threshold), the current active power consumption, and the remaining power available for deploying more devices:
 
@@ -90,7 +144,7 @@ Available Power    : 716.9320 kW
 Press "Enter" to return to the scenario menu.
 
 
-## Step 5: Query PDU Details Overview
+## Step 6: Query PDU Details Overview
 
 Enter **2** to retrieve a summary of PDU fleet status, including total count and breakdown by operational state:
 
@@ -109,7 +163,7 @@ Offline PDUs      : 12
     These values correspond directly to the PDU status panels in the Splunk dashboard (Scenario 5).
 
 
-## Step 6: Identify Offline PDUs
+## Step 7: Identify Offline PDUs
 
 Enter **3** to list all PDUs currently in an offline state. Each entry includes the rack name and host IP address for troubleshooting:
 
@@ -186,7 +240,7 @@ Offline PDUs for Data Center SEA01-103:
 Press "Enter" to return to the scenario menu.
 
 
-## Step 7: Identify PDUs Exceeding 90% Capacity
+## Step 8: Identify PDUs Exceeding 90% Capacity
 
 Enter **4** to view PDUs that are operating above the 90% load threshold. Each entry displays the current amperage and consumption
 percentage:
@@ -279,7 +333,7 @@ Details:
 Press "Enter" to return to the scenario menu.
 
 
-## Step 8: Query Data Center Temperature
+## Step 9: Query Data Center Temperature
 
 Enter 5 to retrieve the average temperature across the entire data center:
 
@@ -297,7 +351,7 @@ Temperature for Data Center SEA01-103:
 Press "Enter" to return to the scenario menu.
 
 
-## Step 9: Query Row Temperature
+## Step 10: Query Row Temperature
 
 Enter 6 to drill down into a specific row or aisle to analyze the temperature. When prompted, enter a row identifier (e.g., ac):
 
@@ -322,7 +376,7 @@ The output includes temperature, humidity, and Meraki MT10 sensor battery status
 Press "Enter" to return to the scenario menu.
 
 
-## Step 10: Query Rack Temperature
+## Step 11: Query Rack Temperature
 
 Enter 7 to inspect a specific rack. When prompted, enter the rack identifier in the format (e.g., ac-4):
 
@@ -348,7 +402,7 @@ The output shows the temperature, humidity and sensor battery life for rack AC-4
 Press "Enter" to return to the scenario menu.
 
 
-## Step 11: Exit the Script
+## Step 12: Exit the Script
 
 When finished exploring, enter **8** to exit the script:
 
