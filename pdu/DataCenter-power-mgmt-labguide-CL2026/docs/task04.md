@@ -54,7 +54,10 @@ Once the VPN is connected, use **PuTTY** (or any SSH client) to connect to the l
 </figure>
 </div>
 
-**2b.** At the login prompt, enter the same credentials from Step 1.
+**2b.** At the login prompt, enter the same password from Step 1. For the username, use only the part **before** the `@` sign.
+
+!!! example "Username format"
+    VPN username: `user01@ciscolivevegas.com` → SSH username: `user01`
 
 <div class="dashboard-imgs" style="max-width:750px; margin:auto;" markdown>
 <figure markdown>
@@ -73,13 +76,13 @@ Once the VPN is connected, use **PuTTY** (or any SSH client) to connect to the l
 Once logged in, verify the script is present and launch it:
 
 ```bash
-ls
+> ls
 ```
 
 You should see `cisco_live_demo_data.py` in the file listing. Run it with:
 
 ```bash
-python3 cisco_live_demo_data.py
+> python3 cisco_live_demo_data.py
 ```
 You will see the application banner and a site selection menu:
 
