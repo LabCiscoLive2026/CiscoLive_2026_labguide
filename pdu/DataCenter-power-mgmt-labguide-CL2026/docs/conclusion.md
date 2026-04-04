@@ -1,5 +1,4 @@
-Throughout this lab, you have mastered the techniques required to identify and resolve power imbalances within your PDU infrastructure.
-By utilizing the Inlet, Overview, and Outlets dashboards, you now possess the ability to:
+By completing this lab, you have gained the knowledge needed to identify and troubleshoot power imbalances in your PDU infrastructure. With the help of the Inlet, Overview, and Outlets dashboards, you are now equipped to: 
 
 - **Detect Imbalances:** Use the Inlet view to proactively identify phases that are exceeding safe operating thresholds.
 - **Ensure Operational Health:** Use the Overview dashboard to verify that your PDUs are properly configured and ready for high-density workloads.

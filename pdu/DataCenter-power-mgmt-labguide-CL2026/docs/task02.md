@@ -1,16 +1,20 @@
 # Task 2: Audit PDU Load Distribution and Formulate Remediation Strategy for SEA01-103
 
-**Objective:** Conduct a comprehensive audit of PDU phase load distribution within the SEA01-103 data center to identify and rectify significant imbalances. Proactive load management is critical to maintaining operational resilience, mitigating the risk of unplanned power outages, and preventing network downtime. This assessment will utilize **SEA01-103-AU-5-PDU-2** as the primary reference case for establishing standardized remediation protocols.
+**Objective:** Conduct a comprehensive audit of PDU phase load distribution within the SEA01-103 Data Center to identify and rectify significant imbalances. Proactive load management is critical to maintaining operational resilience, mitigating the risk of unplanned power outages, and preventing network downtime. In this assessment, you will utilize **SEA01-103-AU-5-PDU-2** as the primary reference PDU for establishing standardized remediation protocols.
 
 
 ## Step 1: Examine the AI Era Power Management Dashboard PDU Section
 
-The highlighted panel provides an operational summary of SEA01-103 data center PDUs, grouped by status: Total, Active, Available, and
-Offline.
+Now, switch to the main dashboard tab that is already open and look for the highlighted panel as shown below. This panel provides an operational summary of the SEA01-103 data center PDUs, grouped by status: Total, Active, Available, and Offline.
+
+<div class="dashboard-imgs" markdown>
+<figure markdown>
+  ![Main Dashboard - PDU Section](./assets/task2/pdu_dashboard1.png)
+</figure>
+</div>
 
 **PDU Inventory Summary:**
-Now, switch tab to the main dashboard, look for the Total, In-use, Available and offline PDU’s
-The dashboard reports a total of 272 PDUs within the data center, with the following status breakdown:
+The data shows a total of 272 PDUs in the data center, with the following status breakdown:
 
 | Status         | Count |
 | -------------- | ----- |
@@ -22,13 +26,8 @@ The dashboard reports a total of 272 PDUs within the data center, with the follo
 !!! note
     As these are smart PDUs, stable network connectivity is required to ensure continuous data transmission and real-time monitoring.
 
-<div class="dashboard-imgs" markdown>
-<figure markdown>
-  ![Main Dashboard - PDU Section](./assets/task2/pdu_dashboard1.png)
-</figure>
-</div>
 
-To view the full list of PDUs for a specific category, click on the corresponding value—217, 43, or 12.
+To view the full list of PDUs for a specific category, click on the corresponding value: 217, 43, or 12.
 
 - **In-Use PDUs:** Click the number 217 to view In-use PDUs:.
 
@@ -55,9 +54,9 @@ To view the full list of PDUs for a specific category, click on the correspondin
 </div>
 
 
-## Step 2: Examine the SEA01-103-AU-5-PDU-2 to see if the phase is load balanced
+## Step 2: Examine the SEA01-103-AU-5-PDU-2 to check if the phases are load balanced
 
-This panel provides real-time visibility into the current amperage drawn for all PDUs in the lab. Use the following status indicators to monitor PDU load and identify PDUs at risk of overloading:
+This panel provides real-time visibility into the current drawn, in amps, for all PDUs in the Data Center. Use the following status indicators to monitor PDU load and identify PDUs at risk of overloading.
 
 | Status                        | Threshold  |
 | ----------------------------- | ---------- |
@@ -72,7 +71,7 @@ This panel provides real-time visibility into the current amperage drawn for all
 </figure>
 </div>
 
-Click on the **orange bar graph** for **SEA01-103-AU-5-PDU-2** in the Capacity Warning ≥ 80% panel.
+Click on the **orange bar graph** for **SEA01-103-AU-5-PDU-2** in the Capacity Warning ≥ 80% panel as shown below.
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
@@ -81,7 +80,7 @@ Click on the **orange bar graph** for **SEA01-103-AU-5-PDU-2** in the Capacity W
 </div>
 
 When it is clicked, you will see the Power Consumption for “SEA01-103-AU-5-PDU-2” panel showing the historical power usage in kW
-for the last seven days. trend for the last 7 days for this PDU
+for the last seven days.
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
@@ -90,8 +89,8 @@ for the last seven days. trend for the last 7 days for this PDU
 </div>
 
 ### PDU Phase Load Analysis
-PDU Phase Load Analysis and Remediation Strategy
 **Current Load Distribution:**
+PDU Phase Load Analysis and Remediation Strategy
 
 | Phase          | Current  |
 | -------------- | -------- |
@@ -106,9 +105,9 @@ PDU Phase Load Analysis and Remediation Strategy
 </div>
 
 !!! note
-    The data center maintains an inventory of lab devices and their power mapping details. This information allows us to map each Device PID to its corresponding outlet on the dashboard.
+    In the Data Center, PDU outlets are mapped to device PIDs, which enables the corresponding PIDs to be displayed on the x-axis.
 
-Hover over on the phase B, and click the first bar- outlet 17 and Click to view the outlet and power consumption for **N9k-C93180YC(17)**.
+Hover over on the phase B, and click the first bar - outlet 17 and Click to view the outlet and power consumption for **N9k-C93180YC(17)**.
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
@@ -116,8 +115,15 @@ Hover over on the phase B, and click the first bar- outlet 17 and Click to view 
   <!-- <figcaption>Outlet #17 — Historical trend (last 30 days)</figcaption> -->
 </figure>
 </div>
+Once clicked, the power consumption trend for the selected PID over the past 30 days will be displayed.
+<div class="dashboard-imgs" markdown>
+<figure markdown>
+  ![Outlet Trend](./assets/task2/pdu_outlet4.png)
+  <!-- <figcaption>Outlet #17 — Historical trend (last 30 days)</figcaption> -->
+</figure>
+</div>
 
-## Step 3: trategize how we can balance the load for SEA01-103-AU-5-PDU-2
+## Step 3: Strategize how we can balance the load for SEA01-103-AU-5-PDU-2
 
 **Analysis:**
 
@@ -125,7 +131,7 @@ The PDU is currently exhibiting a significant phase imbalance. Phase B is carryi
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
-  ![Outlet Trend](./assets/task2/pdu_outlet4.png)
+  ![Outlet Trend](./assets/task2/pdu_outlet5.png)
   <!-- <figcaption>Outlet #17 — Historical trend (last 30 days)</figcaption> -->
 </figure>
 </div>
@@ -135,11 +141,11 @@ The PDU is currently exhibiting a significant phase imbalance. Phase B is carryi
 To achieve phase equilibrium, we will perform a load-shunting procedure:
 
 1. **Identify High-Draw Devices:** Outlet 15 and 17 of Phase B.
-2. **Load Migration:** Relocate the power connection for these devices from Phase B to Phase A.
-3. **Expected Outcome:** This shift will reduce the current on Phase B (the over-utilized phase) and increase the current on Phase A (the under-utilized phase), bringing all three phases closer to a balanced state.
+2. **Load Migration:** Identify downtime and relocate the power feed for these devices from Phase B to Phase A.
+3. **Expected Outcome:** This load redistribution will reduce the current on Phase B (the over-utilized phase) and increase the power utilization on Phase A (the under-utilized phase), bringing all three phases closer to a balanced state.
 
 !!! warning
-    Unbalanced phase loads can cause breaker trips. Ensure power consumption is distributed as evenly as possible across Phase A, Phase B, and Phase C.
+    Unevenly distributed or overloaded phase loads can cause breaker trips. Ensure that power consumption is balanced as evenly as possible across Phase A, Phase B, and Phase C.
 
 
 ## Result

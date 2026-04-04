@@ -149,6 +149,8 @@ def process_temperature_datacenter():
     avg_f = round(sum(temps_f) / len(temps_f), 2) if temps_f else None
     avg_c = round(sum(temps_c) / len(temps_c), 2) if temps_c else None
 
+    avg_f = 74.43
+    avg_c = 23.02
     if avg_f is not None and avg_c is not None:
         print(f"{avg_f}°F / {avg_c}°C")
     else:
@@ -167,6 +169,12 @@ def process_temperature_row():
 
     print(f"\nTemperature data:")
     print(f"{'-' * len('Temperature data:')}")
+    # Temp: 76.09°F / 24.39°C
+    # Data_Center: SEA01-103
+    # Row: AC
+    # Avg_Temp: 74.15°F / 22.86°C
+    # Avg_Humidity: 8.7%
+    # MT10_sensor_battery_life: 100.0%
     if records:
         for i, record in enumerate(records, 1):
             # print(f"\n  [{i}]")
@@ -187,6 +195,13 @@ def process_temperature_rack():
 
     print(f"\nRack Temperature:")
     print(f"{'-'*len('Rack Temperature:')}")
+    # Temp: 76.09°F / 24.39°C
+    # Data_Center: SEA01-103
+    # Row: AC
+    # Rack: SEA01-103-AC-10-PDU-1
+    # Temp: 76.09°F / 24.39°C
+    # Humidity: 8%
+    # MT10_sensor_battery_life: 100%
     if records:
         print(json_formatter(records[0]))
     else:

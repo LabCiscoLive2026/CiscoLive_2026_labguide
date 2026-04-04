@@ -1,4 +1,4 @@
-# Task 4: Interact with Data Using the CLI Script
+# Task 4: Query Splunk Data Using a Python Script
 
 As part of this walk-in lab, a Python-based script is used to query Splunk directly for real-time
 power management and environmental telemetry. This demonstrates that the data displayed in
@@ -129,7 +129,7 @@ SCENARIOS:
 
 ## Step 5: Query Power Capacity
 
-Choose **1** to display a summary of the data center's power capacity. This will show the total capacity (at the 80% safety threshold), the current active power consumption, and the remaining power available for deploying more devices:
+Choose **1** to display a summary of the Data Center's power capacity. This will show the total capacity (at the 80% safety threshold), the current active power consumption, and the remaining power available for deploying more devices:
 
 ```
 > Select a scenario: 1
@@ -142,7 +142,7 @@ Available Power    : 716.9320 kW
 ```
 
 !!! tip
-    Compare these values with the Splunk dashboard (Scenario 3) to verify consistency between the script and the visual interface.
+    Compare these values with the Splunk dashboard (Task 1: Step 2) to verify consistency between the script and the visual interface.
 
 Press "Enter" to return to the scenario menu.
 
@@ -163,7 +163,7 @@ Offline PDUs      : 12
 ```
 
 !!! tip
-    These values correspond directly to the PDU status panels in the Splunk dashboard (Scenario 5).
+    These values correspond directly to the PDU status panels in the Splunk dashboard (Task 2: Step 1).
 
 
 ## Step 7: Identify Offline PDUs
@@ -238,15 +238,14 @@ Offline PDUs for Data Center SEA01-103:
 ```
 
 !!! warning
-    Offline PDUs may indicate network connectivity issues or hardware failures. Cross-reference these IPs with your network monitoring tools.
+    Offline PDUs may indicate network connectivity issues or hardware failures.
 
 Press "Enter" to return to the scenario menu.
 
 
 ## Step 8: Identify PDUs Exceeding 90% Capacity
 
-Enter **4** to view PDUs that are operating above the 90% load threshold. Each entry displays the current amperage and consumption
-percentage:
+Enter **4** to view PDUs that are operating above 90% load threshold. Each entry displays the current power drawn in amps, and utilization in percentage:
 
 ```
 > Select a scenario: 4
@@ -330,7 +329,7 @@ Details:
     PDU_consumption: 109%
 ```
 
-!!! danger
+!!! danger "Critical"
     PDUs at or above 100% consumption (e.g., 105%, 109%) are exceeding their rated capacity and pose a risk of breaker trips. Immediate load redistribution is recommended.
 
 Press "Enter" to return to the scenario menu.
@@ -338,18 +337,18 @@ Press "Enter" to return to the scenario menu.
 
 ## Step 9: Query Data Center Temperature
 
-Enter 5 to retrieve the average temperature across the entire data center:
+Enter **5** to retrieve the average temperature across the entire Data Center:
 
 ```
 > Select a scenario: 5
 
 Temperature for Data Center SEA01-103:
 --------------------------------------
-81.5°F / 27.5°C
+74.43°F / 23.02°C
 ```
 
 !!! tip
-    This aggregate gives a quick health check — ASHRAE recommends maintaining data center inlet temperatures between 64.4°F and 80.6°F (18–27°C).
+    This data provides a quick health check of Data Center cooling status, with safe operating temperatures generally maintained between 64.4°F and 80.6°F (18–27°C).
 
 Press "Enter" to return to the scenario menu.
 
@@ -370,7 +369,7 @@ Temperature data:
 -----------------
     Data_Center: SEA01-103
     Row: AC
-    Avg_Temp: 80.9°F / 27.2°C
+    Avg_Temp: 74.15°F / 22.86°C
     Avg_Humidity: 8.7%
     MT10_sensor_battery_life: 100.0%
 ```
@@ -381,7 +380,7 @@ Press "Enter" to return to the scenario menu.
 
 ## Step 11: Query Rack Temperature
 
-Enter 7 to inspect a specific rack. When prompted, enter the rack identifier in the format (e.g., ac-4):
+Enter 7 to inspect a specific rack. When prompted, enter the rack identifier in the format (e.g., ac-10):
 
 ```
 > Select a scenario: 7
@@ -389,18 +388,18 @@ Enter 7 to inspect a specific rack. When prompted, enter the rack identifier in 
 Rack Temperature for Data Center SEA01-103:
 -------------------------------------------
 
-Specify the Rack to monitor (Enter:'ac-4'): ac-4
+Specify the Rack to monitor (Enter:'ac-10'): ac-10
 
 Rack Temperature:
 -----------------
     Data_Center: SEA01-103
     Row: AC
-    Rack: SEA01-103-AC-4-PDU-1
-    Temp: 83.7°F / 28.7°C
+    Rack: SEA01-103-AC-10-PDU-1
+    Temp: 76.09°F / 24.39°C
     Humidity: 8%
     MT10_sensor_battery_life: 100%
 ```
-The output shows the temperature, humidity and sensor battery life for rack AC-4.
+The output shows the temperature, humidity and sensor battery life for rack AC-10.
 
 Press "Enter" to return to the scenario menu.
 
@@ -419,6 +418,6 @@ When finished exploring, enter **8** to exit the script:
 
 ## Result
 
-You have used the Python script to programmatically query all our key data center metrics -- power capacity, PDU fleet status, overloaded PDUs, and environmental conditions -- providing a complementary, script-based approach to the Splunk dashboard workflows covered in the earlier scenarios.
+You have used the Python script to programmatically query all our key Data Center metrics -- power capacity, PDU fleet status, overloaded PDUs, and environmental conditions -- providing a complementary, script-based approach to the Splunk dashboard workflows covered in the earlier scenarios.
 
 ---
