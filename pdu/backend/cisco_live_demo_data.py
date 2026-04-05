@@ -169,7 +169,6 @@ def process_temperature_row():
 
     print(f"\nTemperature data:")
     print(f"{'-' * len('Temperature data:')}")
-    # Temp: 76.09°F / 24.39°C
     # Data_Center: SEA01-103
     # Row: AC
     # Avg_Temp: 74.15°F / 22.86°C
