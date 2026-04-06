@@ -222,8 +222,10 @@ def _round_value(value: str) -> str:
     return re.sub(r"-?\d+\.\d{2,}", _replace_float, str(value))
 
 
+_IP_KEYS = {"Host_ip", "host_ip", "Hostip", "hostip", "Host_hostname", "host_hostname"}
+
 def _round_record(record: dict) -> dict:
-    return {k: _round_value(v) if isinstance(v, str) else v for k, v in record.items()}
+    return {k: _round_value(v) if isinstance(v, str) and k not in _IP_KEYS else v for k, v in record.items()}
 
 
 def _strip_raw_fields_from_records(records: list[dict], fields_included: set = set()) -> list[dict]:
