@@ -179,62 +179,62 @@ Offline PDUs for Data Center SEA01-103:
 [1]
     Data_Center: SEA01-103
     Rack: SEA01-103-AM-6-PDU-2
-    Host_ip: 10.0.2.77
+    Host_ip: 10.0.153.77
 
 [2]
     Data_Center: SEA01-103
     Rack: SEA01-103-AM-10-PDU-1
-    Host_ip: 10.0.2.86
+    Host_ip: 10.0.153.86
 
 [3]
     Data_Center: SEA01-103
     Rack: SEA01-103-AP-2-PDU-1
-    Host_ip: 10.0.2.101
+    Host_ip: 10.0.153.101
 
 [4]
     Data_Center: SEA01-103
     Rack: SEA01-103-AR-15-PDU-2
-    Host_ip: 10.0.2.241
+    Host_ip: 10.0.153.241
 
 [5]
     Data_Center: SEA01-103
     Rack: SEA01-103-AR-16-PDU-2
-    Host_ip: 10.0.2.242
+    Host_ip: 10.0.153.242
 
 [6]
     Data_Center: SEA01-103
     Rack: SEA01-103-AY-8-PDU-2
-    Host_ip: 10.0.2.209
+    Host_ip: 10.0.154.209
 
 [7]
     Data_Center: SEA01-103
     Rack: SEA01-103-AD-4-PDU-1
-    Host_ip: 10.2.243.1
+    Host_ip: 10.225.243.130
 
 [8]
     Data_Center: SEA01-103
     Rack: SEA01-103-AD-5-PDU-1
-    Host_ip: 10.2.243.1
+    Host_ip: 10.225.243.131
 
 [9]
     Data_Center: SEA01-103
     Rack: SEA01-103-AD-6-PDU-1
-    Host_ip: 10.2.243.1
+    Host_ip: 10.225.243.132
 
 [10]
     Data_Center: SEA01-103
     Rack: SEA01-103-AD-7-PDU-1
-    Host_ip: 10.2.243.1
+    Host_ip: 10.225.243.133
 
 [11]
     Data_Center: SEA01-103
     Rack: SEA01-103-AD-8-PDU-1
-    Host_ip: 10.2.243.1
+    Host_ip: 10.225.243.134
 
 [12]
     Data_Center: SEA01-103
     Rack: SEA01-103-AD-9-PDU-1
-    Host_ip: 10.2.243.1
+    Host_ip: 10.225.243.135
 ```
 
 !!! warning
