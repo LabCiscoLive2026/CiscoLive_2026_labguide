@@ -1,10 +1,12 @@
-# Task 4: Query Splunk Data Using a Python Script
+# Task 4: Run the Python Script to Query Splunk Data
 
 As part of this walk-in lab, a Python-based script is used to query Splunk directly for real-time
 power management and environmental telemetry. This demonstrates that the data displayed in
 Splunk dashboards is also available through script-based access for automation, quick checks,
 and CLI-driven workflows. 
 
+!!! warning
+    If you use User01 for VPN access, you must use the corresponding User01 for PuTTY/SSH access and the password associated only with it. For additional user login credentials: [Click Here](creds.md)
 
 ## Step 1: Connect to VPN
 
@@ -39,14 +41,14 @@ First, establish a VPN connection to the lab network.
 </figure>
 </div>
 
-!!! info "Need credentials?"
-    Additional login details for all lab users can be found on the [Credentials](creds.md) page.
+!!! info "Note"
+    For additional user login credentials: [Click Here](creds.md).
 
 ## Step 2: SSH into the Lab VM
 
 Once the VPN is connected, use **PuTTY** (or any SSH client) to connect to the lab VM.
 
-**2a.** Open **PuTTY**, enter the lab VM IP address, and click **Open**.
+**2a.** Open **PuTTY**, enter the lab VM IP address(`10.0.13.4`), and click **Open**.
 
 <div class="dashboard-imgs" style="max-width:750px; margin:auto;" markdown>
 <figure markdown>
@@ -54,10 +56,12 @@ Once the VPN is connected, use **PuTTY** (or any SSH client) to connect to the l
 </figure>
 </div>
 
-**2b.** At the login prompt, enter the same password from Step 1. For the username, use only the part **before** the `@` sign.
+**2b.** At the login prompt, use the below **username** and **password** to SSH into the VM.
 
-!!! example "Username format"
-    VPN username: `user01@ciscolivevegas.com` → SSH username: `user01`
+| Field      | Value                        |
+|------------|------------------------------|
+| `Username` | {{ be_script_putty.username }} |
+| `Password` | {{ be_script_putty.password }} |
 
 <div class="dashboard-imgs" style="max-width:750px; margin:auto;" markdown>
 <figure markdown>
@@ -165,6 +169,7 @@ Offline PDUs      : 12
 !!! tip
     These values correspond directly to the PDU status panels in the Splunk dashboard (Task 2: Step 1).
 
+Press "Enter" to return to the scenario menu.
 
 ## Step 7: Identify Offline PDUs
 
@@ -241,7 +246,6 @@ Offline PDUs for Data Center SEA01-103:
     Offline PDUs may indicate network connectivity issues or hardware failures.
 
 Press "Enter" to return to the scenario menu.
-
 
 ## Step 8: Identify PDUs Exceeding 90% Capacity
 
@@ -330,7 +334,7 @@ Details:
 ```
 
 !!! danger "Critical"
-    PDUs at or above 100% consumption (e.g., 105%, 109%) are exceeding their rated capacity and pose a risk of breaker trips. Immediate load redistribution is recommended.
+    PDUs at or above 90% consumption are exceeding their rated capacity and pose a risk of breaker trips. Immediate load redistribution is recommended.
 
 Press "Enter" to return to the scenario menu.
 

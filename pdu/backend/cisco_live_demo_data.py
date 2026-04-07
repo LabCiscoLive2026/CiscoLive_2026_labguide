@@ -183,8 +183,8 @@ def process_temperature_row():
 
 
 def process_temperature_rack():
-    rack = input("\nSpecify the Rack to monitor (Enter:'ac-4'): ").strip()
-    if rack != "ac-4":
+    rack = input("\nSpecify the Rack to monitor (Enter:'ac-10'): ").strip()
+    if rack != "ac-10":
         print("\nEnter a correct Rack value!")
         return
     resp = requests.get(BASE_URL + f"/temperature?rack={rack}")

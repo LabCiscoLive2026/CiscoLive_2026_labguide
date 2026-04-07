@@ -15,4 +15,4 @@ To gain hands-on experience, progress through the following tasks:
 1. [Validate SEA01-103 Electrical and Cooling Readiness for 300kW AI Deployment](task01.md)
 2. [Audit PDU Load Distribution and Formulate Remediation Strategy for SEA01-103](task02.md)
 3. [Visualize PDU Capacity and Phase imbalance for CHG01-101 AI Readiness](task03.md)
-4. [Run Python Script to Query Splunk Data](task04.md)
+4. [Run the Python Script to Query Splunk Data](task04.md)

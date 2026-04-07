@@ -7,13 +7,13 @@ This lab guides engineers through the implementation of Smart PDUs to achieve gr
 
 ## Scenario: Unified Power Management Across Distributed Data Centers
 
-As a Senior Engineer at Data Pac Networks, your responsibility is to conduct a thorough audit of power and cooling readiness across six global sites: SEA01-103, CHG01-101, CHG01-102, DEL01-102, FRA01-104, and SGP01-04, ensuring that both electrical capacity and cooling systems are fully capable of supporting 100% uptime as you scale infrastructure for high-density AI server deployments.
+As a Senior Engineer at Data Pac Networks, your responsibility in this walk-in lab is to assess the power and cooling readiness of the SEA01-103 data center to support a 300 kW high-density AI server deployment. 
 
-You will leverage the AI Era Data Center Power Management Dashboard in Splunk to conduct a high-level load distribution review, verifying that all PDU power loads remain within optimal operating thresholds and identifying any racks exhibiting significant phase
-imbalance or overload risk.
+For Task 1 and Task 2, you will use the AI Era Data Center Power Management Dashboard in Splunk to evaluate real-time power utilization and cooling telemetry for the SEA01-103 data center, assessing whether the site’s electrical capacity and cooling infrastructure can sustain 100% uptime as infrastructure scales for high-density AI server deployments. 
 
-You will select SEA01-103 data center for power and Cooling capacity validation, followed by a targeted deep-dive investigation into CHG01-101 PDU dashboard. For CHG01-101, you are required to utilize the Smart PDU native GUI to visualize phase-load imbalances, perform granular outlet-level analysis, and formulate a formal load redistribution strategy including the migration of lowpower devices to maximize PDU capacity and ensure the facility is fully prepared for incoming high density AI compute hardware
-
+For Task 3, you are required to use the real-time Smart PDU GUI for the CHG01-101 data center to visualize and assess PDU phase-load imbalances, perform outlet-level power load analysis, and develop a recommended load redistribution strategy to help ensure the facility is prepared for incoming high-density AI compute hardware. 
+  
+For Task 4, you are required to run an existing Python script to demonstrate that the telemetry and operational data visualized in the Splunk dashboards can also be queried, and validated for rapid verification, and CLI-driven workflows. 
 
 <div class="img-bg-dark" markdown>
 <figure markdown>

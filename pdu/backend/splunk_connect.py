@@ -36,7 +36,7 @@ def _get_config() -> dict:
         "latest": os.getenv("SPLUNK_LATEST_TIME", "now"),
         "source_hosts": os.getenv("SPLUNK_SOURCE_HOSTS", os.getenv("SPLUNK_SOURCE", "pdu_hosts_demo_dump")),
         "source_sensor": os.getenv("SPLUNK_SOURCE_SENSOR", "pdu_sensor_read_demo_dump"),
-        "source_rmscurrent": os.getenv("SPLUNK_SOURCE_RMSCURRENT", "pdu_rmscurrent_demo_dump"),
+        "source_rmscurrent": os.getenv("SPLUNK_SOURCE_RMSCURRENT", "pdu_rmscurrent_demo_new_dump"),
     }
 
 
@@ -272,6 +272,7 @@ def _ensure_cache() -> Tuple[Path, Optional[dict]]:
 def refresh_excel_cache() -> dict:
     """Query Splunk for all required SPLs and refresh local Excel cache."""
     config = _get_config()
+    print(config, 'CONFIG CHECK')
     base_url = _get_base_url(config)
     if not base_url:
         return {"error": "No Splunk base URL configured. Set SPLUNK_BASE_URL or SPLUNK_HEC_URL."}
@@ -408,6 +409,7 @@ def get_exceeding_capacity(threshold: int = 90) -> dict:
 
     df = _filter_sea_lab_df(_read_sheet_dataframe(cache_path, SHEET_RMSCURRENT))
     df.columns = df.columns.str.capitalize()
+    print(df.columns)
 
     status_series = _get_series(df, "Pdu_status")
     normalized = status_series.str.lower().str.replace(r"[^a-z0-9]", "", regex=True)
@@ -506,3 +508,6 @@ def get_temperature_for_row(row_label: Optional[str] = None, rack: Optional[str]
         "Temperature_monitoring": stripped,
         "count": len(stripped),
     }
+
+
+

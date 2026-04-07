@@ -41,6 +41,10 @@ be_script_vpn:
   username: "user01@ciscolivevegas.com"
   password: "eaHZP_a8zphk*ty"
 
+be_script_putty:
+  username: "user01"
+  password: "eaHZP_a8zphk*ty"
+
 # --- Splunk Cloud Access ----------------------------------------------------
 
 splunk:
@@ -73,8 +77,9 @@ nav:
       - "Task 1 - Power & Cooling Capacity": "task01.md"
       - "Task 2 - PDU Load Audit & Remediation": "task02.md"
       - "Task 3 - PDU Capacity Optimization": "task03.md"
-      - "Task 4 - Execute Python Script to Query Splunk Data": "task04.md"
+      - "Task 4 - Run the Python Script to Query Splunk Data": "task04.md"
       - "Conclusion": "conclusion.md"
+  - "Credentials": "creds.md"
 
 
 # --- Learning Objectives (shown on the Overview page) ----------------------
