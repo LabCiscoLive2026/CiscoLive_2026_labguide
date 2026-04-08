@@ -92,20 +92,20 @@ export default function HostGroupDetailForm({
 
   if (!creating && (!groupId || !node || node.kind !== 'hostGroup')) {
     return (
-      <div className="rounded border border-dashed border-[#3d454e] bg-[#16191d]/50 p-8 text-center text-sm text-[#6b7784]">
+      <div className="rounded border border-dashed border-sna-border-strong bg-sna-surface/50 p-8 text-center text-sm text-sna-text-muted">
         Select a host group in the tree, or create a new one.
       </div>
     )
   }
 
   return (
-    <div className="text-[#e6e8ea]">
+    <div className="text-sna-text">
       <div className="mb-6 flex flex-wrap items-start justify-between gap-4">
         <div>
           <h2 className="text-lg font-semibold">
             {creating ? 'New host group' : node.name}
           </h2>
-          <p className="text-sm text-[#9aa7b4]">
+          <p className="text-sm text-sna-text-muted">
             {creating
               ? `Will be created under: ${parentName}`
               : `Host Group ID: ${node.id}`}
@@ -114,7 +114,7 @@ export default function HostGroupDetailForm({
         {!creating ? (
           <button
             type="button"
-            className="rounded border border-[#3d454e] px-4 py-2 text-sm hover:bg-[#252a31]"
+            className="rounded border border-sna-border-strong px-4 py-2 text-sm hover:bg-sna-hover"
           >
             Edit
           </button>
@@ -124,29 +124,29 @@ export default function HostGroupDetailForm({
       <div className="grid gap-8 lg:grid-cols-2">
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs text-[#b3bcc6]">
+            <label className="mb-1 block text-xs text-sna-text-2">
               Host Group Name <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full rounded border border-[#3d454e] bg-[#16191d] px-3 py-2 text-sm focus:border-[#005eb8] focus:outline-none"
+              className="w-full rounded border border-sna-border-strong bg-sna-surface px-3 py-2 text-sm text-sna-text focus:border-[#005eb8] focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs text-[#b3bcc6]">
+            <label className="mb-1 block text-xs text-sna-text-2">
               Parent Host Group
             </label>
             <input
               type="text"
               readOnly
               value={parentName}
-              className="w-full cursor-not-allowed rounded border border-[#3d454e] bg-[#0f1216] px-3 py-2 text-sm text-[#9aa7b4]"
+              className="w-full cursor-not-allowed rounded border border-sna-border-strong bg-sna-input px-3 py-2 text-sm text-sna-text-muted"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs text-[#b3bcc6]">
+            <label className="mb-1 block text-xs text-sna-text-2">
               Description (512 Char Max)
             </label>
             <textarea
@@ -154,11 +154,11 @@ export default function HostGroupDetailForm({
               value={description}
               maxLength={512}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full resize-y rounded border border-[#3d454e] bg-[#16191d] px-3 py-2 text-sm focus:border-[#005eb8] focus:outline-none"
+              className="w-full resize-y rounded border border-sna-border-strong bg-sna-surface px-3 py-2 text-sm text-sna-text focus:border-[#005eb8] focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs text-[#b3bcc6]">
+            <label className="mb-1 block text-xs text-sna-text-2">
               IP Addresses And Ranges
             </label>
             <textarea
@@ -166,11 +166,11 @@ export default function HostGroupDetailForm({
               value={ipRanges}
               onChange={(e) => setIpRanges(e.target.value)}
               placeholder="ex. 192.168.10.10, 192.168.10, 192.168.10-100, 192.168.10.0/24"
-              className="w-full resize-y rounded border border-[#3d454e] bg-[#0f1216] px-3 py-2 text-sm placeholder:text-[#6b7784] focus:border-[#005eb8] focus:outline-none"
+              className="w-full resize-y rounded border border-sna-border-strong bg-sna-input px-3 py-2 text-sm text-sna-text placeholder:text-sna-text-muted focus:border-[#005eb8] focus:outline-none"
             />
             <button
               type="button"
-              className="mt-2 rounded border border-[#3d454e] px-4 py-2 text-sm text-[#b3bcc6] hover:bg-[#252a31]"
+              className="mt-2 rounded border border-sna-border-strong px-4 py-2 text-sm text-sna-text-2 hover:bg-sna-hover"
             >
               Import IP Addresses and Ranges
             </button>
@@ -180,13 +180,13 @@ export default function HostGroupDetailForm({
         <div>
           <div className="mb-3 flex items-center gap-2 text-sm font-semibold">
             Advanced Options
-            <Info className="h-4 w-4 text-[#6b7784]" aria-hidden />
+            <Info className="h-4 w-4 text-sna-text-muted" aria-hidden />
           </div>
-          <div className="space-y-3 rounded border border-[#2a2f36] bg-[#16191d] p-4">
+          <div className="space-y-3 rounded border border-sna-border bg-sna-surface p-4">
             {advancedLabels.map((row) => (
               <label
                 key={row.key}
-                className="flex cursor-pointer items-start gap-2 text-sm text-[#c4cdd6]"
+                className="flex cursor-pointer items-start gap-2 text-sm text-sna-text-2"
               >
                 <input
                   type="checkbox"
@@ -194,7 +194,7 @@ export default function HostGroupDetailForm({
                   onChange={(e) =>
                     setAdvanced((a) => ({ ...a, [row.key]: e.target.checked }))
                   }
-                  className="mt-1 rounded border-[#3d454e] bg-[#0f1216]"
+                  className="mt-1 rounded border-sna-border-strong bg-sna-input"
                 />
                 <span>{row.label}</span>
               </label>
@@ -203,7 +203,7 @@ export default function HostGroupDetailForm({
         </div>
       </div>
 
-      <div className="mt-10 flex justify-end gap-3 border-t border-[#2a2f36] pt-6">
+      <div className="mt-10 flex justify-end gap-3 border-t border-sna-border pt-6">
         <button
           type="button"
           onClick={handleCancel}

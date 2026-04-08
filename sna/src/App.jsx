@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom'
 import { AuthProvider, useAuth } from './context/AuthContext'
 import { HostGroupsProvider } from './context/HostGroupsContext'
+import { ThemeProvider } from './context/ThemeContext'
 import AppLayout from './components/layout/AppLayout'
 import ConfigurePlaceholderPage from './pages/ConfigurePlaceholderPage'
 import FlowSearchPage from './pages/FlowSearchPage'
@@ -20,6 +21,11 @@ function ProtectedRoute() {
   return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />
 }
 
+function PublicOnlyRoute({ children }) {
+  const { isAuthenticated } = useAuth()
+  return isAuthenticated ? <Navigate to="/dashboard" replace /> : children
+}
+
 function RootRedirect() {
   const { isAuthenticated } = useAuth()
   return <Navigate to={isAuthenticated ? '/dashboard' : '/login'} replace />
@@ -27,12 +33,13 @@ function RootRedirect() {
 
 export default function App() {
   return (
+    <ThemeProvider>
     <HostGroupsProvider>
       <AuthProvider>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<RootRedirect />} />
-            <Route path="/login" element={<LoginPage />} />
+            <Route path="/login" element={<PublicOnlyRoute><LoginPage /></PublicOnlyRoute>} />
             <Route element={<ProtectedRoute />}>
               <Route element={<AppLayout />}>
                 <Route
@@ -92,5 +99,6 @@ export default function App() {
         </BrowserRouter>
       </AuthProvider>
     </HostGroupsProvider>
+    </ThemeProvider>
   )
 }

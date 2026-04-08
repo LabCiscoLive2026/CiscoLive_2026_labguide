@@ -4,10 +4,10 @@ import HostGroupsPicker from '../components/host-groups/HostGroupsPicker'
 
 function FieldLabel({ children, hint }) {
   return (
-    <div className="mb-1 flex items-center gap-1 text-xs text-[#b3bcc6]">
+    <div className="mb-1 flex items-center gap-1 text-xs text-sna-text-2">
       {children}
       {hint ? (
-        <Info className="h-3.5 w-3.5 text-[#6b7784]" aria-hidden />
+        <Info className="h-3.5 w-3.5 text-sna-text-muted" aria-hidden />
       ) : null}
     </div>
   )
@@ -17,7 +17,7 @@ function SelectLike({ value, className = '' }) {
   return (
     <button
       type="button"
-      className={`flex w-full items-center justify-between rounded border border-[#3d454e] bg-[#16191d] px-3 py-2 text-left text-sm text-[#e6e8ea] hover:border-[#505a65] ${className}`}
+      className={`flex w-full items-center justify-between rounded border border-sna-border-strong bg-sna-surface px-3 py-2 text-left text-sm text-sna-text hover:border-sna-text-muted ${className}`}
     >
       <span>{value}</span>
       <ChevronDown className="h-4 w-4 shrink-0 opacity-60" aria-hidden />
@@ -69,10 +69,10 @@ export default function FlowSearchPage() {
   ]
 
   return (
-    <div className="mx-auto max-w-[1400px] text-[#e6e8ea]">
+    <div className="mx-auto max-w-[1400px] text-sna-text">
       <div className="mb-4 flex items-center gap-2">
         <h1 className="text-lg font-semibold">Flow Search</h1>
-        <Info className="h-4 w-4 text-[#6b7784]" aria-hidden />
+        <Info className="h-4 w-4 text-sna-text-muted" aria-hidden />
       </div>
 
       <div className="mb-4 flex flex-wrap items-center gap-2">
@@ -84,29 +84,29 @@ export default function FlowSearchPage() {
         ].map((label) => (
           <span
             key={label}
-            className="rounded-full border border-[#005eb8]/50 bg-[#005eb8]/20 px-3 py-1 text-xs text-[#7eb8ff]"
+            className="rounded-full border border-sna-pill-border bg-sna-pill-bg px-3 py-1 text-xs text-sna-pill-text"
           >
             {label}
           </span>
         ))}
       </div>
 
-      <div className="mb-6 flex flex-wrap items-center justify-end gap-2 border-b border-[#2a2f36] pb-4">
+      <div className="mb-6 flex flex-wrap items-center justify-end gap-2 border-b border-sna-border pb-4">
         <button
           type="button"
-          className="rounded border border-[#3d454e] px-4 py-2 text-sm text-[#e6e8ea] hover:bg-[#252a31]"
+          className="rounded border border-sna-border-strong px-4 py-2 text-sm text-sna-text hover:bg-sna-hover"
         >
           Restore Defaults
         </button>
         <button
           type="button"
-          className="flex items-center gap-1 rounded border border-[#3d454e] px-4 py-2 text-sm text-[#e6e8ea] hover:bg-[#252a31]"
+          className="flex items-center gap-1 rounded border border-sna-border-strong px-4 py-2 text-sm text-sna-text hover:bg-sna-hover"
         >
           Load Saved Search <ChevronDown className="h-4 w-4" aria-hidden />
         </button>
         <button
           type="button"
-          className="rounded border border-[#3d454e] px-4 py-2 text-sm text-[#e6e8ea] hover:bg-[#252a31]"
+          className="rounded border border-sna-border-strong px-4 py-2 text-sm text-sna-text hover:bg-sna-hover"
         >
           Save
         </button>
@@ -133,7 +133,7 @@ export default function FlowSearchPage() {
             type="text"
             readOnly
             value={searchName}
-            className="w-full rounded border border-[#3d454e] bg-[#16191d] px-3 py-2 text-sm text-[#e6e8ea]"
+            className="w-full rounded border border-sna-border-strong bg-sna-surface px-3 py-2 text-sm text-sna-text"
           />
         </div>
         <div>
@@ -146,9 +146,9 @@ export default function FlowSearchPage() {
         {columns.map((col) => (
           <div
             key={col.title}
-            className="rounded border border-[#2a2f36] bg-[#16191d] p-4"
+            className="rounded border border-sna-border bg-sna-surface p-4"
           >
-            <h3 className="mb-3 text-sm font-semibold text-[#e6e8ea]">
+            <h3 className="mb-3 text-sm font-semibold text-sna-text">
               {col.title}
             </h3>
             <div className="space-y-4">
@@ -163,7 +163,7 @@ export default function FlowSearchPage() {
                   ) : f.type === 'button' ? (
                     <button
                       type="button"
-                      className="w-full rounded border border-[#3d454e] bg-[#0f1216] px-3 py-2 text-sm text-[#b3bcc6] hover:bg-[#252a31]"
+                      className="w-full rounded border border-sna-border-strong bg-sna-input px-3 py-2 text-sm text-sna-text-2 hover:bg-sna-hover"
                     >
                       {f.button}
                     </button>
@@ -171,7 +171,7 @@ export default function FlowSearchPage() {
                     <input
                       type="text"
                       placeholder={f.placeholder}
-                      className="w-full rounded border border-[#3d454e] bg-[#0f1216] px-3 py-2 text-sm text-[#e6e8ea] placeholder:text-[#6b7784] focus:border-[#005eb8] focus:outline-none"
+                      className="w-full rounded border border-sna-border-strong bg-sna-input px-3 py-2 text-sm text-sna-text placeholder:text-sna-text-muted focus:border-[#005eb8] focus:outline-none"
                     />
                   )}
                 </div>
@@ -190,11 +190,11 @@ export default function FlowSearchPage() {
           <button
             key={title}
             type="button"
-            className="flex items-center justify-between rounded border border-[#2a2f36] bg-[#16191d] px-4 py-3 text-left text-sm text-[#b3bcc6] hover:bg-[#1e2328]"
+            className="flex items-center justify-between rounded border border-sna-border bg-sna-surface px-4 py-3 text-left text-sm text-sna-text-2 hover:bg-sna-hover"
           >
             <span className="flex items-center gap-2">
               {title}
-              <Info className="h-3.5 w-3.5 text-[#6b7784]" aria-hidden />
+              <Info className="h-3.5 w-3.5 text-sna-text-muted" aria-hidden />
             </span>
             <ChevronDown className="h-4 w-4 opacity-50" aria-hidden />
           </button>

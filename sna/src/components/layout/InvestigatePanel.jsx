@@ -33,13 +33,13 @@ const groups = [
 
 export default function InvestigatePanel({ onClose }) {
   return (
-    <aside className="absolute left-0 top-0 z-30 flex h-full w-72 flex-col border-r border-[#2a2f36] bg-[#1c2128] shadow-xl">
-      <div className="flex items-center justify-between border-b border-[#2a2f36] px-4 py-3">
-        <span className="text-sm font-semibold text-[#e6e8ea]">Investigate</span>
+    <aside className="absolute left-0 top-0 z-30 flex h-full w-72 flex-col border-r border-sna-border bg-sna-surface shadow-xl">
+      <div className="flex items-center justify-between border-b border-sna-border px-4 py-3">
+        <span className="text-sm font-semibold text-sna-text">Investigate</span>
         <button
           type="button"
           onClick={onClose}
-          className="rounded p-1 text-[#b3bcc6] hover:bg-[#252a31]"
+          className="rounded p-1 text-sna-text-2 hover:bg-sna-hover"
           aria-label="Close"
         >
           <X className="h-4 w-4" />
@@ -49,7 +49,7 @@ export default function InvestigatePanel({ onClose }) {
         {groups.map((group) => (
           <div key={group.title ?? 'main'} className="mb-4">
             {group.title ? (
-              <div className="px-4 pb-2 pt-3 text-xs font-semibold uppercase tracking-wide text-[#6b7784]">
+              <div className="px-4 pb-2 pt-3 text-xs font-semibold uppercase tracking-wide text-sna-text-muted">
                 {group.title}
               </div>
             ) : null}
@@ -62,8 +62,8 @@ export default function InvestigatePanel({ onClose }) {
                     onClick={onClose}
                     className={({ isActive }) =>
                       [
-                        'block px-4 py-2 text-[#c4cdd6] hover:bg-[#252a31]',
-                        isActive ? 'bg-[#2a3442] text-white' : '',
+                        'block px-4 py-2 text-sna-text-2 hover:bg-sna-hover',
+                        isActive ? 'bg-sna-active text-sna-text' : '',
                       ].join(' ')
                     }
                   >

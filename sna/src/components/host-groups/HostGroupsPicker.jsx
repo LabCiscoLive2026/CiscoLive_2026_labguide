@@ -37,7 +37,7 @@ export default function HostGroupsPicker({ value, onChange }) {
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className="flex w-full items-center justify-between rounded border border-[#3d454e] bg-[#0f1216] px-3 py-2 text-left text-sm text-[#b3bcc6] hover:bg-[#252a31]"
+        className="flex w-full items-center justify-between rounded border border-sna-border-strong bg-sna-input px-3 py-2 text-left text-sm text-sna-text-2 hover:bg-sna-hover"
       >
         <span className="truncate">{summary}</span>
         <ChevronDown
@@ -46,17 +46,17 @@ export default function HostGroupsPicker({ value, onChange }) {
         />
       </button>
       {open ? (
-        <div className="absolute z-50 mt-1 max-h-56 w-full overflow-auto rounded border border-[#3d454e] bg-[#1c2128] py-1 shadow-lg">
+        <div className="absolute z-50 mt-1 max-h-56 w-full overflow-auto rounded border border-sna-border-strong bg-sna-surface py-1 shadow-lg">
           {selectableGroups.map((g) => (
             <label
               key={g.id}
-              className="flex cursor-pointer items-center gap-2 px-3 py-2 text-sm text-[#e6e8ea] hover:bg-[#252a31]"
+              className="flex cursor-pointer items-center gap-2 px-3 py-2 text-sm text-sna-text hover:bg-sna-hover"
             >
               <input
                 type="checkbox"
                 checked={value.includes(g.id)}
                 onChange={() => toggle(g.id)}
-                className="rounded border-[#3d454e]"
+                className="rounded border-sna-border-strong"
               />
               <span>{g.name}</span>
             </label>

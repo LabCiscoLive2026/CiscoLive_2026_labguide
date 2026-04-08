@@ -2,7 +2,7 @@ import { BarChart3, Globe, Monitor, Search, Wrench } from 'lucide-react'
 import { NavLink, useLocation } from 'react-router-dom'
 
 const navBtn =
-  'flex w-full flex-col items-center gap-1 border-l-2 border-transparent py-3 text-[10px] text-[#9aa7b4] transition-colors hover:bg-[#22272e] hover:text-[#e6e8ea]'
+  'flex w-full flex-col items-center gap-1 border-l-0 py-3 text-[10px] text-[#9aa7b4] transition-colors hover:bg-[#22272e] hover:text-[#e6e8ea]'
 
 function matchConfigureRoute(pathname) {
   return (
@@ -45,7 +45,7 @@ export default function Sidebar({
     configureOpen || matchConfigureRoute(pathname)
 
   return (
-    <aside className="flex w-14 shrink-0 flex-col border-r border-[#2a2f36] bg-[#16191d]">
+    <aside className="flex w-20 shrink-0 flex-col border-r border-[#2a2f36] bg-[#16191d]">
       <div className="flex flex-col items-center py-4 text-center">
         <Globe className="h-5 w-5 text-[#7eb8d6]" aria-hidden />
         <span className="mt-1 max-w-[3.25rem] break-all text-[9px] leading-tight text-[#6b7784]">
@@ -60,7 +60,7 @@ export default function Sidebar({
           className={({ isActive }) =>
             [
               navBtn,
-              isActive ? 'border-[#049fd9] bg-[#1e262e] text-white' : '',
+              isActive ? 'border-l-4 border-l-[#049fd9] bg-[#1e262e] text-white' : '',
             ].join(' ')
           }
         >
@@ -74,7 +74,7 @@ export default function Sidebar({
           className={[
             navBtn,
             investigateActive
-              ? 'border-[#049fd9] bg-[#1e262e] text-white'
+              ? 'border-l-4 border-l-[#049fd9] bg-[#1e262e] text-white'
               : '',
           ].join(' ')}
         >
@@ -93,7 +93,7 @@ export default function Sidebar({
           className={[
             navBtn,
             configureActive
-              ? 'border-[#049fd9] bg-[#1e262e] text-white'
+              ? 'border-l-4 border-l-[#049fd9] bg-[#1e262e] text-white'
               : '',
           ].join(' ')}
         >

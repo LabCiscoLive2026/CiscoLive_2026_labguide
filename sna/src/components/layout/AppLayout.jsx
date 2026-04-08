@@ -17,7 +17,7 @@ export default function AppLayout() {
   }
 
   return (
-    <div className="flex h-screen flex-col bg-[#12161b]">
+    <div className="flex h-screen flex-col bg-sna-bg">
       <TopNav />
       <div className="flex min-h-0 flex-1">
         <Sidebar
@@ -51,7 +51,7 @@ export default function AppLayout() {
           {configureOpen ? (
             <ConfigurePanel onClose={() => setConfigureOpen(false)} />
           ) : null}
-          <main className="relative z-10 h-full overflow-auto bg-[#12161b] p-4 md:p-6">
+          <main className="relative z-10 h-full overflow-auto bg-sna-bg p-4 md:p-6">
             <Outlet />
           </main>
         </div>

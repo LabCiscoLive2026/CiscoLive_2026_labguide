@@ -11,17 +11,16 @@ import {
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
+import { useTheme } from '../../context/ThemeContext'
 import { CiscoLogo } from './base'
 
 const USER_LABEL = 'CXlabs'
 
 export default function TopNav() {
   const { logout } = useAuth()
+  const { theme: themeChoice, setTheme: setThemeChoice } = useTheme()
   const navigate = useNavigate()
   const [menuOpen, setMenuOpen] = useState(false)
-  const [themeChoice, setThemeChoice] = useState(
-    /** @type {'light' | 'dark' | 'auto'} */ ('dark'),
-  )
   const menuRef = useRef(null)
 
   useEffect(() => {

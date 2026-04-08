@@ -1,5 +1,59 @@
 @import "tailwindcss";
 
+@theme inline {
+  --color-sna-bg: var(--sna-bg);
+  --color-sna-surface: var(--sna-surface);
+  --color-sna-widget-surface: var(--sna-widget-surface);
+  --color-sna-input: var(--sna-input);
+  --color-sna-hover: var(--sna-hover);
+  --color-sna-active: var(--sna-active);
+  --color-sna-border: var(--sna-border);
+  --color-sna-graph-border: var(--sna-graph-border);
+  --color-sna-border-strong: var(--sna-border-strong);
+  --color-sna-text: var(--sna-text);
+  --color-sna-text-2: var(--sna-text-2);
+  --color-sna-text-muted: var(--sna-text-muted);
+  --color-sna-pill-bg: var(--sna-pill-bg);
+  --color-sna-pill-text: var(--sna-pill-text);
+  --color-sna-pill-border: var(--sna-pill-border);
+}
+
+:root {
+  --sna-bg: #f0f2f5;
+  --sna-surface: #ffffff;
+  --sna-widget-surface: #ffffff;
+  --sna-input: #f8fafc;
+  --sna-hover: #f1f5f9;
+  --sna-active: #dbeafe;
+  --sna-border: #e2e8f0;
+  --sna-graph-border: #e2e8f0;
+  --sna-border-strong: #cbd5e1;
+  --sna-text: #1e293b;
+  --sna-text-2: #475569;
+  --sna-text-muted: #94a3b8;
+  --sna-pill-bg: #dbeafe;
+  --sna-pill-text: #1e40af;
+  --sna-pill-border: #93c5fd;
+}
+
+[data-theme="dark"] {
+  --sna-bg: #12161b;
+  --sna-surface: #16191d;
+  --sna-widget-surface: #2a2f36;
+  --sna-input: #0f1216;
+  --sna-hover: #252a31;
+  --sna-active: #2a3442;
+  --sna-border: #2a2f36;
+  --sna-graph-border: #424b59;
+  --sna-border-strong: #3d454e;
+  --sna-text: #e6e8ea;
+  --sna-text-2: #b3bcc6;
+  --sna-text-muted: #6b7784;
+  --sna-pill-bg: rgba(0, 94, 184, 0.2);
+  --sna-pill-text: #7eb8ff;
+  --sna-pill-border: rgba(0, 94, 184, 0.5);
+}
+
 html,
 body,
 #root {

@@ -87,7 +87,7 @@ export default function HostGroupTree({
                 e.stopPropagation()
                 toggle(id)
               }}
-              className="mr-0.5 rounded p-0.5 text-[#9aa7b4] hover:bg-[#252a31]"
+              className="mr-0.5 rounded p-0.5 text-sna-text-muted hover:bg-sna-hover"
               aria-expanded={isOpen}
             >
               <ChevronRight
@@ -106,10 +106,10 @@ export default function HostGroupTree({
               }
             }}
             className={[
-              'flex flex-1 items-center gap-1 rounded px-2 py-1 text-left text-[#e6e8ea]',
+              'flex flex-1 items-center gap-1 rounded px-2 py-1 text-left text-sna-text',
               selectedId === id && node.kind === 'hostGroup'
-                ? 'bg-[#1e3a5f]/80 ring-1 ring-[#049fd9]/50'
-                : 'hover:bg-[#252a31]',
+                ? 'bg-sna-active ring-1 ring-[#049fd9]/50'
+                : 'hover:bg-sna-hover',
             ].join(' ')}
           >
             {isFolder ? (
