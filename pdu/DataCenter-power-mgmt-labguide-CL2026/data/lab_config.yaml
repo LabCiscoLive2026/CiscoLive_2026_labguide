@@ -48,9 +48,9 @@ be_script_putty:
 # --- Splunk Cloud Access ----------------------------------------------------
 
 splunk:
-  url: "https://cisco-it.splunkcloud.com/en-US/app/CALOLABSUTILIZATIONMONITORING/ai_era_power_management_demo"
-  username: "CiscoLiveUser"
-  password: "CiscoLive2026!"
+  url: "https://cisco-cx-calolabs.splunkcloud.com/en-US/app/AI_ERA/ai_era_power_management_demo"
+  username: "aiera-demo"
+  password: "Ciscolive!135"
 
 
 # --- PDF Export (set to false to disable PDF generation) --------------------
