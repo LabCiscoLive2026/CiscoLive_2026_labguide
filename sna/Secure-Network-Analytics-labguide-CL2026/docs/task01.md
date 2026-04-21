@@ -4,7 +4,8 @@ In this task, we will demonstrate how to navigate the SNA dashboard’s Central 
 
 ## Step 1: Accessing the SNA Dashboard
 
-In Task 1-2, no admin access to configure these settings, later in task 4.
+!!! note "Read-only through Task 2"
+    Tasks 1–2 focus on **reviewing** health and inventory in the UI. **REVISIT:** If your class later enables admin write tasks, align this note with the proctor script (Task 4 is where Flow Search sign-in is detailed separately in this guide).
 
 - Enter your username and password, then click Sign In
 
@@ -22,7 +23,7 @@ Central Management is the centralized management console for your SNA virtual ap
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
-  ![Secure Network Analytics UI](./assets/task1/1.png)
+  ![Secure Network Analytics UI](./assets/task1/2.png)
 </figure>
 </div>
 
@@ -38,17 +39,17 @@ To ensure your SNA environment is operational, you will check the status of each
 </figure>
 </div>
 
-!!! Note
-    The three core appliances of SNA architecture, which your environment mirrors, are as follows:
+!!! note "Core SNA roles (this lab)"
+    Your lab topology uses three cooperating roles:
 
-    - Secure Network Analytics Manager: Provides the graphical user interface for managing the SNA environment and analyzing captured data.
-    - Data Node: Acts as the storage repository for captured data.
-    - Flow Collector: Responsible for collecting and forwarding network telemetry to the Data Node.
+    - **Secure Network Analytics Manager:** Web UI for administration, policy, and analysis of collected telemetry.
+    - **Data Node:** Stores and indexes flow and related records forwarded from collectors.
+    - **Flow Collector:** Receives NetFlow/IPFIX (and similar) from exporters and sends processed data to the Data Node.
 
-!!! danger "Critical"
-    When bringing an SNA environment online, it is essential that the appliances are deployed in the correct order. Failure to do so will prevent them from connecting to the SNA Manager, rendering the environment non-operational. The correct order of deployment is SNA Manager > Data Node > Flow Collector.
+!!! danger "Critical: appliance bring-up order"
+    When you **first deploy** a greenfield SNA stack, appliances must register in order. If that order is wrong, collectors and nodes may fail to attach to the Manager and the deployment will not be healthy. **Order:** Secure Network Analytics Manager → Data Node → Flow Collector. *(This lab uses pre-provisioned VMs; you are only verifying status.)*
 
-## Step 3: Verifying Data Node Status
+## Step 4: Verifying Data Node status
 
 The Data Node is an appliance that stores, indexes, and retrieves the flow data captured by Flow Collectors. The data center generates a vast amount of network traffic, so a dedicated storage component is imperative to your SNA environment. While the information is physically stored on the Data Node, it resides logically in a database. For the database to be accessible, the Data Node must also be online and connected. You will check the Data Store page to view the operational status of both the Data Node and database.
 
@@ -62,13 +63,15 @@ The Data Node is an appliance that stores, indexes, and retrieves the flow data 
 </figure>
 </div>
 
-!!! Note
+!!! note "Data Store vs. Data Node"
+    The **Data Store** is the logical store for telemetry; it can span **one or more Data Nodes** for scale and resilience. In this walk-in environment you have a **single** Data Node, but production designs often add nodes for capacity and availability. **REVISIT:** Confirm wording with the final architecture diagram for the event.
 
-    The Data Store is a central database, consisting of one or more Data Node[s], that stores, indexes, and retrieves the captured network telemetry. Your Data Store is made up of only one appliance, but the clustering of multiple Data Nodes provides high-availability and can improve both fault tolerance and query-response times.
+## Step 5: Verifying retention period
 
-## Step 5: Verifying Retention Period
+One benefit of SNA is configurable on-appliance retention for flow interface data. **Store Flow Interface Data** sets how long records stay on the Data Node before aging out. In this lab, **7 days** on the node is enough because extended analysis is expected in **Splunk** indexes.
 
-One of the benefits that SNA offers is the ability to analyze historical data, but it also allows you to decide how long you will hold onto that data. By configuring the Store Flow Interface Data policy, a retention period can be set that meets your data center’s needs. You plan to locally store your SNA’s historical data locally in the Splunk index, so a seven-day retention policy will be adequate here.
+!!! tip "Why 7 days on the Data Node?"
+    Shorter appliance retention limits disk growth on the Data Node while Splunk holds the longer window you need for dashboards and exports. **REVISIT:** Match the narrative to the tenant’s actual retention and compliance story if instructors differ.
 
 - Navigate to Database Retention.
 - Under Store Flow Interface Data, verify that Up to (days) is selected, and the value is 7.

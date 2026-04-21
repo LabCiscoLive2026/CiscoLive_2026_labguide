@@ -21,9 +21,13 @@ After simulating network traffic within your SEA01-103 Host Group, you will now 
 </figure>
 </div>
 
-## Step 2: Setting Flow Search Criteria
+## Step 2: Setting Flow Search criteria
 
-[Brief Summary/Purpose Flow Search] View laptop ip in asset utilization report
+!!! important "Goal of this search"
+    Build a view of **recent flows for SEA01-103**, then **narrow to your workstation** using the **Subject IP** filter (the **Client Address (IPv4)** you wrote down in Task 3) so exports match the traffic you generated—not the whole lab.
+
+!!! tip "Port / Protocol tokens"
+    Enter each **Port/Protocol** value (for example `22/TCP`), press **Space** to commit it as a chip or token, then type the next. The UI must show discrete entries—not one long concatenated string.
 
 - Click the Time Range dropdown and select Last 24 hours
 
@@ -69,14 +73,14 @@ After simulating network traffic within your SEA01-103 Host Group, you will now 
 </figure>
 </div>
 
-A Flow Search can produce a substantial number of results, including information that may not be relevant. For your asset utilization report, you only want flow data related to the simulations completed in Task 3. With the filters on the result table, you can enter your IP Address that was noted down in the previous task, allowing you to quickly and effectively find only the necessary data.
+A Flow Search can return a large grid, much of it unrelated to **your** lab traffic. For the utilization export, restrict rows to the flows you generated in Task 3.
 
-- In the Subject IP Address filter, enter your laptop IP Address (Client Address IPv4) recorded in Task 3 – Step 1f.
+- In the **Subject IP** filter, enter the **Client Address (IPv4)** you recorded in **Task 3, Step 1** (Status Overview after VPN connects).
 
-!!! Note
-    If you do not have your IP Address, open Cisco Secure Client and repeat Steps 1d – 1f. In the example, our IP Address was 172.30.255.10.
+!!! note "Lost your client IPv4?"
+    Reopen **Cisco Secure Client** and return to **Status Overview** (same path as Task 3, Step 1). Copy **Client Address (IPv4)** again. Example from the draft: **172.30.255.10** (yours will differ).
 
-Now, the table should only be populated with flows from your own connection sessions. These Flow Search results can now be exported as a csv file containing the filtered data in the table
+After filtering, the grid should show flows tied to **your** sessions. Export **Visible Columns** to download a **CSV** of what is on screen.
 
 - Select Export, then Visible Columns, to download your asset utilization report.
 
@@ -89,6 +93,10 @@ Now, the table should only be populated with flows from your own connection sess
 - Close the browser window to end your session.
 
 ## Result
-You have successfully configured the host group and performed a flow search for the SEA01-103 to determine the device utilization. The flow data is collected by the flow collector and securely stored in the SMC Data Node. Next, we will review this data in Splunk, where our dashboard has been configured to connect directly to the Data Node database, enabling comprehensive visualization and analysis of the collected telemetry. This integration allows you to gain actionable insights into device utilization and network activity through the Splunk interface.
+
+You ran **Flow Search** against **SEA01-103**, filtered to **your client IPv4**, and exported **Visible Columns** as a **CSV** for offline review.
+
+!!! note "Splunk in the next task"
+    Flow records land on the **Data Node** after collection. **REVISIT:** Replace “connect directly to the Data Node database” with the **exact Splunk integration** the team documents (HEC, DB Connect, intermediate export, app-specific connector, and so on). Task 5 is the Splunk walk-through.
 
 ---

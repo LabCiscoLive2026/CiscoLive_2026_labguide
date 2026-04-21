@@ -1,27 +1,17 @@
 # Task 5: Splunk dashboard view of devices monitored by Cisco Secure Network Analytics
 
-## Step 1: Accessing the SNA Access Count Dashboard
+!!! warning "REVISIT: dashboard name and deep link"
+    The draft still references **“AI Era Power Management Dashboard”** and a placeholder **“Link.”** Replace both with the **SNA Access Count** (or equivalent) Splunk **URL**, title, and login flow for your tenant before class.
 
-To ensure the best experience and consistent performance during your lab, please use the following instructions:
+## Step 1: Accessing the SNA Access Count dashboard
 
-Dashboard Access:
+!!! tip "Use Chrome"
+    Run Splunk dashboards in **Google Chrome** for the most predictable layout and performance in the lab.
 
-To access the Data Center Dashboard, please use Google Chrome. Chrome is the preferred browser for this lab to ensure optimal dashboard functionality and system stability.
+Use the credentials your proctor supplies (see **Credentials** if blanks were filled in). Open the Splunk deep link when it is published—**REVISIT:** insert the real URL and remove the legacy bullet below when content is final.
 
-- Click on the link to access AI Era Power Management Dashboard on Chrome: Link
-- Logging into the dashboard by using these credentials
-    - Username:
-    - Password:
-
-<div class="dashboard-imgs" markdown>
-<figure markdown>
-  ![Secure Network Analytics UI](./assets/task1/1.png)
-</figure>
-</div>
-
-## Step 2: Set the filter to SEAT01-103
-
-Use the filter to set the Site as Seattle and Data Center as SEA01-103
+- **Dashboard (placeholder):** Link *(replace with Splunk app/view URL)*
+- **Sign-in:** use the lab Splunk username and password.
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
@@ -29,9 +19,23 @@ Use the filter to set the Site as Seattle and Data Center as SEA01-103
 </figure>
 </div>
 
-## Step 3: Analyzing Access devices
+## Step 2: Set filters for site and data center
 
-This section of the interface provides real-time visibility into the data center inventory. Use the following metrics to monitor your environment:
+!!! note "REVISIT: spelling in UI"
+    The draft heading uses **SEAT01-103**; the lab host group is **SEA01-103**. Match **whatever labels the Splunk dashboard actually shows** (site **Seattle**, data center **SEA01-103** unless your tenant differs).
+
+<div class="dashboard-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task1/1.png)
+</figure>
+</div>
+
+## Step 3: Analyzing accessed devices
+
+!!! note "Panel drill-down"
+    Treat the headline numbers as **entry points**. Click a metric when the UI offers a detail list so you move from **counts** to **specific devices** before drawing conclusions.
+
+This section summarizes inventory health. Use the following metrics to orient yourself:
 
 - Total Devices: Displays the aggregate count of all devices currently provisioned or discovered within this data center. Use this to verify your baseline inventory.
 - Accessed Devices: Provides a breakdown of the connection methods used for each device. Refer to this to confirm that devices are communicating through the expected protocols.
@@ -45,9 +49,12 @@ Click any value in the panels to view the corresponding device list.
 </figure>
 </div>
 
-## Step 4: Analyzing unaccessed Devices
+## Step 4: Analyzing unaccessed devices
 
-These three panels display a list of devices that have remained unaccessed over the past 1, 3, and 6 months. You can use this data to identify stale inventory or devices that may require decommissioning.
+!!! important "Interpret “unaccessed” carefully"
+    “Unaccessed” here means **no successful access in the dashboard’s definition** for that window—not automatically “unused hardware.” Pair with change tickets and physical validation before decommission ideas. **REVISIT:** Align wording with how the Splunk panel labels the metric.
+
+These three panels list devices with no access in the **1-, 3-, and 6-month** windows the dashboard defines. Use them as a **triage list** for follow-up, not as a sole source of truth.
 
 - 1-Month View: Identifies devices with recent connectivity issues.
 - 3-Month View: Highlights devices that have been inactive for a full quarter.
@@ -66,8 +73,8 @@ This table displays the most frequently accessed device PIDs based on the timefr
 - PID: The unique Product ID of the device model.
 - flowCount: The total number of times devices with this PID were accessed during the selected period.
 
-!!! Tip
-    Use the global filter at the top of the page to adjust the reporting window. Review the flowCount column to determine which hardware models are the most active in your data center.
+!!! tip "Reading the PID table"
+    Change the **global time range** at the top before comparing models. Sort or scan **flowCount** to see which **PIDs** saw the most access in the window—useful for spotting heavily touched platforms vs. long-tail gear.
 
 ## Result
 In this task, you learned how to access and use the Splunk-based dashboard to monitor devices managed by Cisco Secure Network Analytics. By selecting the appropriate site and data center filters, you reviewed inventory metrics, identified which devices were accessed and which were not, and analyzed connectivity trends over different periods. Additionally, you explored the most frequently accessed device models to gain insight into operational activity within your data center.

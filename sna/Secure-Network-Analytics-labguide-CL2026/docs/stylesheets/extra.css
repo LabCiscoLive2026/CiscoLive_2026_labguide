@@ -43,6 +43,14 @@
     overflow: hidden;
 }
 
+.task3-imgs img {
+    border-radius: 0.5rem;
+    color: #191919;
+    overflow: hidden;
+    width: 60%;
+    /* height: 60%; */
+}
+
 [data-md-color-scheme="default"] {
     --md-typeset-a-color: #3a7fff;
     --md-accent-fg-color: #00bdeb;

@@ -12,9 +12,12 @@ Now that you have confirmed that the SNA appliances are connected and functional
 </figure>
 </div>
 
-## Step 2: Adding a Host Group - No admin access, just a demonstration [Note]
+## Step 2: Adding a Host Group
 
-Within a single domain, Host Groups are added to one of two categories in the SNA: Inside Hosts for trusted internal assets, or Outside Hosts for untrusted external hosts. This segmentation allows for the application of detailed security policies and deeper insight into traffic patterns. The assets from the SEA01-103 data center are internal and trusted, so you will add them to Inside Hosts.
+!!! note "Demonstration scope"
+    This segment is a **guided demonstration** of host-group creation (no elevated admin lab seat is assumed). **REVISIT:** Update if the event grants write-capable roles or a different SMC tenant.
+
+Within a single domain, host groups are placed under **Inside Hosts** (trusted internal assets) or **Outside Hosts** (untrusted external hosts). That split supports policy and reporting boundaries. Assets for **SEA01-103** are internal, so you add them under **Inside Hosts**.
 
 - Next to Inside Hosts, select the (...) icon.
 - In the popup menu that appears, select Add Host Group.
@@ -28,6 +31,9 @@ Within a single domain, Host Groups are added to one of two categories in the SN
 - Under Host Group Name, enter SEA01-103
 - Under IP Addresses and Ranges, enter 10.0.13.0/24
 - Select the Save button to add the Host Group
+
+!!! tip "Before you expect flows"
+    New or edited host groups need time to propagate through collectors and indexing. **REVISIT:** Add a realistic delay or “ask your proctor” line if your lab measures minutes vs. hours.
 
 ## Step 3: Verifying the New Host Group is Added
 

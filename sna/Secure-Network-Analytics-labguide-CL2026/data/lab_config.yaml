@@ -74,3 +74,6 @@ learning_objectives:
   - "Develop and propose solutions to optimize inventory management based on device usage insights."
 
 related_sessions: []
+
+# plugins:
+#   - with-pdf
