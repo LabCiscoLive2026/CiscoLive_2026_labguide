@@ -7,7 +7,7 @@ After simulating network traffic within your SEA01-103 Host Group, you will now 
 - Open Google Chrome, enter or paste this URL in the search bar: https://10.0.13.50/
 - Enter your username and password, then select Sign In.
 
-<div class="dashboard-imgs" markdown>
+<div class="dashboard-imgs" style="max-width:450px; margin:auto;" markdown>
 <figure markdown>
   ![Secure Network Analytics UI](./assets/task1/1.png)
 </figure>

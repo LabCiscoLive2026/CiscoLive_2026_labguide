@@ -37,17 +37,31 @@
     height: 90%;
 }
 
-.dashboard-imgs img{
-    border-radius: 0.5rem;
-    color: #191919;
-    overflow: hidden;
+/* Step screenshots: cap width (48rem felt too large in the content column). */
+.md-typeset .dashboard-imgs,
+.md-typeset .task3-imgs {
+    max-width: min(25rem, 86vw);
+    margin-inline: auto;
 }
 
-.task3-imgs img {
+.md-typeset .dashboard-imgs a.glightbox,
+.md-typeset .task3-imgs a.glightbox {
+    display: block;
+    max-width: 100%;
+}
+
+.md-typeset .dashboard-imgs figure,
+.md-typeset .task3-imgs figure {
+    margin-inline: 0;
+}
+
+.md-typeset .dashboard-imgs img,
+.md-typeset .task3-imgs img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
     border-radius: 0.5rem;
-    color: #191919;
-    overflow: hidden;
-    width: 60%;
 }
 
 [data-md-color-scheme="default"] {
