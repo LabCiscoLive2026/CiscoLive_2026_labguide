@@ -43,12 +43,28 @@
     overflow: hidden;
 }
 
-.task3-imgs img {
+/* Task 3 screenshots: article column can be very wide; cap box + fill so
+   images never exceed a comfortable viewport (glightbox wraps <img> in <a>). */
+.md-typeset .task3-imgs {
+    max-width: min(48rem, 92vw);
+    margin-inline: auto;
+}
+
+.md-typeset .task3-imgs a.glightbox {
+    display: block;
+    max-width: 100%;
+}
+
+.md-typeset .task3-imgs figure {
+    margin-inline: 0;
+}
+
+.md-typeset .task3-imgs img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
     border-radius: 0.5rem;
-    color: #191919;
-    overflow: hidden;
-    width: 60%;
-    /* height: 60%; */
 }
 
 [data-md-color-scheme="default"] {
