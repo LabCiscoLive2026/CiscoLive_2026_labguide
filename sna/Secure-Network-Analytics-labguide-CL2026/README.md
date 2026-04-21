@@ -29,9 +29,18 @@ Use `{{ variable.path }}` in any `docs/*.md` page to reference keys from that fi
 
 ## Container build
 
+The `Containerfile` sets **`HTTPS_PROXY` / `HTTP_PROXY`** to `http://proxy.esl.cisco.com:80` for the **build** stage so `pip` can reach PyPI from the Cisco network. Override or clear if you build elsewhere:
+
 ```bash
 podman build -t sna-labguide:latest -f Containerfile .
-podman run -d --name sna-labguide -p 8003:8003 sna-labguide:latest
+# Without proxy:
+# podman build --build-arg HTTPS_PROXY= --build-arg HTTP_PROXY= -t sna-labguide:latest -f Containerfile .
+```
+
+Nginx serves the static site on **8443** inside the container:
+
+```bash
+podman run -d --name sna-labguide -p 8443:8443 sna-labguide:latest
 ```
 
 ## Source draft
