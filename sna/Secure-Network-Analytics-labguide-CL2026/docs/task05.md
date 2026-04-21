@@ -13,13 +13,21 @@ To access the Data Center Dashboard, please use Google Chrome. Chrome is the pre
     - Username:
     - Password:
 
-[IMAGE]
+<div class="dashboard-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task1/1.png)
+</figure>
+</div>
 
 ## Step 2: Set the filter to SEAT01-103
 
 Use the filter to set the Site as Seattle and Data Center as SEA01-103
 
-[IMAGE]
+<div class="dashboard-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task1/1.png)
+</figure>
+</div>
 
 ## Step 3: Analyzing Access devices
 
@@ -31,7 +39,11 @@ This section of the interface provides real-time visibility into the data center
 
 Click any value in the panels to view the corresponding device list.
 
-[IMAGE]
+<div class="dashboard-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task1/1.png)
+</figure>
+</div>
 
 ## Step 4: Analyzing unaccessed Devices
 
@@ -41,7 +53,11 @@ These three panels display a list of devices that have remained unaccessed over 
 - 3-Month View: Highlights devices that have been inactive for a full quarter.
 - 6-Month View: Indicates long-term inactive devices that may no longer be in use.
 
-[IMAGE]
+<div class="dashboard-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task1/1.png)
+</figure>
+</div>
 
 ## Step 5: Analyzing Top Accessed Product IDs (PIDs)
 

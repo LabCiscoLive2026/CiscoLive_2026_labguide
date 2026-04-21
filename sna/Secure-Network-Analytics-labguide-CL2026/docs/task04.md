@@ -7,11 +7,19 @@ After simulating network traffic within your SEA01-103 Host Group, you will now 
 - Open Google Chrome, enter or paste this URL in the search bar: https://10.0.13.50/
 - Enter your username and password, then select Sign In.
 
-[IMAGE]
+<div class="dashboard-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task1/1.png)
+</figure>
+</div>
 
 - Navigate to Investigate > Flow Search.
 
-[IMAGE]
+<div class="dashboard-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task1/1.png)
+</figure>
+</div>
 
 ## Step 2: Setting Flow Search Criteria
 
@@ -19,7 +27,11 @@ After simulating network traffic within your SEA01-103 Host Group, you will now 
 
 - Click the Time Range dropdown and select Last 24 hours
 
-[IMAGE]
+<div class="dashboard-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task1/1.png)
+</figure>
+</div>
 
 -  In the Port / Protocol field, enter each of the protocols below. To correctly enter them, you must type each individually, followed by pressing the Spacebar.
 - 22/TCP > [Spacebar]
@@ -27,19 +39,35 @@ After simulating network traffic within your SEA01-103 Host Group, you will now 
 - 8080/TCP > [Spacebar]
 - 443/TCP > [Spacebar]
 
-[IMAGE]
+<div class="dashboard-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task1/1.png)
+</figure>
+</div>
 
-- In the Peer tile, under Host Groups, click Select. [Need Full-Screen Pic]
+- In the Peer tile, under Host Groups, click Select.
 
-[IMAGE]
+<div class="dashboard-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task1/1.png)
+</figure>
+</div>
 
-- In the side-panel, click (>) beside Inside Hosts to expand the dropdown, select SEA01-103 and then Apply. [Need Full Screen Picture]
+- In the side-panel, click (>) beside Inside Hosts to expand the dropdown, select SEA01-103 and then Apply.
 
-[IMAGE]
+<div class="dashboard-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task1/1.png)
+</figure>
+</div>
 
 - Now that your Flow Search criteria are set, select Search to generate the results.
 
-[IMAGE]
+<div class="dashboard-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task1/1.png)
+</figure>
+</div>
 
 A Flow Search can produce a substantial number of results, including information that may not be relevant. For your asset utilization report, you only want flow data related to the simulations completed in Task 3. With the filters on the result table, you can enter your IP Address that was noted down in the previous task, allowing you to quickly and effectively find only the necessary data.
 
@@ -52,7 +80,11 @@ Now, the table should only be populated with flows from your own connection sess
 
 - Select Export, then Visible Columns, to download your asset utilization report.
 
-[IMAGE]
+<div class="dashboard-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task1/1.png)
+</figure>
+</div>
 
 - Close the browser window to end your session.
 

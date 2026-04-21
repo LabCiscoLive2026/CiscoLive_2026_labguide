@@ -8,7 +8,11 @@ In Task 1-2, no admin access to configure these settings, later in task 4.
 
 - Enter your username and password, then click Sign In
 
-[IMAGE]
+<div class="dashboard-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task1/1.png)
+</figure>
+</div>
 
 ## Step 2: Navigating to Central Management
 
@@ -16,7 +20,11 @@ Central Management is the centralized management console for your SNA virtual ap
 
 - In the sidebar, navigate to Configure > Central Management
 
-[IMAGE]
+<div class="dashboard-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task1/1.png)
+</figure>
+</div>
 
 ## Step 3: Verifying Virtual Appliance Status
 
@@ -24,7 +32,11 @@ To ensure your SNA environment is operational, you will check the status of each
 
 - In the Appliance Status column, verify that each appliance is Connected. [3a]
 
-[IMAGE]
+<div class="dashboard-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task1/1.png)
+</figure>
+</div>
 
 !!! Note
     The three core appliances of SNA architecture, which your environment mirrors, are as follows:
@@ -44,7 +56,11 @@ The Data Node is an appliance that stores, indexes, and retrieves the flow data 
 - Under Database Status, verify it is Up.
 - Under Data Node Status, verify it is Up.
 
-[IMAGE]
+<div class="dashboard-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task1/1.png)
+</figure>
+</div>
 
 !!! Note
 
@@ -57,9 +73,11 @@ One of the benefits that SNA offers is the ability to analyze historical data, b
 - Navigate to Database Retention.
 - Under Store Flow Interface Data, verify that Up to (days) is selected, and the value is 7.
 
-[Edit Picture Full Screen, but don’t need to scroll to view bottom green box]
-
-[IMAGE]
+<div class="dashboard-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task1/1.png)
+</figure>
+</div>
 
 ## Result
 
