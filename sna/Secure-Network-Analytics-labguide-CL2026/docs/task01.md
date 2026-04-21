@@ -35,7 +35,7 @@ To ensure your SNA environment is operational, you will check the status of each
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
-  ![Secure Network Analytics UI](./assets/task1/1.png)
+  ![Secure Network Analytics UI](./assets/task1/3.png)
 </figure>
 </div>
 
@@ -59,7 +59,7 @@ The Data Node is an appliance that stores, indexes, and retrieves the flow data 
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
-  ![Secure Network Analytics UI](./assets/task1/1.png)
+  ![Secure Network Analytics UI](./assets/task1/4.png)
 </figure>
 </div>
 
@@ -78,7 +78,7 @@ One benefit of SNA is configurable on-appliance retention for flow interface dat
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
-  ![Secure Network Analytics UI](./assets/task1/1.png)
+  ![Secure Network Analytics UI](./assets/task1/5.png)
 </figure>
 </div>
 

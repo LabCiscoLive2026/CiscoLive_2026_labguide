@@ -8,7 +8,7 @@ Now that you have confirmed that the SNA appliances are connected and functional
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
-  ![Secure Network Analytics UI](./assets/task1/1.png)
+  ![Secure Network Analytics UI](./assets/task2/1.png)
 </figure>
 </div>
 
@@ -24,13 +24,19 @@ Within a single domain, host groups are placed under **Inside Hosts** (trusted i
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
-  ![Secure Network Analytics UI](./assets/task1/1.png)
+  ![Secure Network Analytics UI](./assets/task2/2.png)
 </figure>
 </div>
 
 - Under Host Group Name, enter SEA01-103
 - Under IP Addresses and Ranges, enter 10.0.13.0/24
 - Select the Save button to add the Host Group
+
+<div class="dashboard-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task2/3.png)
+</figure>
+</div>
 
 !!! tip "Before you expect flows"
     New or edited host groups need time to propagate through collectors and indexing. **REVISIT:** Add a realistic delay or “ask your proctor” line if your lab measures minutes vs. hours.
@@ -44,8 +50,7 @@ After adding your Host Group, it is important to check that it was created succe
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
-  ![Secure Network Analytics UI](./assets/task1/1.png)
-  <figcaption>Edit Picture, remove box over Host Group ID</figcaption>
+  ![Secure Network Analytics UI](./assets/task2/4.png)
 </figure>
 </div>
 

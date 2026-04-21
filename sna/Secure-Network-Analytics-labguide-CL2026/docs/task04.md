@@ -7,17 +7,11 @@ After simulating network traffic within your SEA01-103 Host Group, you will now 
 - Open Google Chrome, enter or paste this URL in the search bar: https://10.0.13.50/
 - Enter your username and password, then select Sign In.
 
-<div class="dashboard-imgs" style="max-width:450px; margin:auto;" markdown>
-<figure markdown>
-  ![Secure Network Analytics UI](./assets/task1/1.png)
-</figure>
-</div>
-
 - Navigate to Investigate > Flow Search.
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
-  ![Secure Network Analytics UI](./assets/task1/1.png)
+  ![Secure Network Analytics UI](./assets/task4/1.png)
 </figure>
 </div>
 
@@ -33,7 +27,7 @@ After simulating network traffic within your SEA01-103 Host Group, you will now 
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
-  ![Secure Network Analytics UI](./assets/task1/1.png)
+  ![Secure Network Analytics UI](./assets/task4/2.png)
 </figure>
 </div>
 
@@ -45,7 +39,7 @@ After simulating network traffic within your SEA01-103 Host Group, you will now 
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
-  ![Secure Network Analytics UI](./assets/task1/1.png)
+  ![Secure Network Analytics UI](./assets/task4/3.png)
 </figure>
 </div>
 
@@ -53,7 +47,7 @@ After simulating network traffic within your SEA01-103 Host Group, you will now 
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
-  ![Secure Network Analytics UI](./assets/task1/1.png)
+  ![Secure Network Analytics UI](./assets/task4/4.png)
 </figure>
 </div>
 
@@ -61,7 +55,7 @@ After simulating network traffic within your SEA01-103 Host Group, you will now 
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
-  ![Secure Network Analytics UI](./assets/task1/1.png)
+  ![Secure Network Analytics UI](./assets/task4/5.png)
 </figure>
 </div>
 
@@ -69,9 +63,10 @@ After simulating network traffic within your SEA01-103 Host Group, you will now 
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
-  ![Secure Network Analytics UI](./assets/task1/1.png)
+  ![Secure Network Analytics UI](./assets/task4/6.png)
 </figure>
 </div>
+
 
 A Flow Search can return a large grid, much of it unrelated to **your** lab traffic. For the utilization export, restrict rows to the flows you generated in Task 3.
 
@@ -86,7 +81,7 @@ After filtering, the grid should show flows tied to **your** sessions. Export **
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
-  ![Secure Network Analytics UI](./assets/task1/1.png)
+  ![Secure Network Analytics UI](./assets/task4/7.png)
 </figure>
 </div>
 
