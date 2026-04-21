@@ -1,0 +1,76 @@
+# ============================================================================
+#  LAB GUIDE CONFIGURATION
+# ============================================================================
+#
+#  This is the ONLY file you need to edit to customize your lab guide.
+#  After making changes, run:  mkdocs serve
+#
+# ============================================================================
+
+lab_id: "LABATO-2002"
+lab_title: "Gain Real-Time Visibility into Asset Utilization with Cisco SNA and Splunk"
+authors: "Cisco Live Lab Team"
+
+event_name: "Cisco Live 2026"
+lab_type: "Walk-In Labs"
+
+# --- Optional macros (primary lab text is verbatim in docs/*.md) ------------
+
+smc:
+  url: "https://10.0.13.50/"
+  username: "aiera-user"
+  password: "Ciscolive!246???"
+
+splunk:
+  sna_dashboard_url: "https://cisco-cx-calolabs.splunkcloud.com/en-US/app"
+  username: ""
+  password: ""
+
+devices:
+  cat9k:
+    name: "CAT9K-CL"
+    ssh: "aiera-user@10.0.13.71"
+    ip: "10.0.13.71"
+    web_url: "https://10.0.13.71"
+  isr4k:
+    name: "ISR4K-CL"
+    ssh: "aiera-user@10.0.13.70"
+    ip: "10.0.13.70"
+
+device_ssh_password: "Ciscolive!135"
+
+host_group:
+  name: "SEA01-103"
+  cidr: "10.0.13.0/24"
+
+vpn:
+  address: "173.37.192.194"
+  username: "user01@ciscolivevegas.com"
+  password: "eaHZP_a8zphk*ty"
+
+sna_appliances:
+  data_node: "v7.6.0"
+  flow_collector: "v7.6.0"
+  manager: "v7.6.0"
+
+pdf_enabled: true
+
+nav:
+  - "Home": "index.md"
+  - "Lab":
+      - "Overview": "overview.md"
+      - "Getting Started": "getting_started.md"
+      - "Task 1: SNA Appliance Setup – Central Management": "task01.md"
+      - "Task 2: Tracking Assets – Host Group Management": "task02.md"
+      - "Task 3: Simulating Asset Utilization – NetFlow": "task03.md"
+      - "Task 4: Analyzing SEA01-103 NetFlow – Flow Search": "task04.md"
+      - "Task 5: Splunk dashboard view of devices monitored by Cisco SNA": "task05.md"
+      - "Conclusion": "conclusion.md"
+  - "Credentials": "creds.md"
+
+learning_objectives:
+  - "Configure and monitor host groups effectively within Cisco Secure Network Analytics (SNA), formerly known as Stealthwatch, to organize and track device activity."
+  - "Analyze access trends by evaluating the unique Flow count of assets, using flow search in SNA and visualizing data telemetry in Splunk."
+  - "Develop and propose solutions to optimize inventory management based on device usage insights."
+
+related_sessions: []
