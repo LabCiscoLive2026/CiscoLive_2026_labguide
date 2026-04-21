@@ -1,8 +1,0 @@
-services:
-  sna-lab-ui:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "5223:8080"
-    restart: unless-stopped
