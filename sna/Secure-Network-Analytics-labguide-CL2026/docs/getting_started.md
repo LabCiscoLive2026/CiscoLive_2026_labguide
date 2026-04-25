@@ -25,5 +25,7 @@ To gain hands-on experience, progress through the following tasks:
 3. [Task 3: Simulating Asset Utilization – NetFlow](task03.md)
 4. [Task 4: Analyzing SEA01-103 NetFlow – Flow Search](task04.md)
 5. [Task 5: Splunk dashboard view of devices monitored by Cisco Secure Network Analytics](task05.md)
+6. [Task 6: Identifying Top Utilized Hosts](task06.md)
+7. [Task 7: Analyzing Top Flows — Who Accessed What, How, and For How Long](task07.md)
 
 ---

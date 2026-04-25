@@ -1,14 +1,14 @@
 # Task 5: Splunk dashboard view of devices monitored by Cisco Secure Network Analytics
 
 !!! warning "REVISIT: dashboard name and deep link"
-    The draft still references **“AI Era Power Management Dashboard”** and a placeholder **“Link.”** Replace both with the **SNA Access Count** (or equivalent) Splunk **URL**, title, and login flow for your tenant before class.
+    The draft still references **“AI Era Power Management Dashboard”** and a placeholder **“Link.”** Replace both with the **SNA Access Count** (or equivalent) Splunk **URL**, title, and login flow for the tenant before class.
 
 ## Step 1: Accessing the SNA Access Count dashboard
 
 !!! tip "Use Chrome"
     Run Splunk dashboards in **Google Chrome** for the most predictable layout and performance in the lab.
 
-Use the credentials your proctor supplies (see **Credentials** if blanks were filled in). Open the Splunk deep link when it is published—**REVISIT:** insert the real URL and remove the legacy bullet below when content is final.
+Use the credentials your proctor supplies (see **Credentials** if blanks were filled in). Open the Splunk deep link when it is published -> **REVISIT:** insert the real URL and remove the legacy bullet below when content is final.
 
 - **Dashboard (placeholder):** Link *(replace with Splunk app/view URL)*
 - **Sign-in:** use the lab Splunk username and password.
@@ -74,7 +74,7 @@ This table displays the most frequently accessed device PIDs based on the timefr
 - flowCount: The total number of times devices with this PID were accessed during the selected period.
 
 !!! tip "Reading the PID table"
-    Change the **global time range** at the top before comparing models. Sort or scan **flowCount** to see which **PIDs** saw the most access in the window—useful for spotting heavily touched platforms vs. long-tail gear.
+    Change the **global time range** at the top before comparing models. Sort or scan **flowCount** to see which **PIDs** saw the most access in the window -> useful for spotting heavily touched platforms vs. long-tail gear.
 
 ## Result
 In this task, you learned how to access and use the Splunk-based dashboard to monitor devices managed by Cisco Secure Network Analytics. By selecting the appropriate site and data center filters, you reviewed inventory metrics, identified which devices were accessed and which were not, and analyzed connectivity trends over different periods. Additionally, you explored the most frequently accessed device models to gain insight into operational activity within your data center.

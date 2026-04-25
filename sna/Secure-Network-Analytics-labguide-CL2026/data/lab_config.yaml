@@ -65,6 +65,8 @@ nav:
       - "Task 3: Simulating Asset Utilization – NetFlow": "task03.md"
       - "Task 4: Analyzing SEA01-103 NetFlow – Flow Search": "task04.md"
       - "Task 5: Splunk dashboard view of devices monitored by Cisco SNA": "task05.md"
+      - "Task 6: Identifying Top Utilized Hosts": "task06.md"
+      - "Task 7: Analyzing Top Flows — Who Accessed What, How, and For How Long": "task07.md"
       - "Conclusion": "conclusion.md"
   - "Credentials": "creds.md"
 

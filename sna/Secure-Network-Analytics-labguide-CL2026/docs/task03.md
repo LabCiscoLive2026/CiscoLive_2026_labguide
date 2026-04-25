@@ -89,7 +89,7 @@ The first asset in the SEA01-103 data center that you will access is a Cisco ISR
 </figure>
 </div>
 
-- At the enable prompt, enter the command: show ip interface brief and press Enter to simulate additional network traffic to this asset.
+- At the enable prompt, enter the command: `show users` and press Enter to simulate additional network traffic to this asset.
 
 <div class="task3-imgs" markdown>
 <figure markdown>
@@ -121,7 +121,7 @@ The next SEA01-103 asset that you will access is a Cisco C9300X-48HX switch. Usi
 
 - The asset terminal will open. At the login prompt, enter the username: aiera-user and press Enter.
 - At the password prompt, enter the password: Ciscolive!135 and press Enter. When entered correctly, you will arrive at the enable prompt for CAT9K-CL.
-- At the enable prompt, enter the command: show ip interface brief and press Enter to simulate additional network traffic to this asset.
+- At the enable prompt, enter the command: `show ip interface brief` and press Enter to simulate additional network traffic to this asset.
 
 <div class="task3-imgs" markdown>
 <figure markdown>
@@ -138,7 +138,7 @@ You will access CAT9K-CL again over **HTTPS**. Different L4/L7 paths (SSH vs HTT
 !!! tip "Browser vs. CLI"
     Keep **Chrome** for HTTPS steps so behavior matches the lab and Splunk dashboard guidance.
 
-<div class="task3-imgs" markdown>
+<div class="dashboard-imgs" markdown>
 <figure markdown>
   ![Secure Network Analytics UI](./assets/task3/13.png)
 </figure>
@@ -146,7 +146,7 @@ You will access CAT9K-CL again over **HTTPS**. Different L4/L7 paths (SSH vs HTT
 
 Then click "proceed to 10.0.13.71 (unsafe)"
 
-<div class="task3-imgs" markdown>
+<div class="dashboard-imgs" markdown>
 <figure markdown>
   ![Secure Network Analytics UI](./assets/task3/14.png)
 </figure>
@@ -154,7 +154,7 @@ Then click "proceed to 10.0.13.71 (unsafe)"
 
 - Open Google Chrome, enter or paste the URL: https://10.0.13.71 into the search-bar, then press Enter.
 
-<div class="task3-imgs" markdown>
+<div class="dashboard-imgs" markdown>
 <figure markdown>
   ![Secure Network Analytics UI](./assets/task3/15.png)
 </figure>
@@ -164,7 +164,7 @@ Then click "proceed to 10.0.13.71 (unsafe)"
 
 This is the main dashboard
 
-<div class="task3-imgs" markdown>
+<div class="dashboard-imgs" markdown>
 <figure markdown>
   ![Secure Network Analytics UI](./assets/task3/16.png)
 </figure>
@@ -172,7 +172,7 @@ This is the main dashboard
 
 To logout, click on the icon on the top-right corner, then click "Yes" as shown below,
 
-<div class="task3-imgs" markdown>
+<div class="dashboard-imgs" markdown>
 <figure markdown>
   ![Secure Network Analytics UI](./assets/task3/17.png)
 </figure>

@@ -71,15 +71,15 @@ Use **Chrome** to the HTTPS URL below. Sign in with the **full UPN** on the user
 | `Username`      | `aiera-user@ciscolivevegas.com` |
 | `Password`      | `Ciscolive!135`                 |
 
-## Splunk — SNA Access Count dashboard
+## Splunk — SNA Access Count dashboard and Search & Reporting
 
-For: (Task 5, Step 1)
+For: (Task 5, Step 1), (Task 6), (Task 7)
 
-Splunk **Username** and **Password** are intentionally blank in the lab draft. When the event publishes Splunk tenant credentials, type them into your copy of this guide or keep them on the printed seat card—do not commit real secrets to source control.
+Use the same Splunk Cloud tenant for the **SNA Access Count** dashboard (**Task 5**) and for **Search & Reporting** ad hoc searches (**Tasks 6–7**). Splunk **Username** and **Password** are intentionally blank in the lab draft. When the event publishes Splunk tenant credentials, type them into your copy of this guide or keep them on the printed seat card—do not commit real secrets to source control.
 
 | <!-- -->   | <!-- --> |
 | ---------- | -------- |
-| `Username` |          |
-| `Password` |          |
+| `Username` | `CiscoLive_2026`         |
+| `Password` | `CiscoLive345!SNA_demo`        |
 
 ---
