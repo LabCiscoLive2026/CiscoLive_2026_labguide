@@ -60,20 +60,19 @@ nav:
   - "Lab":
       - "Overview": "overview.md"
       - "Getting Started": "getting_started.md"
-      - "Task 1: SNA Appliance Setup – Central Management": "task01.md"
-      - "Task 2: Tracking Assets – Host Group Management": "task02.md"
-      - "Task 3: Simulating Asset Utilization – NetFlow": "task03.md"
-      - "Task 4: Analyzing SEA01-103 NetFlow – Flow Search": "task04.md"
+      - "Task 1: Simulating Asset Utilization Using NetFlow": "task01.md"
+      - "Task 2: Analyzing SEA01-103 NetFlow – Flow Search": "task02.md"
+      - "Task 3: Identifying Top Utilized Hosts": "task03.md"
+      - "Task 4: Analyzing Top Flows — Who Accessed What, How, and For How Long": "task04.md"
       - "Task 5: Splunk dashboard view of devices monitored by Cisco SNA": "task05.md"
-      - "Task 6: Identifying Top Utilized Hosts": "task06.md"
-      - "Task 7: Analyzing Top Flows — Who Accessed What, How, and For How Long": "task07.md"
       - "Conclusion": "conclusion.md"
   - "Credentials": "creds.md"
 
 learning_objectives:
-  - "Configure and monitor host groups effectively within Cisco Secure Network Analytics (SNA), formerly known as Stealthwatch, to organize and track device activity."
-  - "Analyze access trends by evaluating the unique Flow count of assets, using flow search in SNA and visualizing data telemetry in Splunk."
-  - "Develop and propose solutions to optimize inventory management based on device usage insights."
+  - "Generate representative NetFlow traffic to lab assets (VPN, SSH, HTTPS) so Cisco SNA can observe utilization patterns for the SEA01-103 scope."
+  - "Run Flow Search on the SNA Manager to validate flows against your client IP, host-group context, and expected protocols."
+  - "Use Splunk Search & Reporting with the provided datamodel queries to rank top utilized hosts and top flows (who, what, how, duration)."
+  - "Interpret the SNA asset utilization Splunk dashboard (accessed vs unaccessed) to support capacity and operational discussions."
 
 related_sessions: []
 

@@ -45,7 +45,7 @@ podman run -d --name sna-labguide -p 8443:8443 sna-labguide:latest
 
 ## Source draft
 
-Lab narrative is derived from `sna/SNA Demo 4-17 First Draft.docx` / `sna/SNA Demo 4-17 First Draft.pdf`. Update the Markdown tasks under `docs/` when the draft changes.
+Lab narrative is synced from `sna/SNALabv2.docx` (author draft). Update the Markdown under `docs/` when that document changes. Optional helper `scripts/extract_sna_labv2_tasks.py` **overwrites** `docs/task03.md` and `docs/task04.md` with plain Word text (you must re-apply `spl-lab-scroll`, figure blocks, and tables)—prefer hand-editing those pages unless you are regenerating from a fresh docx.
 
 ## CI / publish
 

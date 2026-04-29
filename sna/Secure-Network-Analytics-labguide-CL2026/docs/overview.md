@@ -2,17 +2,41 @@
 
 This lab provides step-by-step instructions on how to configure Cisco Secure Network Analytics (SNA) to monitor device-level flow counts and export network telemetry data to Splunk for centralized analysis and reporting.
 
-## Scenario: Unified Power Management Across Distributed Data Centers
+!!! danger "Attention"
+    **Aligned with *SNALabv2.docx*:** This guide’s **Tasks 1–5** match the Word lab sequence (NetFlow -> Flow Search -> Splunk searches -> Splunk dashboard).
 
-In this lab, you are a network engineer responsible for managing a data center environment. Your primary objective is to monitor device access by configuring Cisco Secure Network Analytics (SNA) to track asset utilization using their IP addresses. Through this configuration, you will collect detailed telemetry data, including flow records, to analyze how frequently each device is accessed and understand network activity patterns.
+## Scenario: Asset utilization with Cisco SNA and Splunk Cloud
 
-Additionally, you will learn how to integrate and visualize SNA telemetry data within Splunk Cloud. This integration enables you to enrich network insights by leveraging Splunk’s powerful analytics and dashboard capabilities, providing a unified view of device utilization and network behavior. By the end of this lab, you will be equipped to transform raw network flow data into actionable intelligence, helping optimize asset usage and improve operational efficiency.
+In this lab, you will leverage **Cisco Secure Network Analytics (SNA)** and **Splunk Cloud** to gain visibility into **asset utilization** across your network. SNA continuously collects NetFlow telemetry from monitored devices; you will use that data in the **SMC** (for example **Flow Search**) and in **Splunk** searches and dashboards.
+
+You will also integrate SNA telemetry with Splunk Cloud to visualize utilization—when users and systems interact with devices, flow data reflects that activity so you can see **which assets are busiest**, **how** they are accessed, and which appear **idle** in a given window.
+
+Together, the tasks build a path from **traffic context** through **on-box flow investigation** to **Splunk** analytics for operational insight.
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
   ![topology](./assets/overview/overview_1.png)
 </figure>
 </div>
+
+## Lab topology (reference)
+
+The lab environment includes:
+
+- **Cisco Secure Network Analytics VMs** — SNA Manager and Flow Collector ingesting NetFlow telemetry  
+- **ESXi host** — Hypervisor hosting lab virtual machines  
+- **Network devices** — Switches and related infrastructure exporting flow data  
+- **Firewall** — Internet connectivity for the lab  
+- **Splunk Cloud** — Tenant receiving SNA telemetry via the **Cisco Secure Network Analytics App for Splunk**  
+
+High level: **SNA VMs, ESXi, and devices → switching → firewall → Internet → Splunk Cloud**.
+
+## Prerequisites
+
+- SNA Manager is configured and collecting NetFlow from monitored devices.  
+- SNA telemetry is exported to Splunk Cloud via the **Cisco Secure Network Analytics App for Splunk**.  
+- The Splunk app is installed and configured on your tenant.  
+- You can sign in to Splunk Cloud with permission to run searches (see **Credentials**).
 
 ## Learning Objectives
 
@@ -23,7 +47,7 @@ Upon completion of this lab, you will be able to:
 {% endfor %}
 
 !!! Note
-    The datacenter entry gateway is pre-configured for NetFlow, streaming telemetry to the SNA Flow Collector for analysis. Additionally, the SNA virtual appliances has been pre-provisioned to support the tasks in this lab.
+    The datacenter entry gateway is pre-configured for NetFlow, streaming telemetry to the SNA Flow Collector for analysis. **SNA Manager, Data Node, and Flow Collector** are pre-provisioned for walk-in use, and the **SEA01-103** host group (**10.0.13.0/24**) is already available for monitoring—so you begin with **traffic generation (Task 1)** rather than appliance setup pages.
 
 
 !!! note "Quick Notes"

@@ -1,5 +1,12 @@
 #!/usr/bin/env python
-"""One-off: extract Task 5 & Task 6 bodies from ../SNALabv2.docx into docs/task06.md and task07.md."""
+"""Extract Splunk task bodies from ../SNALabv2.docx into docs/task03.md and docs/task04.md.
+
+Markers follow *SNALabv2.docx*:
+  - task03.md <- Word "Task 3: Identifying Top Utilized Hosts" … before "Task 4: Analyzing Top Flows"
+  - task04.md <- Word "Task 4: Analyzing Top Flows …" … before "Lab Summary"
+
+Re-run only to refresh Splunk narrative from Word; merge manually with fenced SPL, images, and cross-refs.
+"""
 from __future__ import annotations
 
 import re
@@ -120,25 +127,30 @@ def wrap_spl_queries(text: str) -> str:
 def main() -> None:
     parts = docx_body_parts()
     full = parts_to_plain(parts)
-    t5, t6, lab = full.find('Task 5:'), full.find('Task 6:'), full.find('Lab Summary')
-    if t5 < 0 or t6 < 0 or lab < 0:
-        raise SystemExit('Could not find Task 5 / Task 6 / Lab Summary markers in docx.')
-    block5 = full[t5:t6].strip()
-    block6 = full[t6:lab].strip()
+    t6w = full.find('Task 3: Identifying Top Utilized Hosts')
+    t7w = full.find('Task 4: Analyzing Top Flows — Who Accessed What, How, and For How Long')
+    lab = full.find('Lab Summary')
+    if t6w < 0 or t7w < 0 or lab < 0:
+        raise SystemExit(
+            'Could not find Task 3 (Top Hosts) / Task 4 (Top Flows) / Lab Summary markers in docx.'
+        )
+    if not (t6w < t7w < lab):
+        raise SystemExit('Unexpected marker order in docx (expected Top Hosts < Top Flows < Lab Summary).')
+    block6 = full[t6w:t7w].strip()
+    block7 = full[t7w:lab].strip()
 
-    # MkDocs files task06 / task07: renumber only the document title line (Word Task 5→6, Task 6→7).
-    b6 = block5.split('\n', 1)
-    block5_md = '# Task 6: ' + b6[0].split(':', 1)[1].lstrip() + ('\n' + b6[1] if len(b6) > 1 else '')
-    b7 = block6.split('\n', 1)
-    block7_md = '# Task 7: ' + b7[0].split(':', 1)[1].lstrip() + ('\n' + b7[1] if len(b7) > 1 else '')
+    b6 = block6.split('\n', 1)
+    block6_md = '# Task 3: ' + b6[0].split(':', 1)[1].lstrip() + ('\n' + b6[1] if len(b6) > 1 else '')
+    b7 = block7.split('\n', 1)
+    block7_md = '# Task 4: ' + b7[0].split(':', 1)[1].lstrip() + ('\n' + b7[1] if len(b7) > 1 else '')
 
-    task06 = wrap_spl_queries(block5_md)
-    task07 = wrap_spl_queries(block7_md)
+    task03 = wrap_spl_queries(block6_md)
+    task04 = wrap_spl_queries(block7_md)
 
-    (DOCS / 'task06.md').write_text(task06 + '\n', encoding='utf-8')
-    (DOCS / 'task07.md').write_text(task07 + '\n', encoding='utf-8')
-    print('Wrote', DOCS / 'task06.md', len(task06), 'chars')
-    print('Wrote', DOCS / 'task07.md', len(task07), 'chars')
+    (DOCS / 'task03.md').write_text(task03 + '\n', encoding='utf-8')
+    (DOCS / 'task04.md').write_text(task04 + '\n', encoding='utf-8')
+    print('Wrote', DOCS / 'task03.md', len(task03), 'chars')
+    print('Wrote', DOCS / 'task04.md', len(task04), 'chars')
 
 
 if __name__ == '__main__':

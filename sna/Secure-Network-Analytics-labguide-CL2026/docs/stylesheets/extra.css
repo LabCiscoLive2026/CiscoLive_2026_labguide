@@ -80,7 +80,7 @@
     overflow-y: auto;
 }
 
-/* Task 6 / 7 Splunk Search — long queries stay on-screen with smooth scroll */
+/* Task 3 / 4 Splunk Search — long queries stay on-screen with smooth scroll */
 .md-typeset .spl-lab-scroll .highlight {
     margin-top: 0.5rem;
     margin-bottom: 0.75rem;
@@ -92,7 +92,7 @@
     border-radius: 0.2rem;
 }
 
-/* Task 7 — Lab Summary panel + highlighted takeaway + screenshot frame */
+/* Lab Summary-style panel (optional use in markdown) */
 .md-typeset .lab-summary-panel {
     margin: 1.25rem 0 1.5rem;
     padding: 1rem 1.25rem 1.25rem;

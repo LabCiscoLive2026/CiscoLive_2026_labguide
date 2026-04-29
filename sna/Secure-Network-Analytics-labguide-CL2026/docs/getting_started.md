@@ -18,14 +18,12 @@
 ---
 ## Tasks
 
-To gain hands-on experience, progress through the following tasks:
+To gain hands-on experience, progress through the following tasks (aligned with *SNALabv2.docx*):
 
-1. [Task 1: SNA Appliance Setup – Central Management](task01.md)
-2. [Task 2: Tracking Assets – Host Group Management](task02.md)
-3. [Task 3: Simulating Asset Utilization – NetFlow](task03.md)
-4. [Task 4: Analyzing SEA01-103 NetFlow – Flow Search](task04.md)
-5. [Task 5: Splunk dashboard view of devices monitored by Cisco Secure Network Analytics](task05.md)
-6. [Task 6: Identifying Top Utilized Hosts](task06.md)
-7. [Task 7: Analyzing Top Flows — Who Accessed What, How, and For How Long](task07.md)
+1. [Task 1: Simulating Asset Utilization Using NetFlow](task01.md)
+2. [Task 2: Analyzing SEA01-103 NetFlow – Flow Search](task02.md)
+3. [Task 3: Identifying Top Utilized Hosts](task03.md)
+4. [Task 4: Analyzing Top Flows — Who Accessed What, How, and For How Long](task04.md)
+5. [Task 5: Splunk dashboard view of devices monitored by Cisco SNA](task05.md)
 
 ---

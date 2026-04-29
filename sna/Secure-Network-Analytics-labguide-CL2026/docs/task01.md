@@ -1,90 +1,187 @@
-# Task 1: SNA Appliance Setup – Central Management
+# Task 1: Simulating Asset Utilization Using NetFlow
 
-In this task, we will demonstrate how to navigate the SNA dashboard’s Central Management tool and view the status and settings of the virtual appliances that comprise your data center’s SNA environment. Each virtual appliance plays a vital role in this system, and it is crucial to verify they are correctly configured and operational. Through this process, you will be familiarized with the essential components of SNA and confirm that your deployment is ready to collect and monitor flow data.
+To verify the SNA environment is capturing NetFlow as intended, you will access SEA01-103 data center assets via SSH and HTTPS to generate network traffic. Using more than one protocol and path helps populate flows for later Flow Search and Splunk views.
 
-## Step 1: Accessing the SNA Dashboard
+!!! important "Capture your client IPv4"
+    After VPN connects, record **Client Address (IPv4)** from Secure Client’s **Status Overview**. **Task 2** uses that value as a **Subject IP** filter so export rows match **your** session traffic.
 
-!!! note "Read-only through Task 2"
-    Tasks 1–2 focus on **reviewing** health and inventory in the UI. **REVISIT:** If your class later enables admin write tasks, align this note with the proctor script (Task 4 is where Flow Search sign-in is detailed separately in this guide).
+## Step 1: Connecting to the VPN
 
-- Enter your username and password, then click Sign In
+For this task, you will need to connect to the lab environment through our VPN.
 
-<div class="dashboard-imgs" markdown>
+- Open Cisco Secure Client, enter the VPN address: 173.37.192.194 and select Connect.
+
+<div class="task3-imgs" markdown>
 <figure markdown>
-  ![Secure Network Analytics UI](./assets/task1/1.png)
+  ![Secure Network Analytics UI](./assets/task3/1.png)
 </figure>
 </div>
 
-## Step 2: Navigating to Central Management
+- If prompted with a security warning, select Connect Anyway to proceed.
 
-Central Management is the centralized management console for your SNA virtual appliances. It is a tool that provides full control over each appliance and detailed insight into their operations. Using Central Management, you will be able to edit your appliance settings and view their analytics data.
-
-- In the sidebar, navigate to Configure > Central Management
-
-<div class="dashboard-imgs" markdown>
+<div class="task3-imgs" markdown>
 <figure markdown>
-  ![Secure Network Analytics UI](./assets/task1/2.png)
+  ![Secure Network Analytics UI](./assets/task3/2.png)
 </figure>
 </div>
 
-## Step 3: Verifying Virtual Appliance Status
+- Enter the credentials listed below and select OK to connect
 
-To ensure your SNA environment is operational, you will check the status of each virtual appliance in the Inventory tab. This tab is the default view for Central Management.
-
-- In the Appliance Status column, verify that each appliance is Connected. [3a]
-
-<div class="dashboard-imgs" markdown>
+<div class="task3-imgs" markdown>
 <figure markdown>
-  ![Secure Network Analytics UI](./assets/task1/3.png)
+  ![Secure Network Analytics UI](./assets/task3/3.png)
 </figure>
 </div>
 
-!!! note "Core SNA roles (this lab)"
-    Your lab topology uses three cooperating roles:
 
-    - **Secure Network Analytics Manager:** Web UI for administration, policy, and analysis of collected telemetry.
-    - **Data Node:** Stores and indexes flow and related records forwarded from collectors.
-    - **Flow Collector:** Receives NetFlow/IPFIX (and similar) from exporters and sends processed data to the Data Node.
+- After successfully connecting, open **Cisco Secure Client** again and open **Settings** (gear / menu label varies by build—**REVISIT:** match the exact control text from the screenshots).
 
-!!! danger "Critical: appliance bring-up order"
-    When you **first deploy** a greenfield SNA stack, appliances must register in order. If that order is wrong, collectors and nodes may fail to attach to the Manager and the deployment will not be healthy. **Order:** Secure Network Analytics Manager → Data Node → Flow Collector. *(This lab uses pre-provisioned VMs; you are only verifying status.)*
-
-## Step 4: Verifying Data Node status
-
-The Data Node is an appliance that stores, indexes, and retrieves the flow data captured by Flow Collectors. The data center generates a vast amount of network traffic, so a dedicated storage component is imperative to your SNA environment. While the information is physically stored on the Data Node, it resides logically in a database. For the database to be accessible, the Data Node must also be online and connected. You will check the Data Store page to view the operational status of both the Data Node and database.
-
-- In the banner, navigate to Data Store. The default view is the Database Control tab.
-- Under Database Status, verify it is Up.
-- Under Data Node Status, verify it is Up.
-
-<div class="dashboard-imgs" markdown>
+<div class="task3-imgs" markdown>
 <figure markdown>
-  ![Secure Network Analytics UI](./assets/task1/4.png)
+  ![Secure Network Analytics UI](./assets/task3/4.png)
 </figure>
 </div>
 
-!!! note "Data Store vs. Data Node"
-    The **Data Store** is the logical store for telemetry; it can span **one or more Data Nodes** for scale and resilience. In this walk-in environment you have a **single** Data Node, but production designs often add nodes for capacity and availability. **REVISIT:** Confirm wording with the final architecture diagram for the event.
+- Navigate to Status Overview
+- Note down the IP Address next to Client Address (IPv4). You will need to reference it later in the next Task. In the example, the IP Address is 172.30.255.10.
 
-## Step 5: Verifying retention period
+<div class="task3-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task3/5.png)
+</figure>
+</div>
 
-One benefit of SNA is configurable on-appliance retention for flow interface data. **Store Flow Interface Data** sets how long records stay on the Data Node before aging out. In this lab, **7 days** on the node is enough because extended analysis is expected in **Splunk** indexes.
+## Step 2: Accessing the Device: ISR4K-CL via SSH
 
-!!! tip "Why 7 days on the Data Node?"
-    Shorter appliance retention limits disk growth on the Data Node while Splunk holds the longer window you need for dashboards and exports. **REVISIT:** Match the narrative to the tenant’s actual retention and compliance story if instructors differ.
+The first asset in the SEA01-103 data center that you will access is a Cisco ISR4451 router. Using PuTTY, you will connect to the command-line interface via SSH. The access information is provided below.
 
-- Navigate to Database Retention.
-- Under Store Flow Interface Data, verify that Up to (days) is selected, and the value is 7.
+- Open PuTTY, then enter 10.0.13.70 in the Host Name (or IP Address) field.
+- Verify that Port is 22 and Connection type: is SSH, then select Open.
+
+<div class="task3-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task3/6.png)
+</figure>
+</div>
+
+- If prompted, press "Accept" to continue
+
+<div class="task3-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task3/7.png)
+</figure>
+</div>
+
+- The asset terminal will open. At the login prompt, enter the username: aiera-user and press Enter.
+
+
+<div class="task3-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task3/8.png)
+</figure>
+</div>
+
+- At the password prompt that follows, enter the password: Ciscolive!135 and press Enter. When entered correctly, you will see the enable prompt for ISR4K-CL.
+
+<div class="task3-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task3/9.png)
+</figure>
+</div>
+
+- At the enable prompt, enter the command: `show users` and press Enter to simulate additional network traffic to this asset.
+
+<div class="task3-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task3/10.png)
+</figure>
+</div>
+
+<!-- <div class="task3-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task3/1.png)
+</figure>
+</div> -->
+
+- Close the terminal window to exit the session.
+
+## Step 3: Accessing CAT9K-CL via SSH
+
+The next SEA01-103 asset that you will access is a Cisco C9300X-48HX switch. Using PuTTY, you will connect to the command-line interface via SSH. The access information is provided below.
+
+
+- Open PuTTY, then enter 10.0.13.71 in the Host Name (or IP Address) field.
+- Verify that Port is 22 and Connection type: is SSH, then select Open.
+
+<div class="task3-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task3/11.png)
+</figure>
+</div>
+
+- The asset terminal will open. At the login prompt, enter the username: aiera-user and press Enter.
+- At the password prompt, enter the password: Ciscolive!135 and press Enter. When entered correctly, you will arrive at the enable prompt for CAT9K-CL.
+- At the enable prompt, enter the command: `show ip interface brief` and press Enter to simulate additional network traffic to this asset.
+
+<div class="task3-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task3/12.png)
+</figure>
+</div>
+
+- Close the terminal window to exit the session.
+
+## Step 4: Accessing CAT9K-CL via HTTPS
+
+You will access CAT9K-CL again over **HTTPS**. Different L4/L7 paths (SSH vs HTTPS) produce richer flow attributes (ports, TLS-aware fields where exported) than IP alone.
+
+!!! tip "Browser vs. CLI"
+    Keep **Chrome** for HTTPS steps so behavior matches the lab and Splunk dashboard guidance.
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
-  ![Secure Network Analytics UI](./assets/task1/5.png)
+  ![Secure Network Analytics UI](./assets/task3/13.png)
 </figure>
 </div>
+
+Then click "proceed to 10.0.13.71 (unsafe)"
+
+<div class="dashboard-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task3/14.png)
+</figure>
+</div>
+
+- Open Google Chrome, enter or paste the URL: https://10.0.13.71 into the search-bar, then press Enter.
+
+<div class="dashboard-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task3/15.png)
+</figure>
+</div>
+
+- At the CAT9K-CL’s WebUI login screen, enter the username: aiera-user@ciscolivevegas.com and password: Ciscolive!135, then select Log In to access the WebUI dashboard.
+
+This is the main dashboard
+
+<div class="dashboard-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task3/16.png)
+</figure>
+</div>
+
+To logout, click on the icon on the top-right corner, then click "Yes" as shown below,
+
+<div class="dashboard-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task3/17.png)
+</figure>
+</div>
+
+- Feel free to navigate the WebUI to generate additional traffic associated with your laptop IP Address to monitor utilization.
+- At the page’s top-right corner, select the Log Out button. A pop-up will appear that asks, “Are you sure you want to log out?”, select Yes. Close the browser window after successfully logging out.
 
 ## Result
-
-**Summary:**  
-In this task, you accessed the SNA dashboard and used the Central Management tool to review the health and connectivity of the virtual appliances forming your SNA environment. You verified that all appliances (Manager, Data Node, Flow Collector) are connected and operational, ensured the Data Node and its database are running, and confirmed that flow data retention is set correctly (7 days). Successfully completing these steps prepares your environment for reliable collection and monitoring of network flow telemetry.
+In this task, you simulated network traffic to data center assets in the SEA01-103 host group by accessing devices via SSH and HTTPS. By generating flows using multiple protocols, you confirmed that the SNA environment is capturing and organizing NetFlow telemetry as expected. This prepares you for subsequent analysis of device utilization and flow records.
 
 ---
