@@ -1,14 +1,20 @@
-# Task 2: Analyzing SEA01-103 NetFlow – Flow Search
+# Task 2: Analyzing SEA01-103 Network Traffic – Flow Search
 
 
-After simulating network traffic within your **SEA01-103** host group in **Task 1**, you will analyze the recently captured NetFlow data on the SNA Manager using **Flow Search**. You will build a targeted search to isolate flows related to your lab traffic, filter results to your workstation, and optionally export the data as a CSV for offline asset-utilization review.
+In the previous tasks, you simulated network traffic within your **SEA01-103 Host Group**. In this task, you will analyze the recently captured **NetFlow** data directly on the **SNA Manager** using **Flow Search**. You will build a targeted search to isolate flows related to your lab traffic, filter results to your specific workstation, and export the data as a **CSV** report for offline asset utilization review.
 
-Flow Search provides an on-box way to investigate network conversations—complementing the Splunk-based analysis in later tasks.
+**Flow Search** provides a powerful, on-box method for investigating network conversations — complementing the **Splunk-based analysis** you will perform in the next task.
 
-## Step 1: Access Flow Search on the SNA Manager
+## Step 1: Access Flow Search on the **SNA Manager**
+
+| Field      | Value                                                |
+| ---------- | ---------------------------------------------------- |
+| URL        | [https://173.37.192.196](https://173.37.192.196)     |
+| Username   | `CiscoLive`                                          |
+| Password   | `CL2026SNAandSplunkDemo!`                            |
 
 - Open **Google Chrome**.
-- Go to the **SNA Manager** URL in **`creds.md`** (Flow Search). Sign in with the **SNA Manager** username and password from that page.
+- Browse to the **URL** in the table above to open the **SNA Manager** (**Flow Search**). Sign in using the **Username** and **Password** from that same table.
 - From the top navigation menu, choose **Investigate → Flow Search**.
 
 <div class="dashboard-imgs" markdown>
@@ -19,7 +25,7 @@ Flow Search provides an on-box way to investigate network conversations—comple
 
 ## Step 2: Set the time range
 
-- Open the **Time Range** control and select **Last 5 minutes** (or **Last 24 hours** if your proctor asks for a wider window so flows are easier to find).
+- Open the **Time Range** control and select **Last 5 minutes**.
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
@@ -29,10 +35,10 @@ Flow Search provides an on-box way to investigate network conversations—comple
 
 ## Step 3: Enter Port / Protocol values
 
-!!! tip "Port / Protocol tokens"
-    Enter each **Port/Protocol** value (for example `22/TCP`), press **Space** to commit it as a chip (token), then type the next. The UI must show **separate** tokens—not one long concatenated string.
+!!! warning "Entering Port / Protocol"
+    You must enter each **Port/Protocol** value individually, then press the **Spacebar** to commit it as a **token (chip)** before typing the next one.
 
-In the **Port / Protocol** field, enter each value below **one at a time**, pressing **Space** after each so it becomes its own token:
+In the **Port / Protocol** field, enter each of the following values one at a time, pressing **Spacebar** after each entry:
 
 | Entry | Action |
 | --- | --- |
@@ -69,10 +75,7 @@ After all four entries, confirm you see **four distinct tokens** in the field.
 
 ## Step 5: Run the Flow Search
 
-With the criteria set, click **Search** to run the query. Confirm the time range still matches what you selected in Step 2.
-
-!!! tip "Large result sets"
-    Flow Search can return many rows, much of it unrelated to **your** lab traffic. In the next step you narrow the grid to your client IP.
+With all the search criteria configured, click **Search** to generate the results. Time range should show last 5 minutes.
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
@@ -80,14 +83,18 @@ With the criteria set, click **Search** to run the query. Confirm the time range
 </figure>
 </div>
 
+!!! Note "What to expect?"
+    A Flow Search can return a large number of results, much of it unrelated to your specific lab traffic. In the next step, you will filter the results to show only the flows you generated in Task 1.
+
+
 ## Step 6: Validate your network activity
 
-- In the **Subject IP** filter, enter the **Client Address (IPv4)** you recorded in **Task 1** (Cisco Secure Client **Status Overview** after VPN connects).
+- In the **Subject IP** filter, enter the **Client Address (IPv4)** you recorded in **Task 1**, **Step 1** (Cisco Secure Client **Status Overview** after VPN connects).
 
-!!! note "Lost your client IPv4?"
-    Reopen **Cisco Secure Client** and open **Status Overview** again (same path as **Task 1**). Copy **Client Address (IPv4)**. Example shape: `172.30.255.11`—**yours will differ.**
+!!! warning "Lost your client IPv4?"
+    Reopen **Cisco Secure Client** and open **Status Overview** screen (same path as **Task 1**). Copy the **Client Address (IPv4)**. For example: `172.30.255.11` — **yours will differ.**
 
-After you apply **Subject IP**, the grid should refresh to flows tied to **your** sessions. Confirm you see activity for the protocols you generated in **Task 1**, for example:
+After entering the **Subject IP**, the **results grid** should be updated to show only flows tied to your sessions. Verify that the filtered results show flows corresponding to the traffic you generated in **Task 1**. You should see entries for the following **protocols**:
 
 | Protocol/Port | Service | Expected activity |
 | --- | --- | --- |
@@ -117,6 +124,6 @@ Review the data and confirm:
 - **Protocols** — Do you see **SSH (22/TCP)**, **HTTP (8080/TCP)**, and **HTTPS (443/TCP)** where you expect, plus **RDP (3389/TCP)** if you used it?
 - **Time range** — Do **Start Time** and **End Time** fall in the window when you generated traffic in **Task 1**?
 
-By retrieving flow records that match the traffic you generated in **Task 1**, you show that Cisco Secure Network Analytics captures NetFlow telemetry suitable for asset-utilization visibility—who accessed which device, over which protocol, how much data moved, and when.
+By successfully retrieving **flow records** that match the traffic you generated in **Task 1**, this task proves that **Cisco Secure Network Analytics** can capture **NetFlow** telemetry to provide meaningful **asset utilization** visibility. The report demonstrates that **SNA** records every network conversation — including who accessed which device, over what protocol, how much data was transferred, and when the access occurred — giving you the data needed to monitor and assess **asset utilization** across your environment.
 
 ---

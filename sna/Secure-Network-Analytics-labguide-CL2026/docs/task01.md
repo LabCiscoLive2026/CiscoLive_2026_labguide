@@ -43,7 +43,7 @@ For this task, you will need to connect to the lab environment through our VPN.
 </div>
 
 - Navigate to Status Overview
-- Note down the IP Address next to Client Address (IPv4). You will need to reference it later in the next Task. In the example, the IP Address is 172.30.255.10.
+- Note down the IP Address next to Client Address (IPv4). You will need to reference it later in the next Task. In the example, the IP Address is 172.30.255.11.
 
 <div class="task3-imgs" markdown>
 <figure markdown>

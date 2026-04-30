@@ -1,36 +1,26 @@
-# Task 3: Identifying Top Utilized Hosts
+# Task 6: Identifying Top Utilized Hosts
 
 ## Objective
 
-In this task, you will use a pre-built **Splunk** query to identify the **top utilized hosts** across your network. By leveraging **flow telemetry** data collected by **Cisco Secure Network Analytics (SNA)** and exported to **Splunk Cloud**, you can determine which devices are generating the most network activity — measured by **unique flow conversations** and **total bytes transferred**.
+In this task, you will use a pre-built Splunk query to identify the top utilized hosts across your network. By leveraging flow telemetry data collected by Cisco Secure Network Analytics (SNA) and exported to Splunk Cloud, you can determine which devices are generating the most network activity — measured by unique flow conversations and total bytes transferred.
 
-This visibility is critical for **asset utilization** monitoring, helping you pinpoint heavily utilized devices, detect unusual traffic patterns, and make informed **capacity planning** decisions across your **distributed data center** environment.
+This visibility is critical for asset utilization monitoring, helping you pinpoint heavily utilized devices, detect unusual traffic patterns, and make informed capacity planning decisions across your distributed data center environment.
 
 ## Step 1: Open Splunk Cloud Search
 
-1. Log in to **Splunk Cloud** using the credentials provided in your lab handout (see **Credentials** if your session publishes tenant sign-in there).
+1. Log in to Splunk Cloud using the credentials provided in your lab handout.
 
-2. From the left navigation menu, click **Search & Reporting**. You should land on **New Search** with the main **search bar** (placeholder `enter search here...`) to the right of the **time range** control. The results area may show **Statistics** / **No results found** until you run a search and widen time if needed.
+2. From the left navigation menu, click Search & Reporting.
 
-    <div class="dashboard-imgs" markdown>
-    <figure markdown>
-      ![Splunk Search & Reporting — New Search search bar](./assets/task6/1.png)
-    </figure>
-    </div>
-
-3. Click the **time range** control (for example it may read **Last 30 days** next to the search bar). In the presets menu, open the **OTHER** column and choose **Last 24 hours**, then apply so the picker reflects that window.
-
-    <div class="dashboard-imgs" markdown>
-    <figure markdown>
-      ![Splunk time range picker — Last 24 hours preset](./assets/task6/2.png)
-    </figure>
-    </div>
+3. Ensure the time picker is set to Last 24 hours.
 
 ## Step 2: Enter the Top Utilized Hosts Query
 
 Copy and paste the following query into the Splunk search bar:
 
-```bash
+<div class="spl-lab-scroll" markdown="1">
+
+```spl
 | tstats count AS Count
 fillnull_value="NA"
 FROM datamodel=Cisco_Security.Secure_Network_Analytics_Dataset
@@ -83,16 +73,10 @@ total_bytes >= 1024,          round(total_bytes / 1024, 2) . " KB",
 | table "Device Name", device_ip, "# of Unique Flows", "# of Bytes"
 | rename device_ip AS "Device IP"
 ```
-With the SPL still in the **search bar**, start the job:
 
-- Click **Search** on the right side of the search bar (Splunk Cloud often shows a **green magnifying-glass** icon).
-- Wait for the job to finish. For this lab query, open the **Statistics** tab so the host ranking appears as a table (`Device Name`, **Device IP**, **# of Unique Flows**, **# of Bytes**).
-
-<div class="dashboard-imgs" markdown>
-<figure markdown>
-  ![Splunk Search & Reporting — run search and Statistics tab](./assets/task6/3.png)
-</figure>
 </div>
+
+Click the Search button (▶) to execute the query.
 
 ## Step 3: Review the Results
 
@@ -109,7 +93,7 @@ The results table displays the top utilized hosts in descending order of total b
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
-  ![Splunk Statistics — top utilized hosts results table](./assets/task6/4.png)
+  ![Secure Network Analytics UI](./assets/task6/1.png)
 </figure>
 </div>
 

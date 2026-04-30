@@ -1,17 +1,23 @@
 # Overview
 
-This lab provides step-by-step instructions on how to configure Cisco Secure Network Analytics (SNA) to monitor device-level flow counts and export network telemetry data to Splunk for centralized analysis and reporting.
+This lab provides step-by-step instructions on how to configure **Cisco Secure Network Analytics (SNA)** to monitor **device-level flow counts** and export **network telemetry data to Splunk** for **centralized analysis and reporting**.
 
-!!! danger "Attention"
-    **Aligned with *SNALabv2.docx*:** This guide’s **Tasks 1–5** match the Word lab sequence (NetFlow -> Flow Search -> Splunk searches -> Splunk dashboard).
+## Scenario: Asset utilization Levaraging Splunk and Cisco Secure Network Analytics(SNA)
 
-## Scenario: Asset utilization with Cisco SNA and Splunk Cloud
+In this lab, you will leverage **Cisco Secure Network Analytics (SNA)** and **Splunk Cloud** to gain comprehensive visibility into asset utilization across your network. **SNA** continuously collects NetFlow telemetry from monitored devices, capturing detailed information about every network conversation — including who is communicating, what protocols are being used, and how much data is being transferred. This telemetry is exported to **Splunk Cloud** via the **Cisco Secure Network Analytics App for Splunk**, enabling you to run powerful queries and build dashboards for centralized analysis.
 
-In this lab, you will leverage **Cisco Secure Network Analytics (SNA)** and **Splunk Cloud** to gain visibility into **asset utilization** across your network. SNA continuously collects NetFlow telemetry from monitored devices; you will use that data in the **SMC** (for example **Flow Search**) and in **Splunk** searches and dashboards.
+You will also integrate **SNA** telemetry with **Splunk Cloud** to visualize device utilization through Splunk's dashboarding and analytics capabilities. When users log into devices, NetFlow data is automatically exported to capture their access activity, which you will analyze in this lab.
 
-You will also integrate SNA telemetry with Splunk Cloud to visualize utilization—when users and systems interact with devices, flow data reflects that activity so you can see **which assets are busiest**, **how** they are accessed, and which appear **idle** in a given window.
+**This lab consists of Five tasks:**
 
-Together, the tasks build a path from **traffic context** through **on-box flow investigation** to **Splunk** analytics for operational insight.
+- Task 1: Simulating Asset Utilization Using NetFlow
+- Task 2: Analyzing SEA01-103 Network Traffic – Flow Search
+- Task 3: Identify the top utilized hosts in your network based on unique flow count and total bytes transferred
+- Task 4: Analyze top network flows to determine who accessed what, how they accessed it (protocol/port), and how long the access spanned
+- Task 5: Splunk Integration with Cisco SNA
+
+Together, these tasks provide a complete picture of asset utilization — from creating the network traffic to identify the busiest devices and to understand the specific communication patterns driving that utilization.
+
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
@@ -21,7 +27,7 @@ Together, the tasks build a path from **traffic context** through **on-box flow 
 
 ## Lab topology (reference)
 
-The lab environment includes:
+The lab environment consists of the following components:
 
 - **Cisco Secure Network Analytics VMs** — SNA Manager and Flow Collector ingesting NetFlow telemetry  
 - **ESXi host** — Hypervisor hosting lab virtual machines  
@@ -35,8 +41,9 @@ High level: **SNA VMs, ESXi, and devices → switching → firewall → Internet
 
 - SNA Manager is configured and collecting NetFlow from monitored devices.  
 - SNA telemetry is exported to Splunk Cloud via the **Cisco Secure Network Analytics App for Splunk**.  
-- The Splunk app is installed and configured on your tenant.  
-- You can sign in to Splunk Cloud with permission to run searches (see **Credentials**).
+- The Cisco Secure Network Analytics App for Splunk is **installed and configured** on Splunk Cloud.
+- You have **access to Splunk Cloud** with permission to run searches.
+
 
 ## Learning Objectives
 
