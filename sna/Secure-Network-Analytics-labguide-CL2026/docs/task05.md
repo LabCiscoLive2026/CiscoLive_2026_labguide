@@ -4,7 +4,6 @@ In this task, you will use **Splunk Cloud** to view pre-built **dashboards** tha
 
 **The dashboards** leverage the same **NetFlow** telemetry you verified in **Task 4**, now presented through
 
-
 ## Step 1: Access the Splunk Cloud dashboard
 
 !!! tip "Use Chrome"
@@ -17,12 +16,6 @@ In this task, you will use **Splunk Cloud** to view pre-built **dashboards** tha
 | URL | [https://cisco-cx-calolabs.splunkcloud.com/en-US/app/SNA_Real_Time_Asset_Utilization/sna_asset_utilization](https://cisco-cx-calolabs.splunkcloud.com/en-US/app/SNA_Real_Time_Asset_Utilization/sna_asset_utilization?form.time.earliest=-24h%40h&form.time.latest=now) |
 | Username | `snauser-demo` |
 | Password | `Ciscolive!135` |
-
-<div class="dashboard-imgs" markdown>
-<figure markdown>
-  ![Splunk SNA asset utilization dashboard](./assets/task1/1.png)
-</figure>
-</div>
 
 ## Step 2: Set Site and Data Center filters
 
@@ -37,12 +30,6 @@ In this task, you will use **Splunk Cloud** to view pre-built **dashboards** tha
 !!! warning "Match labels exactly"
     Ensure you select **SEA01-103**. Match the labels exactly as displayed in the **Splunk** dashboard.
 
-<div class="dashboard-imgs" markdown>
-<figure markdown>
-  ![Splunk dashboard filters](./assets/task1/1.png)
-</figure>
-</div>
-
 ## Step 3: Review the Device Utilization summary
 
 At the top of the dashboard, **three color-coded panels** provide an immediate snapshot of your data center's **asset utilization** status.
@@ -50,15 +37,15 @@ At the top of the dashboard, **three color-coded panels** provide an immediate s
 | Panel | Color | Value | What It Means |
 | ----- | ----- | ----- | ------------- |
 | Total Devices | Yellow | 18 | The total number of devices provisioned or discovered in the **SEA01-103** data center. This is your complete inventory baseline. |
-| Accessed Count | Green | 8 | The number of devices that have been actively accessed within the **last 24 hours**. These devices are confirmed to be in use. |
-| UnAccessed Devices | Green (Dark) | 10 | The number of devices with no recorded access in the **last 24 hours**. These are potential candidates for further investigation. |
+| Accessed Count | Green | 7 | The number of devices that have been actively accessed within the **last 24 hours**. These devices are confirmed to be in use. |
+| UnAccessed Devices | Green (Dark) | 11 | The number of devices with no recorded access in the **last 24 hours**. These are potential candidates for further investigation. |
 
-1. Observe the three summary panels and note the ratio: out of 18 total devices, only 8 were accessed — meaning over half (10 devices) had no recorded activity in the **last 24 hours**.
+1. Observe the three summary panels and note the ratio: out of 18 total devices, only 7 were accessed — meaning over half (11 devices) had no recorded activity in the **last 24 hours**.
 2. This immediately tells you that a significant portion of your **data center assets** may be **underutilized**, **idle**, or potentially candidates for **decommissioning** or **repurposing**.
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
-  ![Splunk device utilization summary](./assets/task1/1.png)
+  ![Splunk device utilization summary](./assets/task5/1.png)
 </figure>
 </div>
 
@@ -80,60 +67,91 @@ The table contains the following columns:
 | Total Bytes | The total volume of data transferred |
 | Duration | The time span of the access activity |
 
-1. Review the accessed devices and note the following observations from the dashboard:
+1. Click number 7 under accessed devices and note the following observations from the dashboard:
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
-  ![Splunk accessed devices](./assets/task1/1.png)
+  ![Splunk accessed devices](./assets/task5/2.png)
 </figure>
 </div>
 
 2. Note the key insights from the accessed devices:
 
-    - **Highest utilization:** The VM at `10.0.13.4` (LabGuide VM) dominates with 74.31 GB transferred over 20.42 hours across 20 sessions using TCP/9200 — indicating heavy application-level traffic.
-    - **Network device access:** The ISR4451-X/K9 at `10.0.13.70` was accessed via SSH (TCP/22) with 5 sessions over 6.58 hours
-    - **Switch access:** The C9300X-48HX at `10.0.13.71` was accessed via HTTPS (TCP/443) — indicating web-based management access.
-    - **SMC activity:** The **SNA Management Console** at `10.0.13.50` shows UDP/27017 traffic — this is internal **SNA** database communication.
-    - **ESXi Host:** The UCS-M5S ESXI at `10.0.13.3` used for management
+- Highest utilization: The VM at 10.0.13.50 (SNA management console) dominates with 329.70 MB transferred over 23.28 hours across 48 sessions using TCP/443— indicating heavy application-level traffic.
+- Network device access: The C9300X-48HX at 10.0.13.71 was accessed via SSH (TCP/22) with 1 session over 6.08 hours
+- The ISR4451-X/K9 at 10.0.13.70 was accessed via TCP(TCP/443) with 25.90 KB bytes transferred.
 
 ## Step 5: Analyze unaccessed devices
 
-Scroll down to the **UnAccessed Devices** table. This is where the real **asset utilization** story unfolds — these are the 10 devices that had zero recorded access in the **last 24 hours**.
-
-1. Review the unaccessed devices and note the following:
-
-    - All 10 devices show zero sessions, zero bytes, and zero duration — confirming complete inactivity.
-    - All 10 devices are monitored via SSH — meaning they are expected to be managed remotely, but no one has connected to them.
-    - The devices span a range of Cisco platforms including Catalyst 9000 series switches, ISR routers, Firepower appliances, and Nexus switches.
-    - Each device resides in a different data center designation (**SEA01-121** through **SEA01-130**), suggesting these are distributed assets across multiple zones.
-
-2. Consider what this means for your organization:
-
-    - 10 out of 18 devices (55.6%) in this environment are completely idle.
-    - These devices are consuming power, cooling, and rack space without contributing to any active workloads.
-    - This is exactly the type of insight that drives **sustainability** decisions — by identifying these idle assets, organizations can consolidate workloads, decommission unused hardware, and free up physical resources for **AI deployments** and **next-generation infrastructure**.
-
-!!! important
-    **"Unaccessed"** means no access was recorded in the **selected time window**. Before taking any action, always validate with:
-
-    - **Device owners**
-    - **Physical inspection**
+Click number 11 under UnAccessed Devices table. This is where the real asset utilization story unfolds — these are the 11 devices that had zero recorded access in the last 24 hours.
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
-  ![Splunk unaccessed devices](./assets/task1/1.png)
+  ![Splunk device utilization summary](./assets/task5/3.png)
 </figure>
 </div>
 
-## Result
+1. Review the unaccessed devices and note the following:
 
-In this task, you explored the **SNA Asset Utilization** dashboard on **Splunk Cloud** and gained a complete picture of **asset utilization** across the **SEA01-103** data center:
+    - All 11 devices show zero sessions, zero bytes, and zero duration — confirming complete inactivity.
+    - All 11 devices are monitored via SSH — meaning they are expected to be managed remotely, but no one has connected to them.
+    - The devices span a range of Cisco platforms including Catalyst 9000 series switches, ISR routers, Firepower appliances, and Nexus switches.
+    - Each device resides in a different data center designation suggesting these are distributed assets across multiple zones.
 
-- **18** total devices are provisioned in the environment
-- **8** devices (**44.4%**) were actively accessed in the **last 24 hours** — confirmed through **flow telemetry** showing protocols, session counts, bytes transferred, and duration
-- **10** devices (**55.6%**) had zero recorded access — representing idle assets consuming power, cooling, and rack space with no active workloads
-- **Device Flow Count** revealed that utilization is heavily concentrated on a few key devices, with the **LabGuide VM** alone accounting for over **74 GB** of traffic
+2. Consider what this means for your organization:
 
-This dashboard proves the value of combining **Cisco Secure Network Analytics** with **Splunk Cloud** for **asset utilization** monitoring. In a **real-world data center**, this visibility enables operators to identify idle hardware, consolidate workloads, reduce energy consumption, and reclaim physical resources — directly supporting **sustainability goals** and creating capacity for **AI** and **next-generation infrastructure** deployments.
+    - 11 out of 18 devices (55.6%) in this environment are completely idle.
+    - These devices are consuming power, cooling, and rack space without contributing to any active workloads.
+    - This is exactly the type of insight that drives sustainability decisions — by identifying these idle assets, organizations can consolidate workloads, decommission unused hardware, and free up physical resources for AI deployments and next-generation infrastructure.
 
----
+!!! important
+    "Unaccessed" means no access was recorded in the selected time window. Before taking any action, always validate with:
+    - **Device owners**
+    - **Physical inspection**
+
+## Step 6: Analyze the Most accessed Devices
+
+On the Splunk dashboard, locate the Most Accessed Device Type table. Observe the Device IP, Unique Flows, and Bytes columns to identify which assets are most actively accessed across the data center SEA01-103.
+
+Based on your observations, answer the following analysis questions:
+
+<div class="dashboard-imgs" markdown>
+<figure markdown>
+  ![Splunk most accessed device types](./assets/task5/4.png)
+</figure>
+</div>
+
+1. Look at the Most Accessed Device Type table.
+2. Review the table and observe the Device IP, Unique Flows, and Bytes columns.
+3. Answer the following analysis questions based on what you see:
+
+### Analysis Questions
+
+**Question 1:** Which device has the highest number of unique flows?
+
+10.0.13.50 with 279 unique flows and 284.01 MB of data.
+
+**Question 2:** Which device has the highest data volume, and what might that indicate?
+
+10.0.13.4 with 82.14 GB of data. Despite having slightly fewer flows (276) than 10.0.13.50, the significantly higher data volume suggests this device is handling large data transfers such as database replication, backups, or file transfers.
+
+**Question 3:** Why does 173.37.192.194 appear in the data center flow data?
+
+173.37.192.194 is the firewall ip used to log in to Cisco Live lab environment.
+
+**Question 4:** Devices 10.0.13.70 and 10.0.13.71 show very low flow counts (2 and 1). What could this indicate?
+
+underutilized assets, Backup or standby systems, recently provisioned devices not yet in active use. This insight helps operations teams identify underutilized resources for optimization.
+
+**Key Takeaway:** The Most Accessed Device Type table provides a clear view of asset utilization across the data center, helping you quickly identify heavily accessed devices, recognize management traffic, and spot underutilized assets.
+
+## Task 5 Summary
+
+In this task, you explored the SNA Asset Utilization dashboard on Splunk Cloud and gained a complete picture of asset utilization across the SEA01-103 data center:
+
+- 18 total devices are provisioned in the environment
+- 7 devices (38.9%) were actively accessed in the last 24 hours — confirmed through flow telemetry showing protocols, session counts, bytes transferred, and duration
+- 11 devices (66.1%) had zero recorded access — representing idle assets consuming power, cooling, and rack space with no active workloads
+- Device Flow Count revealed that utilization is heavily concentrated on a few key devices, with the LabGuide VM alone accounting for over 82.2 GB of traffic
+
+This dashboard proves the value of combining Cisco Secure Network Analytics with Splunk Cloud for asset utilization monitoring. In a real-world data center, this visibility enables operators to identify most accessed asset type, idle hardware, consolidate workloads, reduce energy consumption, and reclaim physical resources — directly supporting sustainability goals and creating capacity for AI and next-generation infrastructure deployments.
