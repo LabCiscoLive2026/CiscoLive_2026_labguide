@@ -23,8 +23,8 @@ smc:
 
 splunk:
   sna_dashboard_url: "https://cisco-cx-calolabs.splunkcloud.com/en-US/app"
-  username: ""
-  password: ""
+  username: "snauser-demo"
+  password: "Ciscolive!135"
 
 devices:
   cat9k:
@@ -59,7 +59,7 @@ nav:
   - "Home": "index.md"
   - "Lab":
       - "Overview": "overview.md"
-      - "Getting Started": "getting_started.md"
+      # - "Getting Started": "getting_started.md"
       - "Task 1: Simulating Asset Utilization Using NetFlow": "task01.md"
       - "Task 2: Analyzing SEA01-103 NetFlow – Flow Search": "task02.md"
       - "Task 3: Identifying Top Utilized Hosts": "task03.md"
@@ -69,10 +69,12 @@ nav:
   - "Credentials": "creds.md"
 
 learning_objectives:
-  - "Generate representative NetFlow traffic to lab assets (VPN, SSH, HTTPS) so Cisco SNA can observe utilization patterns for the SEA01-103 scope."
-  - "Run Flow Search on the SNA Manager to validate flows against your client IP, host-group context, and expected protocols."
-  - "Use Splunk Search & Reporting with the provided datamodel queries to rank top utilized hosts and top flows (who, what, how, duration)."
-  - "Interpret the SNA asset utilization Splunk dashboard (accessed vs unaccessed) to support capacity and operational discussions."
+  - "Generate network traffic by accessing lab devices (routers, switches, and VMs) over SSH, HTTPS, and HTTP — simulating real-world data center activity."
+  - "Capture and verify NetFlow telemetry using Cisco Secure Network Analytics (SNA) to confirm that device access activity is being recorded."
+  - "Investigate network flows using SNA Flow Search to filter by protocol, host group, and source IP."
+  - "Query SNA telemetry in Splunk Cloud to identify top utilized hosts and analyze who accessed what, over which protocol, and for how long."
+  - "Interpret a pre-built Splunk dashboard to quickly distinguish accessed devices from idle ones and identify top accessed hardware platforms."
+  - "Identify underutilized assets that consume power, cooling, and rack space — supporting sustainability goals and freeing up resources for AI-era infrastructure."
 
 related_sessions: []
 

@@ -13,19 +13,35 @@ Understanding these access patterns is essential for asset utilization monitorin
 
 ## Step 1: Open Splunk Cloud Search
 
-1. If you are continuing from **Task 3**, click the **Search** bar to clear the previous query.
+1. Click the link to open the Splunk Cloud dashboard, then log in using the credentials provided below.
 
-2. If you are starting fresh, log in to Splunk Cloud and navigate to **Search & Reporting.**
+    | Field | Value |
+    | ----- | ----- |
+    | URL | [https://cisco-cx-calolabs.splunkcloud.com/en-US/app/search](https://cisco-cx-calolabs.splunkcloud.com/en-US/app/search/search?earliest=-30m%40m&latest=now) |
+    | Username | `snauser-demo` |
+    | Password | `Ciscolive!135` |
 
-3. Ensure the time picker is set to **Last 24 hours.**
+2. From the left navigation menu, click **Search & Reporting**. You should land on **New Search** with the main **search bar** (placeholder `enter search here...`) to the right of the **time range** control. The results area may show **Statistics** / **No results found** until you run a search and widen time if needed.
+
+    <div class="dashboard-imgs" markdown>
+    <figure markdown>
+      ![Splunk Search & Reporting — New Search search bar](./assets/task7/1.png)
+    </figure>
+    </div>
+
+3. Click the **time range** control (for example it may read **Last 30 days** next to the search bar). In the presets menu, open the **OTHER** column and choose **Last 24 hours**, then apply so the picker reflects that window.
+
+    <div class="dashboard-imgs" markdown>
+    <figure markdown>
+      ![Splunk time range picker — Last 24 hours preset](./assets/task7/2.png)
+    </figure>
+    </div>
 
 ## Step 2: Enter the Top Flows Query
 
 Copy and paste the following query into the Splunk search bar:
 
-<div class="spl-lab-scroll" markdown="1">
-
-```spl
+```bash
 | tstats count AS "# of Sessions"
 fillnull_value="NA"
 FROM datamodel=Cisco_Security.Secure_Network_Analytics_Dataset
@@ -106,9 +122,16 @@ total_bytes >= 1024,          round(total_bytes / 1024, 2) . " KB",
 | rename device_ip AS "Device IP"
 ```
 
-</div>
+With the SPL still in the **search bar**, start the job:
 
-Click the Search button (▶) to execute the query.
+- Click **Search** on the right side of the search bar (Splunk Cloud often shows a **green magnifying-glass** icon).
+- Wait for the job to finish. For this lab query, open the **Statistics** tab so the host ranking appears as a table (`Device Name`, **Device IP**, **# of Unique Flows**, **# of Bytes**).
+
+    <div class="dashboard-imgs" markdown>
+    <figure markdown>
+      ![Splunk Search & Reporting — run search and Statistics tab](./assets/task7/3.png)
+    </figure>
+    </div>
 
 ## Step 3: Review the Results
 
@@ -131,7 +154,7 @@ Example Output:
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
-  ![Secure Network Analytics UI](./assets/task7/1.png)
+  ![Secure Network Analytics UI](./assets/task7/4.png)
 </figure>
 </div>
 

@@ -161,24 +161,166 @@
     background: rgba(0, 189, 235, 0.12);
 }
 
+/*
+ * Neutral gray scrollbars. Material for MkDocs sets code-block scrollbars to the
+ * accent color (often on :hover); override normal + hover + webkit so thumbs stay gray.
+ */
 * {
-    scrollbar-color: #9e9e9e transparent;
+    scrollbar-width: thin;
+    scrollbar-color: #9e9e9e #dedede;
 }
- 
+
 *::-webkit-scrollbar {
     width: 8px;
     height: 8px;
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: #9e9e9e;
+    background-color: #9e9e9e !important;
     border-radius: 4px;
 }
 
 *::-webkit-scrollbar-track {
-    background: transparent;
+    background-color: #dedede !important;
 }
 
+.md-typeset pre,
+.md-typeset pre:hover,
+.md-typeset .highlight pre,
+.md-typeset .highlight pre:hover,
+.md-typeset .spl-lab-scroll .highlight pre,
+.md-typeset .spl-lab-scroll .highlight pre:hover,
+.md-typeset pre > code,
+.md-typeset pre > code:hover,
+.max-code-height > pre > code,
+.max-code-height > pre > code:hover {
+    scrollbar-width: thin !important;
+    scrollbar-color: #9e9e9e #dedede !important;
+}
+
+.md-typeset pre::-webkit-scrollbar-thumb,
+.md-typeset pre:hover::-webkit-scrollbar-thumb,
+.md-typeset .highlight pre::-webkit-scrollbar-thumb,
+.md-typeset .highlight pre:hover::-webkit-scrollbar-thumb,
+.md-typeset .spl-lab-scroll .highlight pre::-webkit-scrollbar-thumb,
+.md-typeset .spl-lab-scroll .highlight pre:hover::-webkit-scrollbar-thumb,
+.md-typeset pre > code::-webkit-scrollbar-thumb,
+.md-typeset pre > code:hover::-webkit-scrollbar-thumb,
+.max-code-height > pre > code::-webkit-scrollbar-thumb,
+.max-code-height > pre > code:hover::-webkit-scrollbar-thumb {
+    background-color: #9e9e9e !important;
+    border-radius: 4px;
+}
+
+.md-typeset pre::-webkit-scrollbar-track,
+.md-typeset pre:hover::-webkit-scrollbar-track,
+.md-typeset .highlight pre::-webkit-scrollbar-track,
+.md-typeset .highlight pre:hover::-webkit-scrollbar-track,
+.md-typeset .spl-lab-scroll .highlight pre::-webkit-scrollbar-track,
+.md-typeset .spl-lab-scroll .highlight pre:hover::-webkit-scrollbar-track,
+.md-typeset pre > code::-webkit-scrollbar-track,
+.md-typeset pre > code:hover::-webkit-scrollbar-track,
+.max-code-height > pre > code::-webkit-scrollbar-track,
+.max-code-height > pre > code:hover::-webkit-scrollbar-track {
+    background-color: #dedede !important;
+}
+
+.md-typeset pre::-webkit-scrollbar-corner,
+.md-typeset .highlight pre::-webkit-scrollbar-corner {
+    background-color: #dedede !important;
+}
+
+/* If overflow/scroll is on the outer .highlight div instead of pre */
+.md-typeset .highlight,
+.md-typeset .highlight:hover {
+    scrollbar-width: thin !important;
+    scrollbar-color: #9e9e9e #dedede !important;
+}
+
+.md-typeset .highlight::-webkit-scrollbar-thumb,
+.md-typeset .highlight:hover::-webkit-scrollbar-thumb {
+    background-color: #9e9e9e !important;
+    border-radius: 4px;
+}
+
+.md-typeset .highlight::-webkit-scrollbar-track,
+.md-typeset .highlight:hover::-webkit-scrollbar-track {
+    background-color: #dedede !important;
+}
+
+/*
+ * Primary / secondary sidebar & search — Material applies accent-colored thumbs on :hover
+ * to .md-sidebar__scrollwrap; override explicitly (left nav + TOC).
+ */
+[data-md-component="sidebar"] .md-sidebar__scrollwrap,
+[data-md-component="sidebar"] .md-sidebar__scrollwrap:hover,
+.md-sidebar__scrollwrap,
+.md-sidebar__scrollwrap:hover {
+    scrollbar-width: thin !important;
+    scrollbar-color: #9e9e9e #dedede !important;
+}
+
+[data-md-component="sidebar"] .md-sidebar__scrollwrap::-webkit-scrollbar-thumb,
+[data-md-component="sidebar"] .md-sidebar__scrollwrap:hover::-webkit-scrollbar-thumb,
+.md-sidebar__scrollwrap::-webkit-scrollbar-thumb,
+.md-sidebar__scrollwrap:hover::-webkit-scrollbar-thumb {
+    background-color: #9e9e9e !important;
+    border-radius: 4px;
+}
+
+[data-md-component="sidebar"] .md-sidebar__scrollwrap::-webkit-scrollbar-track,
+[data-md-component="sidebar"] .md-sidebar__scrollwrap:hover::-webkit-scrollbar-track,
+.md-sidebar__scrollwrap::-webkit-scrollbar-track,
+.md-sidebar__scrollwrap:hover::-webkit-scrollbar-track {
+    background-color: #dedede !important;
+}
+
+.md-search__scrollwrap,
+.md-search__scrollwrap:hover {
+    scrollbar-width: thin !important;
+    scrollbar-color: #9e9e9e #dedede !important;
+}
+
+.md-search__scrollwrap::-webkit-scrollbar-thumb,
+.md-search__scrollwrap:hover::-webkit-scrollbar-thumb {
+    background-color: #9e9e9e !important;
+    border-radius: 4px;
+}
+
+.md-search__scrollwrap::-webkit-scrollbar-track,
+.md-search__scrollwrap:hover::-webkit-scrollbar-track {
+    background-color: #dedede !important;
+}
+
+/* Fallback: overflow sometimes lives on sidebar / inner wrappers */
+.md-sidebar.md-sidebar--primary,
+.md-sidebar.md-sidebar--primary:hover,
+.md-sidebar.md-sidebar--secondary,
+.md-sidebar.md-sidebar--secondary:hover,
+.md-sidebar__inner,
+.md-sidebar__inner:hover {
+    scrollbar-width: thin !important;
+    scrollbar-color: #9e9e9e #dedede !important;
+}
+
+.md-sidebar.md-sidebar--primary::-webkit-scrollbar-thumb,
+.md-sidebar.md-sidebar--primary:hover::-webkit-scrollbar-thumb,
+.md-sidebar.md-sidebar--secondary::-webkit-scrollbar-thumb,
+.md-sidebar.md-sidebar--secondary:hover::-webkit-scrollbar-thumb,
+.md-sidebar__inner::-webkit-scrollbar-thumb,
+.md-sidebar__inner:hover::-webkit-scrollbar-thumb {
+    background-color: #9e9e9e !important;
+    border-radius: 4px;
+}
+
+.md-sidebar.md-sidebar--primary::-webkit-scrollbar-track,
+.md-sidebar.md-sidebar--primary:hover::-webkit-scrollbar-track,
+.md-sidebar.md-sidebar--secondary::-webkit-scrollbar-track,
+.md-sidebar.md-sidebar--secondary:hover::-webkit-scrollbar-track,
+.md-sidebar__inner::-webkit-scrollbar-track,
+.md-sidebar__inner:hover::-webkit-scrollbar-track {
+    background-color: #dedede !important;
+}
 
 
 /* article h1 {
