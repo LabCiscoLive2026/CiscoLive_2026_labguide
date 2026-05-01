@@ -5,7 +5,7 @@ Welcome to the **Gain Real-Time Visibility into Asset Utilization with Cisco SNA
 In any data center, knowing which devices are actively being used — and which ones are not — is the foundation for **smart infrastructure decisions**. **Idle devices** waste power, cooling, and rack space. **Heavily utilized devices** may need capacity relief. And without **visibility** into **access patterns**, it is difficult to plan for next-generation workloads like **AI deployments**.
 
 
-<div class="dashboard-imgs" markdown>
+<div class="dashboard-imgs-overview" markdown style="max-width: min(45rem, 80vw); padding: 10px; margin-inline: auto;">
 <figure markdown>
   ![topology](./assets/overview/overview_1.png)
 </figure>

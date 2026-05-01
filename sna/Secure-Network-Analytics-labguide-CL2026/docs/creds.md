@@ -1,83 +1,102 @@
-# Lab User Credentials
+# Lab credentials
 
-!!! warning
-    If you use User01 for VPN access, you must use the corresponding User01 for PuTTY/SSH access and the password associated only with it.
+Use this page as the **single reference** for URLs, accounts, and device access used in this lab. Individual tasks may repeat a subset for convenience; if anything disagrees, **treat this page as correct**.
+
+**On this page:** [VPN](#vpn-cisco-secure-client) · [SNA Management Console](#sna-management-console) · [Splunk Cloud](#splunk-cloud) · [Lab devices](#lab-devices) · [IPs in Splunk queries](#reference-lab-ips-in-splunk-queries)
+
+!!! warning "Match User01 end-to-end"
+    If you use **User01** (or another assigned seat) for **VPN**, use the **same** seat account for **PuTTY/SSH** and the password issued only for that user.
+
+!!! tip "Task map"
+    | Task | Credentials you need |
+    | ---- | -------------------- |
+    | **Task 1** | VPN → ISR/CAT9K **SSH** → CAT9K **HTTPS** |
+    | **Task 2** | VPN **Client Address (IPv4)** for Flow Search → **SMC** ([credentials](#sna-management-console)) |
+    | **Tasks 3–4** | **Splunk Cloud** (Search & Reporting) |
+    | **Task 5** | **Splunk Cloud** (SNA Asset Utilization dashboard) |
+
+---
+
+<a id="vpn-cisco-secure-client"></a>
 
 ## VPN — Cisco Secure Client
 
-For: (Task 1, Step 1)
+**Used in:** Task 1 (Step 1); Task 2 needs your VPN **Client Address (IPv4)** from **Status Overview** after you connect.
 
-Connect with Cisco Secure Client **before** you SSH or open device HTTPS pages. After a successful login, open **Status Overview** and record **Client Address (IPv4)**; **Task 2** uses that value as the Subject IP filter in Flow Search.
-
-| Field | Value |
-| ----- | ----- |
-| `VPN address` | `173.37.192.194`            |
-| `Username`    | `user01@ciscolivevegas.com` |
-| `Password`    | `eaHZP_a8zphk*ty`           |
-
-## SNA Manager — web sign-in and Flow Search
-
-For: (Task 2, Step 1)
-
-Open the URL in **Chrome**, sign in, then use **Investigate → Flow Search** when **Task 2** tells you to run a search against **SEA01-103**.
+Connect with Cisco Secure Client **before** you SSH or open device HTTPS pages. After login, open **Status Overview** and record **Client Address (IPv4)** — Task 2 uses that value as the **Subject IP** filter in Flow Search.
 
 | Field | Value |
 | ----- | ----- |
-| `URL`      | `https://10.0.13.50/` |
-| `Username` | `aiera-user`          |
-| `Password` | `Ciscolive!246???`    |
+| VPN address | `173.37.192.194` |
+| Username | `user01@ciscolivevegas.com` |
+| Password | `eaHZP_a8zphk*ty` |
 
-## Lab device — ISR4K-CL over SSH
+---
 
-For: (Task 1, Step 2)
+<a id="sna-management-console"></a>
 
-SSH to the ISR4451 management address below (PuTTY or any terminal). Use `aiera-user` / `Ciscolive!135`, run the CLI steps in the task (for example `show users`), then exit so flows are visible in SNA.
+## SNA Management Console
 
-| Field | Value |
-| ----- | ----- |
-| `Host Name`     | `ISR4K-CL`      |
-| `Mgmt IP`       | `10.0.13.70`    |
-| `Access Method` | `SSH`           |
-| `Username`      | `aiera-user`    |
-| `Password`      | `Ciscolive!135` |
-
-## Lab device — CAT9K-CL over SSH
-
-For: (Task 1, Step 3)
-
-Same SSH pattern as the ISR, on the C9300 management IP. Generate another round of CLI traffic so both assets appear in NetFlow for **SEA01-103**.
+**Used in:** Task 2 — **Flow Search** (`Investigate → Flow Search`).
 
 | Field | Value |
 | ----- | ----- |
-| `Host Name`     | `CAT9K-CL`      |
-| `Mgmt IP`       | `10.0.13.71`    |
-| `Access Method` | `SSH`           |
-| `Username`      | `aiera-user`    |
-| `Password`      | `Ciscolive!135` |
+| URL | `https://cl-smc-sna.cisco.com/sw-login/` |
+| Username | `CiscoLive` |
+| Password | `CL2026SNAandSplunkDemo!` |
 
-## Lab device — CAT9K-CL over HTTPS
+---
 
-For: (Task 1, Step 4)
+<a id="splunk-cloud"></a>
 
-Use **Chrome** to the HTTPS URL below. Sign in with the **full UPN** on the username row, browse briefly, then log out as the task describes so HTTPS flows are captured alongside SSH.
+## Splunk Cloud
 
-| Field | Value |
-| ----- | ----- |
-| `Host Name`     | `CAT9K-CL`                      |
-| `Mgmt IP`       | `10.0.13.71`                    |
-| `Access Method` | `HTTPS`                         |
-| `Username`      | `aiera-user@ciscolivevegas.com` |
-| `Password`      | `Ciscolive!135`                 |
+**Used in:** Tasks 3–5 (Search & Reporting, SPL labs, and the SNA Asset Utilization dashboard).
 
-## Splunk — SNA asset utilization dashboard and Search & Reporting
-
-For: (Task 5, Step 1), (Task 3), (Task 4)
-
-Use the same Splunk Cloud tenant for the **SNA asset utilization** dashboard (**Task 5**) and for **Search & Reporting** ad hoc searches (**Tasks 3–4**).
+All Splunk steps in this lab use the **same tenant and account** below.
 
 | Field | Value |
 | ----- | ----- |
-| `Username` | `CiscoLive_2026`         |
-| `Password` | `CiscoLive345!SNA_demo`        |
+| Username | `snauser-demo` |
+| Password | `Ciscolive!135` |
+
+### Splunk URLs
+
+| Purpose | Link |
+| ------- | ---- |
+| **Search & Reporting** (Tasks 3–4) | [Open Search & Reporting](https://cisco-cx-calolabs.splunkcloud.com/en-US/app/search/search?earliest=-30m%40m&latest=now) |
+| **SNA Asset Utilization** dashboard (Task 5) | [Open SNA Asset Utilization](https://cisco-cx-calolabs.splunkcloud.com/en-US/app/SNA_Real_Time_Asset_Utilization/sna_asset_utilization?form.time.earliest=-24h%40h&form.time.latest=now) |
+
+---
+
+<a id="lab-devices"></a>
+
+## Lab devices
+
+**Used in:** Task 1 (Steps 2–4). Password is the same for **SSH** on both devices; **HTTPS** on the switch uses the **full UPN** as the username.
+
+| Host | Access | Address / URL | Username | Password |
+| ---- | ------ | ------------- | -------- | -------- |
+| ISR4K-CL (ISR4451) | SSH (TCP/22) | `10.0.13.70` | `aiera-user` | `Ciscolive!135` |
+| CAT9K-CL (C9300) | SSH (TCP/22) | `10.0.13.71` | `aiera-user` | `Ciscolive!135` |
+| CAT9K-CL (C9300) | HTTPS (TCP/443) | `https://10.0.13.71` | `aiera-user@ciscolivevegas.com` | `Ciscolive!135` |
+
+---
+
+<a id="reference-lab-ips-in-splunk-queries"></a>
+
+## Reference: lab IPs in Splunk queries
+
+**Used in:** Tasks 3–4 (and similar SPL in optional task drafts). These addresses appear in example searches — they are **not** additional logins; they identify assets inside **SEA01-103** telemetry.
+
+| IP address | Typical role in this lab |
+| ---------- | ------------------------ |
+| `10.0.13.70` | ISR4K-CL |
+| `10.0.13.71` | CAT9K-CL |
+| `10.0.13.50` | SNA Management Console (SMC) |
+| `173.37.192.196` | SMC public IP (as used in sample SPL) |
+| `10.0.13.3` | ESXi host |
+| `10.0.13.10` | Ubuntu VM |
+| `10.0.13.4` | LabGuide VM |
 
 ---

@@ -17,9 +17,9 @@ lab_type: "Walk-In Labs"
 # --- Optional macros (primary lab text is verbatim in docs/*.md) ------------
 
 smc:
-  url: "https://10.0.13.50/"
-  username: "aiera-user"
-  password: "Ciscolive!246???"
+  url: "https://cl-smc-sna.cisco.com/sw-login/"
+  username: "CiscoLive"
+  password: "CL2026SNAandSplunkDemo!"
 
 splunk:
   sna_dashboard_url: "https://cisco-cx-calolabs.splunkcloud.com/en-US/app"

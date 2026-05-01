@@ -44,6 +44,14 @@
     overflow: hidden;
 }
 
+.dashboard-imgs-overview img{
+    border: 1px solid #b6e7b8;
+    padding: 20px;
+    border-radius: 0.5rem;
+    color: #191919;
+    overflow: hidden;
+}
+
 .md-typeset .task3-imgs {
     max-width: min(25rem, 86vw);
     margin-inline: auto;
