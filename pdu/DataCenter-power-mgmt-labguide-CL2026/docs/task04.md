@@ -1,16 +1,13 @@
 # Task 4: Run the Python Script to Query Splunk Data
 
-As part of this walk-in lab, a Python-based script is used to query Splunk directly for real-time
-power management and environmental telemetry. This demonstrates that the data displayed in
-Splunk dashboards is also available through script-based access for automation, quick checks,
-and CLI-driven workflows. 
+As part of this walk-in lab, a **Python-based script** is used to query **Splunk** directly for real-time power management and environmental telemetry. This demonstrates that the data displayed in **Splunk dashboards** is also available through **script-based access** for automation, quick checks, and **CLI-driven workflows**.
 
 !!! warning
-    If you use User01 for VPN access, you must use the corresponding User01 for PuTTY/SSH access and the password associated only with it. For additional user login credentials: [Click Here](creds.md)
+    If you use **User01** for VPN access, you must use the corresponding **User01** for **PuTTY/SSH** access and the password associated only with it. For additional user login credentials: [Click Here](creds.md)
 
 ## Step 1: Connect to VPN
 
-First, establish a VPN connection to the lab network.
+First, establish a **VPN connection** to the **lab network**.
 
 **1a.** Open **Cisco Secure Client** and enter the VPN address: `173.37.192.194`
 
@@ -30,8 +27,8 @@ First, establish a VPN connection to the lab network.
 
 **1c.** Enter the credentials below and click **OK** to connect.
 
-| Field      | Value                        |
-|------------|------------------------------|
+| Field      | Value                          |
+| ---------- | ------------------------------ |
 | `Username` | {{ be_script_vpn.username }} |
 | `Password` | {{ be_script_vpn.password }} |
 
@@ -46,9 +43,9 @@ First, establish a VPN connection to the lab network.
 
 ## Step 2: SSH into the Lab VM
 
-Once the VPN is connected, use **PuTTY** (or any SSH client) to connect to the lab VM.
+Once the VPN is connected, use **PuTTY** (or any SSH client) to connect to the **lab VM**.
 
-**2a.** Open **PuTTY**, enter the lab VM IP address(`10.0.13.4`), and click **Open**.
+**2a.** Open **PuTTY**, enter the lab VM IP address (`10.0.13.4`), and click **Open**.
 
 <div class="dashboard-imgs" style="max-width:750px; margin:auto;" markdown>
 <figure markdown>
@@ -58,8 +55,8 @@ Once the VPN is connected, use **PuTTY** (or any SSH client) to connect to the l
 
 **2b.** At the login prompt, use the below **username** and **password** to SSH into the VM.
 
-| Field      | Value                        |
-|------------|------------------------------|
+| Field      | Value                          |
+| ---------- | ------------------------------ |
 | `Username` | {{ be_script_putty.username }} |
 | `Password` | {{ be_script_putty.password }} |
 
@@ -88,6 +85,7 @@ You should see `cisco_live_demo_data.py` in the file listing. Run it with:
 ```bash
 > python3 cisco_live_demo_data.py
 ```
+
 You will see the application banner and a site selection menu:
 
 ```
@@ -107,7 +105,7 @@ SELECT A SITE:
 
 ## Step 4: Select a Site
 
-Enter **1** to select **SEATTLE** (the preferred site for this lab). The script will automatically map the site to its Data Center identifier:
+Enter **1** to select **SEATTLE** (the preferred site for this lab). The script will automatically map the site to its **Data Center identifier**:
 
 ```
 > Select an option: 1
@@ -133,7 +131,7 @@ SCENARIOS:
 
 ## Step 5: Query Power Capacity
 
-Choose **1** to display a summary of the Data Center's power capacity. This will show the total capacity (at the 80% safety threshold), the current active power consumption, and the remaining power available for deploying more devices:
+Choose **1** to display a summary of the Data Center's **power capacity**. This will show the total capacity (at the **80% safety threshold**), the current active power consumption, and the remaining power available for deploying more devices:
 
 ```
 > Select a scenario: 1
@@ -141,19 +139,16 @@ Choose **1** to display a summary of the Data Center's power capacity. This will
 Power capacity for Data Center SEA01-103:
 -----------------------------------------
 Power Capacity     : 1,315 kW
-Active Power Drawn : 601.4330 kW
-Available Power    : 716.9320 kW
+Active Power Drawn : 601.4100 kW
+Available Power    : 713.5900 kW
 ```
-
-!!! tip
-    Compare these values with the Splunk dashboard (Task 1: Step 2) to verify consistency between the script and the visual interface.
 
 Press "Enter" to return to the scenario menu.
 
 
 ## Step 6: Query PDU Details Overview
 
-Enter **2** to retrieve a summary of PDU fleet status, including total count and breakdown by operational state:
+Enter **2** to retrieve a summary of **PDU fleet status**, including total count and breakdown by **operational state**:
 
 ```
 > Select a scenario: 2
@@ -166,14 +161,11 @@ Available PDUs    : 43
 Offline PDUs      : 12
 ```
 
-!!! tip
-    These values correspond directly to the PDU status panels in the Splunk dashboard (Task 2: Step 1).
-
 Press "Enter" to return to the scenario menu.
 
 ## Step 7: Identify Offline PDUs
 
-Enter **3** to list all PDUs currently in an offline state. Each entry includes the rack name and host IP address for troubleshooting:
+Enter **3** to list all PDUs currently in an **offline state**. Each entry includes the **rack name** and **host IP address** for troubleshooting:
 
 ```
 > Select a scenario: 3
@@ -243,13 +235,13 @@ Offline PDUs for Data Center SEA01-103:
 ```
 
 !!! warning
-    Offline PDUs may indicate network connectivity issues or hardware failures.
+    Offline PDUs may indicate **network connectivity** issues or **hardware failures**.
 
 Press "Enter" to return to the scenario menu.
 
 ## Step 8: Identify PDUs Exceeding 90% Capacity
 
-Enter **4** to view PDUs that are operating above 90% load threshold. Each entry displays the current power drawn in amps, and utilization in percentage:
+Enter **4** to view PDUs that are operating above **90% load threshold**. Each entry displays the current power drawn in amps, and utilization in percentage:
 
 ```
 > Select a scenario: 4
@@ -266,100 +258,100 @@ Details:
     Data_Center: SEA01-103
     Row: AU
     Rack: SEA01-103-AU-7-PDU-2
-    Value: 22.0 amps
-    PDU_consumption: 91.8%
+    Value: 21.78 amps
+    PDU_consumption: 90.8%
 
 [2]
     Data_Center: SEA01-103
     Row: AU
     Rack: SEA01-103-AU-12-PDU-2
-    Value: 22.3 amps
-    PDU_consumption: 92.8%
+    Value: 22 amps
+    PDU_consumption: 91.7%
 
 [3]
     Data_Center: SEA01-103
     Row: AE
     Rack: SEA01-103-AE-8-PDU-1
-    Value: 22.5 amps
-    PDU_consumption: 93.8%
+    Value: 22 amps
+    PDU_consumption: 91.7%
 
 [4]
     Data_Center: SEA01-103
     Row: AS
     Rack: SEA01-103-AS-9-PDU-1
-    Value: 22.6 amps
-    PDU_consumption: 94.1%
+    Value: 22 amps
+    PDU_consumption: 91.7%
 
 [5]
     Data_Center: SEA01-103
     Row: AS
     Rack: SEA01-103-AS-4-PDU-1
-    Value: 22.7 amps
-    PDU_consumption: 94.7%
+    Value: 22 amps
+    PDU_consumption: 91.7%
 
 [6]
     Data_Center: SEA01-103
     Row: AL
     Rack: SEA01-103-AL-6-PDU-2
-    Value: 22.9 amps
-    PDU_consumption: 95.4%
+    Value: 22 amps
+    PDU_consumption: 91.7%
 
 [7]
     Data_Center: SEA01-103
     Row: AC
     Rack: SEA01-103-AC-3-PDU-2
-    Value: 22.9 amps
-    PDU_consumption: 95.5%
+    Value: 22 amps
+    PDU_consumption: 91.7%
 
 [8]
     Data_Center: SEA01-103
     Row: AY
     Rack: SEA01-103-AY-1-PDU-2
-    Value: 23.6 amps
-    PDU_consumption: 98.2%
+    Value: 22 amps
+    PDU_consumption: 91.7%
 
 [9]
     Data_Center: SEA01-103
     Row: AC
     Rack: SEA01-103-AC-5-PDU-1
-    Value: 25.2 amps
-    PDU_consumption: 105%
+    Value: 22 amps
+    PDU_consumption: 91.7%
 
 [10]
     Data_Center: SEA01-103
     Row: AY
     Rack: SEA01-103-AY-4-PDU-2
-    Value: 26.2 amps
-    PDU_consumption: 109%
+    Value: 22 amps
+    PDU_consumption: 91.7%
 ```
 
 !!! danger "Critical"
-    PDUs at or above 90% consumption are exceeding their rated capacity and pose a risk of breaker trips. Immediate load redistribution is recommended.
+    PDUs at or above **90% consumption** are exceeding their rated capacity and pose a risk of **breaker trips**. Immediate **load redistribution** is recommended.
 
 Press "Enter" to return to the scenario menu.
 
 
 ## Step 9: Query Data Center Temperature
 
-Enter **5** to retrieve the average temperature across the entire Data Center:
+Enter **5** to retrieve the **average temperature** across the entire Data Center:
 
 ```
 > Select a scenario: 5
 
 Temperature for Data Center SEA01-103:
 --------------------------------------
-74.43°F / 23.02°C
+73.54°F / 27.52°C
 ```
 
 !!! tip
-    This data provides a quick health check of Data Center cooling status, with safe operating temperatures generally maintained between 64.4°F and 80.6°F (18–27°C).
+    This data provides a quick **health check** of Data Center **cooling status**, with **safe operating temperatures** generally maintained between 64.4°F and 80.6°F (18–27°C).
 
 Press "Enter" to return to the scenario menu.
 
 
 ## Step 10: Query Row Temperature
 
-Enter 6 to drill down into a specific row or aisle to analyze the temperature. When prompted, enter a row identifier (e.g., ac):
+Enter **6** to drill down into a specific row or aisle to analyze the temperature. When prompted, enter a **row identifier** (e.g., ac):
 
 ```
 > Select a scenario: 6
@@ -373,10 +365,11 @@ Temperature data:
 -----------------
     Data_Center: SEA01-103
     Row: AC
-    Avg_Temp: 74.15°F / 22.86°C
-    Avg_Humidity: 8.7%
+    Avg_Temp: 72.94°F / 22.19°C
+    Avg_Humidity: 8.63%
     MT10_sensor_battery_life: 100.0%
 ```
+
 The output includes temperature, humidity, and Meraki MT10 sensor battery status for the selected row.
 
 Press "Enter" to return to the scenario menu.
@@ -384,7 +377,7 @@ Press "Enter" to return to the scenario menu.
 
 ## Step 11: Query Rack Temperature
 
-Enter 7 to inspect a specific rack. When prompted, enter the rack identifier in the format (e.g., ac-10):
+Enter **7** to inspect a specific rack. When prompted, enter the **rack identifier** in the format (e.g., ac-4):
 
 ```
 > Select a scenario: 7
@@ -392,18 +385,19 @@ Enter 7 to inspect a specific rack. When prompted, enter the rack identifier in 
 Rack Temperature for Data Center SEA01-103:
 -------------------------------------------
 
-Specify the Rack to monitor (Enter:'ac-10'): ac-10
+Specify the Rack to monitor (Enter:'ac-4'): ac-4
 
 Rack Temperature:
 -----------------
     Data_Center: SEA01-103
     Row: AC
-    Rack: SEA01-103-AC-10-PDU-1
+    Rack: SEA01-103-AC-4-PDU-1
     Temp: 76.09°F / 24.39°C
     Humidity: 8%
     MT10_sensor_battery_life: 100%
 ```
-The output shows the temperature, humidity and sensor battery life for rack AC-10.
+
+The output shows the temperature, humidity and sensor battery life for rack AC-4.
 
 Press "Enter" to return to the scenario menu.
 
@@ -422,6 +416,6 @@ When finished exploring, enter **8** to exit the script:
 
 ## Result
 
-You have used the Python script to programmatically query all our key Data Center metrics -- power capacity, PDU fleet status, overloaded PDUs, and environmental conditions -- providing a complementary, script-based approach to the Splunk dashboard workflows covered in the earlier scenarios.
+You have used the **Python script** to programmatically query all our key **Data Center metrics** -- power capacity, PDU fleet status, overloaded PDUs, and environmental conditions -- providing a complementary, **script-based approach** to the **Splunk dashboard** workflows covered in the earlier scenarios.
 
 ---
