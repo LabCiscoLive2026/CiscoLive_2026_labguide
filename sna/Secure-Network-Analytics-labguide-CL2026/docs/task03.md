@@ -8,15 +8,21 @@ This visibility is critical for **asset utilization** monitoring, helping you pi
 
 ## Step 1: Open Splunk Cloud Search
 
-1. Click the link to open the Splunk Cloud dashboard, then log in using the credentials provided below.
+- Click the link to open the Splunk Cloud dashboard, then log in using the credentials provided below.
 
-| Field | Value |
-| ----- | ----- |
-| URL | [https://cisco-cx-calolabs.splunkcloud.com/en-US/app/search](https://cisco-cx-calolabs.splunkcloud.com/en-US/app/search/search?earliest=-30m%40m&latest=now) |
-| Username | `snauser-demo` |
-| Password | `Ciscolive!135` |
+    | Field | Value |
+    | ----- | ----- |
+    | URL | [https://cisco-cx-calolabs.splunkcloud.com/en-US/app/search](https://cisco-cx-calolabs.splunkcloud.com/en-US/app/search/search?earliest=-30m%40m&latest=now){target=_blank} |
+    | Username | `snauser-demo` |
+    | Password | `Ciscolive!135` |
 
-2. From the left navigation menu, click **Search & Reporting**. You should land on **New Search** with the main **search bar** (placeholder `enter search here...`) to the right of the **time range** control. The results area may show **Statistics** / **No results found** until you run a search and widen time if needed.
+    <div class="dashboard-imgs" markdown>
+    <figure markdown>
+      ![Splunk Search & Reporting — New Search search bar](./assets/task6/0.png)
+    </figure>
+    </div>
+  
+- After clicking the URL, you will land on **New Search** page with the main **search bar** (placeholder `enter search here...`) to the left of the **time range** control. The results area may show **Statistics** / **No results found** until you run a search and widen time if needed.
 
     <div class="dashboard-imgs" markdown>
     <figure markdown>
@@ -24,7 +30,8 @@ This visibility is critical for **asset utilization** monitoring, helping you pi
     </figure>
     </div>
 
-3. Click the **time range** control (for example it may read **Last 30 days** next to the search bar). In the presets menu, open the **OTHER** column and choose **Last 24 hours**, then apply so the picker reflects that window.
+- Click the time range control next to the search bar. Click the Presets menu and choose Last 24 hours, then apply so the picker reflects that window.												
+												
 
     <div class="dashboard-imgs" markdown>
     <figure markdown>
@@ -91,12 +98,19 @@ total_bytes >= 1024,          round(total_bytes / 1024, 2) . " KB",
 ```
 With the SPL still in the **search bar**, start the job:
 
-- Click **Search** on the right side of the search bar (Splunk Cloud often shows a **green magnifying-glass** icon).
-- Wait for the job to finish. For this lab query, open the **Statistics** tab so the host ranking appears as a table (`Device Name`, **Device IP**, **# of Unique Flows**, **# of Bytes**).
+- Click **Search** on the right side of the search bar (Splunk Cloud often shows a **green magnifying-glass** icon). Wait for the job to finish. 
 
     <div class="dashboard-imgs" markdown>
     <figure markdown>
       ![Splunk Search & Reporting — run search and Statistics tab](./assets/task6/3.png)
+    </figure>
+    </div>
+
+- The scroll down to see results
+
+    <div class="dashboard-imgs" markdown>
+    <figure markdown>
+      ![Splunk Statistics — top utilized hosts results table](./assets/task6/3_5.png)
     </figure>
     </div>
 
@@ -112,6 +126,8 @@ The results table displays the top utilized hosts in descending order of total b
 
 !!! Note
     The results are sorted in descending order by total bytes to surface the most heavily utilized hosts first. To reverse the sort, simply click the **# of Bytes** column header in the Splunk results table — this will toggle the sort order to ascending, displaying the least utilized hosts at the top. This can be useful for identifying underutilized or idle assets that may be candidates for decommissioning or resource reallocation.
+
+For this lab query, open the **Statistics** tab so the host ranking appears as a table (`Device Name`, **Device IP**, **# of Unique Flows**, **# of Bytes**).
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>

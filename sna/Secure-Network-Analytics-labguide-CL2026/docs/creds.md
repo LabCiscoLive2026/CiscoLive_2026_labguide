@@ -1,4 +1,4 @@
-# Lab credentials
+# Lab Credentials
 
 Use this page as the **single reference** for URLs, accounts, and device access used in this lab. Individual tasks may repeat a subset for convenience; if anything disagrees, **treat this page as correct**.
 
@@ -11,7 +11,7 @@ Use this page as the **single reference** for URLs, accounts, and device access 
     | Task | Credentials you need |
     | ---- | -------------------- |
     | **Task 1** | VPN → ISR/CAT9K **SSH** → CAT9K **HTTPS** |
-    | **Task 2** | VPN **Client Address (IPv4)** for Flow Search → **SMC** ([credentials](#sna-management-console)) |
+    | **Task 2** | VPN **Client Address (IPv4)** for Flow Search → **SMC** |
     | **Tasks 3–4** | **Splunk Cloud** (Search & Reporting) |
     | **Task 5** | **Splunk Cloud** (SNA Asset Utilization dashboard) |
 
@@ -64,8 +64,8 @@ All Splunk steps in this lab use the **same tenant and account** below.
 
 | Purpose | Link |
 | ------- | ---- |
-| **Search & Reporting** (Tasks 3–4) | [Open Search & Reporting](https://cisco-cx-calolabs.splunkcloud.com/en-US/app/search/search?earliest=-30m%40m&latest=now) |
-| **SNA Asset Utilization** dashboard (Task 5) | [Open SNA Asset Utilization](https://cisco-cx-calolabs.splunkcloud.com/en-US/app/SNA_Real_Time_Asset_Utilization/sna_asset_utilization?form.time.earliest=-24h%40h&form.time.latest=now) |
+| **Search & Reporting** (Tasks 3–4) | [Open Search & Reporting](https://cisco-cx-calolabs.splunkcloud.com/en-US/app/search/search?earliest=-30m%40m&latest=now){target=_blank} |
+| **SNA Asset Utilization** dashboard (Task 5) | [Open SNA Asset Utilization](https://cisco-cx-calolabs.splunkcloud.com/en-US/app/SNA_Real_Time_Asset_Utilization/sna_asset_utilization?form.time.earliest=-24h%40h&form.time.latest=now){target=_blank} |
 
 ---
 
@@ -73,13 +73,13 @@ All Splunk steps in this lab use the **same tenant and account** below.
 
 ## Lab devices
 
-**Used in:** Task 1 (Steps 2–4). Password is the same for **SSH** on both devices; **HTTPS** on the switch uses the **full UPN** as the username.
+**Used in:** Task 1 (Steps 2–4).
 
 | Host | Access | Address / URL | Username | Password |
 | ---- | ------ | ------------- | -------- | -------- |
-| ISR4K-CL (ISR4451) | SSH (TCP/22) | `10.0.13.70` | `aiera-user` | `Ciscolive!135` |
-| CAT9K-CL (C9300) | SSH (TCP/22) | `10.0.13.71` | `aiera-user` | `Ciscolive!135` |
-| CAT9K-CL (C9300) | HTTPS (TCP/443) | `https://10.0.13.71` | `aiera-user@ciscolivevegas.com` | `Ciscolive!135` |
+| ISR4K-CL (ISR4451) | SSH (TCP/22) | `10.0.13.70` | `aiera-demo` | `Ciscolive!135` |
+| CAT9K-CL (C9300) | SSH (TCP/22) | `10.0.13.71` | `aiera-demo` | `Ciscolive!135` |
+| CAT9K-CL (C9300) | HTTPS (TCP/443) | `https://10.0.13.71` | `aiera-user` | `Ciscolive!135` |
 
 ---
 

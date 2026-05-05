@@ -13,15 +13,15 @@ Understanding these access patterns is essential for asset utilization monitorin
 
 ## Step 1: Open Splunk Cloud Search
 
-1. Click the link to open the Splunk Cloud dashboard, then log in using the credentials provided below.
+- Click the link to open the Splunk Cloud dashboard, then log in using the credentials provided below.
 
     | Field | Value |
     | ----- | ----- |
-    | URL | [https://cisco-cx-calolabs.splunkcloud.com/en-US/app/search](https://cisco-cx-calolabs.splunkcloud.com/en-US/app/search/search?earliest=-30m%40m&latest=now) |
+    | URL | [https://cisco-cx-calolabs.splunkcloud.com/en-US/app/search](https://cisco-cx-calolabs.splunkcloud.com/en-US/app/search/search?earliest=-30m%40m&latest=now){target=_blank} |
     | Username | `snauser-demo` |
     | Password | `Ciscolive!135` |
 
-2. From the left navigation menu, click **Search & Reporting**. You should land on **New Search** with the main **search bar** (placeholder `enter search here...`) to the right of the **time range** control. The results area may show **Statistics** / **No results found** until you run a search and widen time if needed.
+- You should land on **New Search** with the main **search bar** (placeholder `enter search here...`) to the right of the **time range** control. The results area may show **Statistics** / **No results found** until you run a search and widen time if needed.
 
     <div class="dashboard-imgs" markdown>
     <figure markdown>
@@ -29,7 +29,7 @@ Understanding these access patterns is essential for asset utilization monitorin
     </figure>
     </div>
 
-3. Click the **time range** control (for example it may read **Last 30 days** next to the search bar). In the presets menu, open the **OTHER** column and choose **Last 24 hours**, then apply so the picker reflects that window.
+- Click the time range control next to the search bar. Click the Presets menu and choose Last 24 hours, then apply so the picker reflects that window.																			
 
     <div class="dashboard-imgs" markdown>
     <figure markdown>
@@ -149,14 +149,16 @@ The results table displays the top network flows in descending order of total by
 
 Example Output:
 
-!!! Note
-    The results are sorted in descending order by total bytes to surface the highest volume flows first. To reverse the sort, simply click the column header of any column in the Splunk results table — this will toggle the sort order to ascending. For example, clicking the **Duration** column header will display the shortest duration flows at the top, which can be useful for identifying brief or transient connections.
+
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
   ![Secure Network Analytics UI](./assets/task7/4.png)
 </figure>
 </div>
+
+!!! Note
+    The results are sorted in descending order by total bytes to surface the highest volume flows first. To reverse the sort, simply click the column header of any column in the Splunk results table — this will toggle the sort order to ascending. For example, clicking the **Duration** column header will display the shortest duration flows at the top, which can be useful for identifying brief or transient connections.
 
 ## Step 4: Interpret the Results
 

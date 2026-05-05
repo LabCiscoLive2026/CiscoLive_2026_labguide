@@ -9,39 +9,35 @@ In this task, you will use **Splunk Cloud** to view pre-built **dashboards** tha
 !!! tip "Use Chrome"
     Run **Splunk** dashboards in **Google Chrome** for the most predictable layout and performance in the lab.
 
-1. Open **Google Chrome** and navigate to the following **Splunk Cloud** dashboard URL:
+- Open **Google Chrome** and navigate to the following **Splunk Cloud** dashboard URL:
 
 | Field | Value |
 | ----- | ----- |
-| URL | [https://cisco-cx-calolabs.splunkcloud.com/en-US/app/SNA_Real_Time_Asset_Utilization/sna_asset_utilization](https://cisco-cx-calolabs.splunkcloud.com/en-US/app/SNA_Real_Time_Asset_Utilization/sna_asset_utilization?form.time.earliest=-24h%40h&form.time.latest=now) |
+| URL | [https://cisco-cx-calolabs.splunkcloud.com/en-US/app/SNA_Real_Time_Asset_Utilization/sna_asset_utilization](https://cisco-cx-calolabs.splunkcloud.com/en-US/app/SNA_Real_Time_Asset_Utilization/sna_asset_utilization?form.time.earliest=-24h%40h&form.time.latest=now){target=_blank} |
 | Username | `snauser-demo` |
 | Password | `Ciscolive!135` |
 
 ## Step 2: Set Site and Data Center filters
 
-1. At the top of the dashboard, locate the **Site** and **Data Center** filter dropdowns.
-2. Set the filters to the following values:
+- At the top of the dashboard, locate the **Site** and **Data Center** filter dropdowns.
+- Set the filters to the following values:
 
     - Site: **Seattle**
     - Data Center: **SEA01-103**
 
-3. Click **Sign In**.
+- Click **Sign In**.
 
 !!! warning "Match labels exactly"
     Ensure you select **SEA01-103**. Match the labels exactly as displayed in the **Splunk** dashboard.
 
-## Step 3: Review the Device Utilization summary
+## Step 2: Review the Device Utilization summary
 
 At the top of the dashboard, **three color-coded panels** provide an immediate snapshot of your data center's **asset utilization** status.
 
-| Panel | Color | Value | What It Means |
-| ----- | ----- | ----- | ------------- |
-| Total Devices | Yellow | 18 | The total number of devices provisioned or discovered in the **SEA01-103** data center. This is your complete inventory baseline. |
-| Accessed Count | Green | 7 | The number of devices that have been actively accessed within the **last 24 hours**. These devices are confirmed to be in use. |
-| UnAccessed Devices | Green (Dark) | 11 | The number of devices with no recorded access in the **last 24 hours**. These are potential candidates for further investigation. |
 
-1. Observe the three summary panels and note the ratio: out of 18 total devices, only 7 were accessed — meaning over half (11 devices) had no recorded activity in the **last 24 hours**.
-2. This immediately tells you that a significant portion of your **data center assets** may be **underutilized**, **idle**, or potentially candidates for **decommissioning** or **repurposing**.
+
+- Observe the three summary panels and note the ratio: out of 17 total devices, only 6 were accessed — meaning over half (11 devices) had no recorded activity in the **last 24 hours**.
+- This immediately tells you that a significant portion of your **data center assets** may be **underutilized**, **idle**, or potentially candidates for **decommissioning** or **repurposing**.
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
@@ -49,9 +45,25 @@ At the top of the dashboard, **three color-coded panels** provide an immediate s
 </figure>
 </div>
 
-## Step 4: Analyze accessed devices
+| Panel | Color | Value | What It Means |
+| ----- | ----- | ----- | ------------- |
+| Total Devices | Yellow | 17 | The total number of devices provisioned or discovered in the **SEA01-103** data center. This is your complete inventory baseline. |
+| Accessed Count | Green | 6 | The number of devices that have been actively accessed within the **last 24 hours**. These devices are confirmed to be in use. |
+| Unaccessed Devices | Blue | 11 | The number of devices with no recorded access in the **last 24 hours**. These are potential candidates for further investigation. |
+
+## Step 3: Analyze accessed devices
 
 Scroll down to the **Accessed Device** table. This table provides detailed information about every device that was accessed within the **selected time window**.
+
+
+
+- Click number 7 under accessed devices and note the following observations from the dashboard:
+
+<div class="dashboard-imgs" markdown>
+<figure markdown>
+  ![Splunk accessed devices](./assets/task5/2.png)
+</figure>
+</div>
 
 The table contains the following columns:
 
@@ -67,23 +79,15 @@ The table contains the following columns:
 | Total Bytes | The total volume of data transferred |
 | Duration | The time span of the access activity |
 
-1. Click number 7 under accessed devices and note the following observations from the dashboard:
+- Note the key insights from the accessed devices:
 
-<div class="dashboard-imgs" markdown>
-<figure markdown>
-  ![Splunk accessed devices](./assets/task5/2.png)
-</figure>
-</div>
+  - Highest utilization: The VM at 10.0.13.50 (SNA management console) dominates with 329.70 MB transferred over 23.28 hours across 48 sessions using TCP/443— indicating heavy application-level traffic.
+  - Network device access: The C9300X-48HX at 10.0.13.71 was accessed via SSH (TCP/22) with 1 session over 6.08 hours
+  - The ISR4451-X/K9 at 10.0.13.70 was accessed via TCP(TCP/443) with 25.90 KB bytes transferred.
 
-2. Note the key insights from the accessed devices:
+## Step 4: Analyze unaccessed devices
 
-- Highest utilization: The VM at 10.0.13.50 (SNA management console) dominates with 329.70 MB transferred over 23.28 hours across 48 sessions using TCP/443— indicating heavy application-level traffic.
-- Network device access: The C9300X-48HX at 10.0.13.71 was accessed via SSH (TCP/22) with 1 session over 6.08 hours
-- The ISR4451-X/K9 at 10.0.13.70 was accessed via TCP(TCP/443) with 25.90 KB bytes transferred.
-
-## Step 5: Analyze unaccessed devices
-
-Click number 11 under UnAccessed Devices table. This is where the real asset utilization story unfolds — these are the 11 devices that had zero recorded access in the last 24 hours.
+Click number 11 under Unaccessed Devices table. This is where the real asset utilization story unfolds — these are the 11 devices that had zero recorded access in the last 24 hours.
 
 <div class="dashboard-imgs" markdown>
 <figure markdown>
@@ -91,25 +95,23 @@ Click number 11 under UnAccessed Devices table. This is where the real asset uti
 </figure>
 </div>
 
-1. Review the unaccessed devices and note the following:
+- Review the unaccessed devices and note the following:
 
     - All 11 devices show zero sessions, zero bytes, and zero duration — confirming complete inactivity.
     - All 11 devices are monitored via SSH — meaning they are expected to be managed remotely, but no one has connected to them.
     - The devices span a range of Cisco platforms including Catalyst 9000 series switches, ISR routers, Firepower appliances, and Nexus switches.
     - Each device resides in a different data center designation suggesting these are distributed assets across multiple zones.
 
-2. Consider what this means for your organization:
+- Consider what this means for your organization:
 
-    - 11 out of 18 devices (55.6%) in this environment are completely idle.
+    - 11 out of 17 devices (64.7%) in this environment are completely idle.
     - These devices are consuming power, cooling, and rack space without contributing to any active workloads.
     - This is exactly the type of insight that drives sustainability decisions — by identifying these idle assets, organizations can consolidate workloads, decommission unused hardware, and free up physical resources for AI deployments and next-generation infrastructure.
 
 !!! important
-    "Unaccessed" means no access was recorded in the selected time window. Before taking any action, always validate with:
-    - **Device owners**
-    - **Physical inspection**
+    "Unaccessed" means no access was recorded in the selected time window. Before taking any action, always validate with the **asset's owners** and **physical inspection**.									
 
-## Step 6: Analyze the Most accessed Devices
+## Step 5: Analyze the Most accessed Devices
 
 On the Splunk dashboard, locate the Most Accessed Device Type table. Observe the Device IP, Unique Flows, and Bytes columns to identify which assets are most actively accessed across the data center SEA01-103.
 
@@ -121,9 +123,9 @@ Based on your observations, answer the following analysis questions:
 </figure>
 </div>
 
-1. Look at the Most Accessed Device Type table.
-2. Review the table and observe the Device IP, Unique Flows, and Bytes columns.
-3. Answer the following analysis questions based on what you see:
+- Look at the Most Accessed Device Type table.
+- Review the table and observe the Device IP, Unique Flows, and Bytes columns.
+- Answer the following analysis questions based on what you see:
 
 ### Analysis Questions
 

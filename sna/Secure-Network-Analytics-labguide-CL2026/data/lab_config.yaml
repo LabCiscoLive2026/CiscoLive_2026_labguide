@@ -29,12 +29,12 @@ splunk:
 devices:
   cat9k:
     name: "CAT9K-CL"
-    ssh: "aiera-user@10.0.13.71"
+    ssh: "aiera-demo@10.0.13.71"
     ip: "10.0.13.71"
     web_url: "https://10.0.13.71"
   isr4k:
     name: "ISR4K-CL"
-    ssh: "aiera-user@10.0.13.70"
+    ssh: "aiera-demo@10.0.13.70"
     ip: "10.0.13.70"
 
 device_ssh_password: "Ciscolive!135"

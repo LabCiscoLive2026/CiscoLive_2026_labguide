@@ -3,7 +3,7 @@
 To verify the **SNA** environment is capturing **NetFlow** as intended, you will access **SEA01-103** data center assets via **SSH** and **HTTPS** to generate network traffic. Using more than one protocol and path helps populate diverse flow records for later analysis in **Flow Search** and **Splunk**.
 
 !!! important "Capture your client IPv4"
-    After VPN connects, record the **Client Address (IPv4)** from Cisco Secure Client's **Status Overview**. You will need this value in **Task 2** as a **Subject IP** filter so that exported flow records match only the traffic from your session.
+    After VPN connects, record the **Client (IPv4)** from Cisco Secure Client's **Status Overview**. You will need this value in **Task 2** as a **Subject IP** filter so that exported flow records match only the traffic from your session.
 
 ## Step 1: Connecting to the VPN
 
@@ -27,14 +27,21 @@ For this task, you will need to connect to the lab environment through our VPN.
 
 - Enter the credentials listed below and select **OK** to connect
 
+    | Field     | Value                      |
+    |-----------|----------------------------|
+    | Username  | `user01@ciscolivevegas.com` |
+    | Password  | `eaHZP_a8zphk*ty`          |
+
 <div class="task3-imgs" markdown>
 <figure markdown>
   ![Secure Network Analytics UI](./assets/task3/3.png)
 </figure>
 </div>
 
+- After successfully connecting, open **Cisco Secure Client** again and navigate to the location respective to your operating system:
 
-- After successfully connecting, open **Cisco Secure Client** again and open **Settings** (gear / menu label varies by build—**REVISIT:** match the exact control text from the screenshots).
+    - **macOS**: Click **Statistics** (graph icon).
+    - **Windows**: Click **Advanced Window** (gear icon).
 
 <div class="task3-imgs" markdown>
 <figure markdown>
@@ -42,8 +49,8 @@ For this task, you will need to connect to the lab environment through our VPN.
 </figure>
 </div>
 
-- Navigate to **Status Overview**
-- Note down the IP Address next to **Client Address (IPv4)**. You will need to reference it later in the next Task. In the example, the IP Address is **172.30.255.11**.
+- Navigate to **AnyConnect VPN**.
+- Note down the IP Address next to **Client (IPv4)**. You will need to reference it later in the next Task. In the **example below**, the IP Address is `172.30.255.2`
 
 <div class="task3-imgs" markdown>
 <figure markdown>
@@ -66,42 +73,58 @@ The first asset in the **SEA01-103** data center that you will access is a Cisco
 
 - If prompted, press **"Accept"** to continue
 
+!!! note "SSH Host Key"
+    The first time you connect to a device via SSH, you may see a host-key fingerprint warning. This is expected in a lab environment — accept it to continue.
+
 <div class="task3-imgs" markdown>
 <figure markdown>
   ![Secure Network Analytics UI](./assets/task3/7.png)
 </figure>
 </div>
 
-- The asset terminal will open. At the login prompt, enter the username: `aiera-user` and press **Enter**.
+- The asset terminal will open. At the login prompt, enter the **username**: `aiera-demo` and press **Enter**.
+- At the password prompt that follows, enter the **password**: `Ciscolive!135` and press **Enter**.
+- When entered correctly, you will see the enable prompt for **ISR4K-CL**.
 
-
+<div class="task3-imgs-row" markdown>
 <div class="task3-imgs" markdown>
 <figure markdown>
-  ![Secure Network Analytics UI](./assets/task3/8.png)
+  ![Login prompt](./assets/task3/8.png)
+  <figcaption>Enter username at the login prompt</figcaption>
 </figure>
 </div>
-
-- At the password prompt that follows, enter the password: `Ciscolive!135` and press **Enter**. When entered correctly, you will see the enable prompt for **ISR4K-CL**.
-
 <div class="task3-imgs" markdown>
 <figure markdown>
-  ![Secure Network Analytics UI](./assets/task3/9.png)
+  ![Enable prompt](./assets/task3/9.png)
+  <figcaption>Enable prompt after successful login</figcaption>
 </figure>
 </div>
+</div>
 
-- At the enable prompt, enter the command: `show users` and press Enter to simulate additional network traffic to this asset.
+- At the enable prompt, enter the commands: `show users`, `show ip interface brief`, and `show ip route` and press **Enter** to simulate additional network traffic to this asset.
 
+<div class="task3-imgs-row" markdown>
 <div class="task3-imgs" markdown>
 <figure markdown>
   ![Secure Network Analytics UI](./assets/task3/10.png)
+  <figcaption>Command: show users</figcaption>
 </figure>
 </div>
 
-<!-- <div class="task3-imgs" markdown>
+<div class="task3-imgs" markdown>
 <figure markdown>
-  ![Secure Network Analytics UI](./assets/task3/1.png)
+  ![Secure Network Analytics UI](./assets/task3/10_1.png)
+  <figcaption>Command: show ip interface brief</figcaption>
 </figure>
-</div> -->
+</div>
+</div>
+
+<div class="task3-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task3/10_2.png)
+  <figcaption>Command: show ip route</figcaption>
+</figure>
+</div>
 
 - Close the terminal window to exit the session.
 
@@ -118,9 +141,9 @@ The next **SEA01-103** asset that you will access is a Cisco **C9300X-48HX** swi
 </figure>
 </div>
 
-- The asset terminal will open. At the login prompt, enter the username: `aiera-user` and press **Enter**.
+- The asset terminal will open. At the login prompt, enter the username: `aiera-demo` and press **Enter**.
 - At the password prompt, enter the password: `Ciscolive!135` and press **Enter**. When entered correctly, you will arrive at the enable prompt for **CAT9K-CL**.
-- At the enable prompt, enter the command: `show ip interface brief` and press Enter to simulate additional network traffic to this asset.
+- At the enable prompt, enter the command: `show ip interface brief` and press **Enter** to simulate additional network traffic to this asset.
 
 <div class="task3-imgs" markdown>
 <figure markdown>
@@ -132,55 +155,55 @@ The next **SEA01-103** asset that you will access is a Cisco **C9300X-48HX** swi
 
 ## Step 4: Accessing CAT9K-CL via HTTPS
 
-You will now access **CAT9K-CL** again — this time over **HTTPS**. Accessing the same device using different protocols (**SSH** in Step 3, **HTTPS** here) produces richer flow attributes such as different port numbers and TLS(Transport Layer Security) -related fields, giving you more diverse data to analyze in later tasks.
+You will now access **CAT9K-CL** again — this time over **HTTPS**. Accessing the same device using different protocols (**SSH** in Step 3, **HTTPS** here) produces richer flow attributes such as different port numbers and TLS (Transport Layer Security) fields, giving you more diverse data to analyze in later tasks.
 
 !!! tip "Use Chrome"
     Keep **Google Chrome** for all **HTTPS** steps so your experience matches the lab guide and **Splunk** dashboard guidance.
 
-<div class="dashboard-imgs" markdown>
-<figure markdown>
-  ![Secure Network Analytics UI](./assets/task3/13.png)
-</figure>
-</div>
-
-- Then click "proceed to 10.0.13.71 (unsafe)"
-
-<div class="dashboard-imgs" markdown>
-<figure markdown>
-  ![Secure Network Analytics UI](./assets/task3/14.png)
-</figure>
-</div>
-
 - Open **Google Chrome**, enter or paste the URL: `https://10.0.13.71` into the address-bar, then press **Enter**.
+- You will see a browser security warning. Click **Advanced**.
 
-<div class="dashboard-imgs" markdown>
-<figure markdown>
-  ![Secure Network Analytics UI](./assets/task3/15.png)
-</figure>
-</div>
+    <div class="dashboard-imgs" markdown>
+    <figure markdown>
+      ![Secure Network Analytics UI](./assets/task3/13.png)
+    </figure>
+    </div>
 
-At the **CAT9K-CL** **WebUI** login screen, enter the following credentials and click **Log In**:
+- Then click **"proceed to 10.0.13.71 (unsafe)"**
 
-| Field | Value |
-| ----- | ----- |
-| `Username` | `aiera-user@ciscolivevegas.com` |
-| `Password` | `Ciscolive!135` |
+    <div class="dashboard-imgs" markdown>
+    <figure markdown>
+      ![Secure Network Analytics UI](./assets/task3/14.png)
+    </figure>
+    </div>
 
-<div class="dashboard-imgs" markdown>
-<figure markdown>
-  ![Secure Network Analytics UI](./assets/task3/16.png)
-</figure>
-</div>
+    !!! note "Self-signed certificate"
+        The lab devices use self-signed certificates, so the browser warning is expected. In a production environment, devices would use certificates issued by a trusted CA.
 
-The **CAT9K-CL** main dashboard will load.
+- At the **CAT9K-CL** **WebUI** login screen, enter the following credentials and click **Log In**:
 
-<div class="dashboard-imgs" markdown>
-<figure markdown>
-  ![Secure Network Analytics UI](./assets/task3/17.png)
-</figure>
-</div>
+    | Field | Value |
+    | ----- | ----- |
+    | Username | `aiera-demo@ciscolivevegas.com` |
+    | Password | `Ciscolive!135` |
 
-Feel free to navigate the **WebUI** to generate additional traffic associated with your laptop IP address. The more pages you visit, the more flow records will be captured for utilization monitoring.
+
+    <div class="dashboard-imgs" markdown>
+    <figure markdown>
+      ![Secure Network Analytics UI](./assets/task3/15.png)
+    </figure>
+    </div>
+
+- The **CAT9K-CL** main dashboard will load.
+
+    <div class="dashboard-imgs" markdown>
+    <figure markdown>
+      ![Secure Network Analytics UI](./assets/task3/16.png)
+    </figure>
+    </div>
+
+!!! tip "Generate more traffic"
+    Feel free to navigate the **WebUI** to generate additional traffic associated with your laptop IP address. The more pages you visit, the more flow records will be captured for utilization monitoring.
 
 When you are ready to end the session:
 
@@ -189,6 +212,11 @@ When you are ready to end the session:
 - When prompted with "Are you sure you want to log out?", click **Yes**
 - Close the browser window
 
+<div class="dashboard-imgs" markdown>
+<figure markdown>
+  ![Secure Network Analytics UI](./assets/task3/17.png)
+</figure>
+</div>
 
 ## Result
 
@@ -202,20 +230,18 @@ In this task, you simulated network traffic to data center assets in the **SEA01
 
 By generating flows using multiple protocols to multiple devices, you have confirmed that the **SNA** environment is actively capturing and organizing **NetFlow** telemetry. This traffic will be visible in the flow records you analyze in the upcoming tasks — first through **SNA Flow Search** (**Task 2**), then through **Splunk Cloud** queries (**Tasks 3 and 4**), and finally through a pre-built **Splunk** asset utilization dashboard (**Task 5**).
 
-
 !!! warning "Remember"
-    Keep the **Client Address (IPv4)** you recorded in **Step 1** handy — you will need it in **Task 2** to filter flow results to your specific session traffic.
+    Keep the **Client (IPv4)** you recorded in **Step 1** handy — you will need it in **Task 2** to filter flow results to your specific session traffic.
 
+!!! danger "Disconnect VPN"
+    When you are finished with this task or leaving the workstation, **disconnect from the lab VPN** so your session is released.
+
+    Open **Cisco Secure Client**, then choose **Disconnect** (or follow your proctor's close-down steps). Do **not** leave an active VPN tunnel running after you are done.
 
 <div class="task3-imgs" markdown>
 <figure markdown>
   ![Secure Network Analytics UI](./assets/task3/18.png)
 </figure>
 </div>
-
-!!! danger "Disconnect VPN"
-    When you are finished with this task or leaving the workstation, **disconnect from the lab VPN** so your session is released.
-
-    Open **Cisco Secure Client**, then choose **Disconnect** (or follow your proctor’s close-down steps). Do **not** leave an active VPN tunnel running after you are done.
 
 ---

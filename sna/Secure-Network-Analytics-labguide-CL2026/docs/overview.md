@@ -1,6 +1,6 @@
 # Overview
 
-Welcome to the **Gain Real-Time Visibility into Asset Utilization with Cisco SNA and Splunk** walk in lab!
+Welcome to the Gain Real-Time Visibility into **Asset Utilization with Cisco SNA and Splunk** walk-in lab!
 
 In any data center, knowing which devices are actively being used — and which ones are not — is the foundation for **smart infrastructure decisions**. **Idle devices** waste power, cooling, and rack space. **Heavily utilized devices** may need capacity relief. And without **visibility** into **access patterns**, it is difficult to plan for next-generation workloads like **AI deployments**.
 

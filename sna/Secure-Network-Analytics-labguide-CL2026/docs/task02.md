@@ -8,7 +8,7 @@ In the previous tasks, you simulated network traffic within your **SEA01-103 Hos
 
 | Field | Value |
 | ----- | ----- |
-| URL        | [https://cl-smc-sna.cisco.com/sw-login/](https://cl-smc-sna.cisco.com/sw-login/) |
+| URL        | [https://cl-smc-sna.cisco.com/sw-login/](https://cl-smc-sna.cisco.com/sw-login/){target=_blank} |
 | Username   | `CiscoLive`                                          |
 | Password   | `CL2026SNAandSplunkDemo!`                            |
 
@@ -24,7 +24,7 @@ In the previous tasks, you simulated network traffic within your **SEA01-103 Hos
 
 ## Step 2: Set the time range
 
-- Open the **Time Range** control and select **Last 5 minutes**.
+- Open the **Time Range** control and select **Last 24 hours**.
 
     <div class="dashboard-imgs" markdown>
     <figure markdown>
@@ -58,14 +58,15 @@ In the previous tasks, you simulated network traffic within your **SEA01-103 Hos
 ## Step 4: Select the SEA01-103 host group
 
 - In the **Peer** tile, under **Host Groups**, click **Select**.
-- In the side panel, expand **Inside Hosts** (click **>**).
-- Select **SEA01-103**, then click **Apply**.
 
     <div class="dashboard-imgs" markdown>
     <figure markdown>
       ![Secure Network Analytics UI](./assets/task4/4.png)
     </figure>
     </div>
+
+- In the side panel, expand **Inside Hosts** (click **>**).
+- Select **SEA01-103**, then click **Apply**.
 
     <div class="dashboard-imgs" markdown>
     <figure markdown>
@@ -75,7 +76,7 @@ In the previous tasks, you simulated network traffic within your **SEA01-103 Hos
 
 ## Step 5: Run the Flow Search
 
-- With all the **search criteria** configured, click **Search** to generate the results. **Time range** should show **last 5 minutes**.
+- With all the **search criteria** configured, click **Search** to generate the results. **Time range** should show **Last 24 hours**.
 
     <div class="dashboard-imgs" markdown>
     <figure markdown>
@@ -88,47 +89,27 @@ In the previous tasks, you simulated network traffic within your **SEA01-103 Hos
 
 ## Step 6: Validate your network activity
 
-- In the **Subject IP** filter, enter the **Client Address (IPv4)** you recorded in **Task 1**, **Step 1** (Cisco Secure Client **Status Overview** after **VPN** connects).
+- In the **Subject IP** filter, enter the **Client (IPv4)** you recorded in **Task 1**, **Step 1** (Cisco Secure Client **AnyConnect VPN** after **VPN** connects).
 
     !!! warning "Lost your client IPv4?"
-        Reopen **Cisco Secure Client** and open **Status Overview** screen (same path as **Task 1**). Copy the **Client Address (IPv4)**. For example: `172.30.255.2` — **yours will differ.**
+        Reopen **Cisco Secure Client** and open **AnyConnect VPN** screen (same path as **Task 1**). Copy the **Client (IPv4)**. For example: `172.30.255.2` — **yours will differ.**
 
     After entering the **Subject IP**, the **results grid** should be updated to show only flows tied to your sessions. Verify that the filtered results show flows corresponding to the traffic you generated in **Task 1**. You should see entries for the following **protocols**:
+    - Close the browser window when you are finished.
 
-    <!-- enter subject IP and take screenshot -->
+    | Protocol/Port | Service | Expected Activity |
+    | ------------- | ------- | ------------------- |
+    | 22/TCP | SSH | Shell access to ISR4K-CL (`10.0.13.70`) and CAT9K-CL (`10.0.13.71`) — matching the SSH sessions you generated in **Task 1**, **Steps 2 and 3** |
+    | 443/TCP | HTTPS | Secure web management access to CAT9K-CL (`10.0.13.71`) and SNA Management Console (`10.0.13.50`) — matching the HTTPS sessions you generated in **Task 1** |
+
+    !!! note "What to Expect"
+        Since you accessed **ISR4K-CL** via **SSH**, **CAT9K-CL** via both **SSH** and **HTTPS**, and the **SNA Management Console** via **HTTPS** in **Task 1**, your filtered results should primarily show flow records for **22/TCP** and **443/TCP**.
+
     <div class="dashboard-imgs" markdown>
     <figure markdown>
       ![Secure Network Analytics UI](./assets/task4/7.png)
     </figure>
     </div>
-
-<!-- | Protocol/Port | Service | Expected activity |
-| --- | --- | --- |
-| 22/TCP | SSH | Shell access to lab devices (for example ISR4K-CL, CAT9K-CL, Ubuntu VM) |
-| 3389/TCP | RDP | Remote Desktop to Windows lab targets (if used) |
-| 8080/TCP | HTTP | Web access to the LabGuide VM |
-| 443/TCP | HTTPS | Secure web or device management (for example CAT9K-CL, SMC, ESXi) | -->
-
-
-<!-- To keep a copy for offline review, export what is on screen:
-
-- Choose **Export → Visible Columns** (or the export option your UI shows) to download a **CSV** of the filtered grid.
-
-<div class="dashboard-imgs" markdown>
-<figure markdown>
-  ![Secure Network Analytics UI](./assets/task4/7.png)
-</figure>
-</div> -->
-
-- Close the browser window when you are finished.
-
-| Protocol/Port | Service | Expected Activity |
-| ------------- | ------- | ------------------- |
-| 22/TCP | SSH | Shell access to ISR4K-CL (`10.0.13.70`) and CAT9K-CL (`10.0.13.71`) — matching the SSH sessions you generated in **Task 1**, **Steps 2 and 3** |
-| 443/TCP | HTTPS | Secure web management access to CAT9K-CL (`10.0.13.71`) and SNA Management Console (`10.0.13.50`) — matching the HTTPS sessions you generated in **Task 1** |
-
-!!! note "What to Expect"
-    Since you accessed **ISR4K-CL** via **SSH**, **CAT9K-CL** via both **SSH** and **HTTPS**, and the **SNA Management Console** via **HTTPS** in **Task 1**, your filtered results should primarily show flow records for **22/TCP** and **443/TCP**.
 
 ## Result
 
@@ -136,7 +117,7 @@ Review the data and confirm:
 
 - **Source IPs** — Do they align with **your** **Client Address (IPv4)** from **Task 1**?
 - **Destination IPs** — Do they correspond to devices inside **SEA01-103**?
-- **Protocols** — Do you see **SSH (22/TCP)**, **HTTP (8080/TCP)**, and **HTTPS (443/TCP)** where you expect, plus **RDP (3389/TCP)** if you used it?
+- **Protocols** — Do you see SSH(22/TCP) and HTTPS(443/TCP) where you expect?								
 - **Time range** — Do **Start Time** and **End Time** fall in the window when you generated traffic in **Task 1**?
 
 By successfully retrieving **flow records** that match the traffic you generated in **Task 1**, this task proves that **Cisco Secure Network Analytics** can capture **NetFlow** telemetry to provide meaningful **asset utilization** visibility. The report demonstrates that **SNA** records every network conversation — including **who** accessed which device, over **what protocol**, **how much** data was transferred, and **when** the access occurred — giving you the data needed to monitor and assess **asset utilization** across your environment.

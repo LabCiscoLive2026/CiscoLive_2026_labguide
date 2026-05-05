@@ -57,6 +57,19 @@
     margin-inline: auto;
 }
 
+.md-typeset .task3-imgs-row {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-inline: auto;
+}
+
+.md-typeset .task3-imgs-row .task3-imgs {
+    flex: 1 1 min(20rem, 100%);
+    max-width: min(22rem, 48%);
+}
+
 .md-typeset .task3-imgs a.glightbox {
     display: block;
     max-width: 100%;
