@@ -65,6 +65,7 @@ nav:
       - "Task 3: Identifying Top Utilized Hosts": "task03.md"
       - "Task 4: Analyzing Top Flows — Who Accessed What, How, and For How Long": "task04.md"
       - "Task 5: Splunk dashboard view of devices monitored by Cisco SNA": "task05.md"
+      - "Task 6: Asset Utilization at Scale": "task06.md"
       - "Conclusion": "conclusion.md"
   - "Credentials": "creds.md"
 
