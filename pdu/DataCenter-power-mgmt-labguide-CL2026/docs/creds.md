@@ -8,7 +8,7 @@ Use the credentials below to log in to the **lab environment**. Each participant
 <div style="margin-top: 16px;">
   <iframe
     id="credsFrame"
-    src="http://localhost:8001/static/creds_reservation_pdu.html"
+    src="http://173.37.192.195:8001/static/creds_reservation_pdu.html"
     width="100%"
     height="900"
     scrolling="no"
