@@ -82,7 +82,7 @@ The first asset in the **SEA01-103** data center that you will access is a Cisco
 </figure>
 </div>
 
-- The asset terminal will open. At the login prompt, enter the **username**: `aiera-demo` and press **Enter**.
+- The asset terminal will open. At the login prompt, enter the **username**: `aiera-user` and press **Enter**.
 - At the password prompt that follows, enter the **password**: `Ciscolive!135` and press **Enter**.
 - When entered correctly, you will see the enable prompt for **ISR4K-CL**.
 
@@ -141,7 +141,7 @@ The next **SEA01-103** asset that you will access is a Cisco **C9300X-48HX** swi
 </figure>
 </div>
 
-- The asset terminal will open. At the login prompt, enter the username: `aiera-demo` and press **Enter**.
+- The asset terminal will open. At the login prompt, enter the username: `aiera-user` and press **Enter**.
 - At the password prompt, enter the password: `Ciscolive!135` and press **Enter**. When entered correctly, you will arrive at the enable prompt for **CAT9K-CL**.
 - At the enable prompt, enter the command: `show ip interface brief` and press **Enter** to simulate additional network traffic to this asset.
 
@@ -184,7 +184,7 @@ You will now access **CAT9K-CL** again — this time over **HTTPS**. Accessing t
 
     | Field | Value |
     | ----- | ----- |
-    | Username | `aiera-demo@ciscolivevegas.com` |
+    | Username | `aiera-user@ciscolivevegas.com` |
     | Password | `Ciscolive!135` |
 
 

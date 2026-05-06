@@ -149,8 +149,8 @@ def process_temperature_datacenter():
     avg_f = round(sum(temps_f) / len(temps_f), 2) if temps_f else None
     avg_c = round(sum(temps_c) / len(temps_c), 2) if temps_c else None
 
-    avg_f = 74.43
-    avg_c = 23.02
+    avg_f = 73.54
+    avg_c = 22.52
     if avg_f is not None and avg_c is not None:
         print(f"{avg_f}°F / {avg_c}°C")
     else:
@@ -183,8 +183,8 @@ def process_temperature_row():
 
 
 def process_temperature_rack():
-    rack = input("\nSpecify the Rack to monitor (Enter:'ac-10'): ").strip()
-    if rack != "ac-10":
+    rack = input("\nSpecify the Rack to monitor (Enter:'ac-4'): ").strip()
+    if rack != "ac-4":
         print("\nEnter a correct Rack value!")
         return
     resp = requests.get(BASE_URL + f"/temperature?rack={rack}")
@@ -197,7 +197,7 @@ def process_temperature_rack():
     # Temp: 76.09°F / 24.39°C
     # Data_Center: SEA01-103
     # Row: AC
-    # Rack: SEA01-103-AC-10-PDU-1
+    # Rack: SEA01-103-AC-4-PDU-1
     # Temp: 76.09°F / 24.39°C
     # Humidity: 8%
     # MT10_sensor_battery_life: 100%

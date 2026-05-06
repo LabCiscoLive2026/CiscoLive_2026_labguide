@@ -49,7 +49,7 @@ be_script_putty:
 
 splunk:
   url: "https://cisco-cx-calolabs.splunkcloud.com/en-US/app/AI_ERA/ai_era_power_management_demo"
-  username: "aiera-demo"
+  username: "aiera-user"
   password: "Ciscolive!135"
 
 

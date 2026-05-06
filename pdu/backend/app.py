@@ -5,10 +5,15 @@
 4.	exceeding capacity >= 90%
 """
 
+from pathlib import Path
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from routers import router
 
+STATIC_DIR = Path(__file__).parent / "static"
+STATIC_DIR.mkdir(exist_ok=True)
 
 app = FastAPI()
 
@@ -20,5 +25,5 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 app.include_router(router)
+app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")

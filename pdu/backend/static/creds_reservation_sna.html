@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lab Credential Reservation — Cisco Live 2026</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { overflow: hidden; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 14px;
+      background: #f4f5f7;
+      color: #1a1a2e;
+      padding: 18px 20px 14px;
+    }
+
+    .page-header { margin-bottom: 14px; }
+    .page-header h1 { font-size: 20px; font-weight: 700; color: #1a1a2e; letter-spacing: -0.3px; }
+    .page-header p  { margin-top: 4px; color: #5a6270; font-size: 13px; }
+
+    /* Single stat */
+    .stats-bar { display: flex; gap: 10px; margin-bottom: 12px; }
+    .stat {
+      background: #fff;
+      border: 1px solid #e2e5eb;
+      border-radius: 6px;
+      padding: 10px 18px;
+    }
+    .stat-value { font-size: 20px; font-weight: 700; line-height: 1; color: #1a7f4b; }
+    .stat-label { font-size: 11px; color: #5a6270; margin-top: 3px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    .notice {
+      background: #fff8e1;
+      border: 1px solid #ffe082;
+      border-radius: 6px;
+      padding: 8px 13px;
+      font-size: 12.5px;
+      color: #7a5500;
+      margin-bottom: 12px;
+    }
+    /* "Already reserved" info banner */
+    .info-banner {
+      display: none;
+      background: #e8f0fe;
+      border: 1px solid #aecbfa;
+      border-radius: 6px;
+      padding: 8px 13px;
+      font-size: 12.5px;
+      color: #174ea6;
+      margin-bottom: 12px;
+    }
+    .info-banner.show { display: block; }
+
+    .error-banner {
+      display: none;
+      background: #fde8e8;
+      border: 1px solid #f5c6c6;
+      border-radius: 6px;
+      padding: 8px 13px;
+      font-size: 12.5px;
+      color: #8b0000;
+      margin-bottom: 12px;
+    }
+    .error-banner.show { display: block; }
+
+    .table-wrap {
+      background: #fff;
+      border: 1px solid #e2e5eb;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+      background: #f8f9fb;
+      padding: 9px 12px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 600;
+      color: #5a6270;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid #e2e5eb;
+    }
+    tbody tr { border-bottom: 1px solid #f0f2f5; transition: background 0.1s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr.mine { background: #f0f7ff; }
+    tbody tr:hover { background: #fafbfc; }
+    tbody tr.mine:hover { background: #e8f0fe; }
+    tbody td { padding: 9px 12px; vertical-align: middle; }
+
+    .num-cell { color: #5a6270; font-weight: 500; width: 36px; }
+
+    code {
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 12px;
+      background: #f0f2f5;
+      padding: 2px 6px;
+      border-radius: 3px;
+      user-select: all;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .badge.available { background: #e6f4ec; color: #1a7f4b; }
+    .badge.partial   { background: #fff3e0; color: #b05c00; }
+    .badge.full      { background: #fdecea; color: #c0000a; }
+
+    .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .dot.available { background: #1a7f4b; }
+    .dot.partial   { background: #b05c00; }
+    .dot.full      { background: #c0000a; }
+
+    .countdown {
+      font-size: 11px;
+      font-weight: 600;
+      color: #b05c00;
+      font-variant-numeric: tabular-nums;
+      margin-top: 3px;
+    }
+
+    .btn {
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 13px;
+      transition: opacity 0.15s;
+      white-space: nowrap;
+    }
+    .btn:hover:not(:disabled) { opacity: 0.85; }
+    .btn:disabled { opacity: 0.35; cursor: not-allowed; }
+    .btn-reserve { background: #1a5fb4; color: #fff; }
+    .btn-reserved-mine { background: #e8f0fe; color: #174ea6; border: 1px solid #aecbfa; }
+
+    .refresh-note { margin-top: 10px; font-size: 11.5px; color: #8a9aac; text-align: right; }
+  </style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Lab Credential Reservation</h1>
+  <!-- <p>Click <strong>Reserve</strong> to claim a slot for your 45-minute session. Each account supports up to 2 simultaneous users.</p> -->
+</div>
+
+<div class="error-banner" id="errorBanner"></div>
+<div class="info-banner"  id="infoBanner"></div>
+
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-value" id="statAvail">—</div>
+    <div class="stat-label">Available</div>
+  </div>
+</div>
+
+<div class="notice">
+  Reservations expire automatically after <strong>90 minutes</strong>. Each VPN account supports <strong>2 users</strong> simultaneously.
+</div>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>VPN Username</th>
+        <th>SSH Username</th>
+        <th>Password</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+      <tr><td colspan="6" style="text-align:center;padding:24px;color:#8a9aac;">Loading…</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="refresh-note" id="refreshNote">Auto-refreshes every 30 s</div>
+
+<script>
+  const API      = 'http://localhost:8001/api';
+  const LS_KEY   = 'lab_cred_reservation_sna';  // unique per lab
+  const MAX_SLOTS = 2;
+
+  let countdownInterval = null;
+  let lastData = [];
+
+  // ── LocalStorage token helpers ────────────────────────────────────────────
+  function getMyReservation() {
+    try {
+      var raw = localStorage.getItem(LS_KEY);
+      if (!raw) return null;
+      var obj = JSON.parse(raw);
+      // Auto-clear if expired
+      if (obj.expiresAt && new Date(obj.expiresAt) <= new Date()) {
+        localStorage.removeItem(LS_KEY);
+        return null;
+      }
+      return obj;   // { token, userNum, expiresAt }
+    } catch (e) { return null; }
+  }
+
+  function saveMyReservation(userNum, token, expiresAt) {
+    localStorage.setItem(LS_KEY, JSON.stringify({ userNum: userNum, token: token, expiresAt: expiresAt }));
+  }
+
+  function clearMyReservation() {
+    localStorage.removeItem(LS_KEY);
+  }
+
+  function generateToken() {
+    return 'tok_' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+  }
+
+  // ── Fetch & render ────────────────────────────────────────────────────────
+  async function loadData() {
+    try {
+      // Validate our token against the server first; clear if released/expired
+      var myRes = getMyReservation();
+      if (myRes) {
+        var chk = await fetch(API + '/reservations/check-token?token=' + encodeURIComponent(myRes.token));
+        if (chk.ok) {
+          var chkData = await chk.json();
+          if (!chkData.active) clearMyReservation();
+        }
+      }
+
+      var resp = await fetch(API + '/reservations');
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      var json = await resp.json();
+      lastData = json.users;
+      renderTable(lastData);
+      updateStats(lastData);
+      hideError();
+      document.getElementById('refreshNote').textContent =
+        'Last refreshed: ' + new Date().toLocaleTimeString();
+    } catch (e) {
+      showError('Cannot reach the reservation API. Make sure the backend is running at localhost:8001.');
+    }
+  }
+
+  function statusLabel(u) {
+    if (u.status === 'available') return 'Available';
+    if (u.status === 'full')      return 'Reserved';
+    return u.slots_used + '/' + u.slots_total + ' Reserved';
+  }
+
+  function renderTable(users) {
+    var tbody = document.getElementById('tableBody');
+    tbody.innerHTML = '';
+
+    var myRes = getMyReservation();
+    var myUserNum = myRes ? myRes.userNum : null;
+    var iHaveReservation = myRes !== null;
+
+    // Update info banner
+    var infoBanner = document.getElementById('infoBanner');
+    if (iHaveReservation) {
+      var u = users.find(function(x){ return x.num === myUserNum; });
+      var label = u ? u.vpn : 'user' + String(myUserNum).padStart(2,'0');
+      infoBanner.textContent = 'You have reserved: ' + label + '. Your slot expires automatically after 90 minutes.';
+      infoBanner.classList.add('show');
+    } else {
+      infoBanner.classList.remove('show');
+    }
+
+    users.forEach(function(u) {
+      var isFull    = u.status === 'full';
+      var isMyRow   = u.num === myUserNum;
+      var tr = document.createElement('tr');
+      if (isMyRow) tr.className = 'mine';
+
+      // # column
+      var tdNum = document.createElement('td');
+      tdNum.className = 'num-cell';
+      tdNum.textContent = u.num;
+
+      // VPN
+      var tdVpn = document.createElement('td');
+      var cVpn = document.createElement('code');
+      cVpn.textContent = u.vpn;
+      tdVpn.appendChild(cVpn);
+
+      // SSH
+      var tdSsh = document.createElement('td');
+      var cSsh = document.createElement('code');
+      cSsh.textContent = u.ssh;
+      tdSsh.appendChild(cSsh);
+
+      // Password
+      var tdPw = document.createElement('td');
+      var cPw = document.createElement('code');
+      cPw.textContent = u.password;
+      tdPw.appendChild(cPw);
+
+      // Status
+      var tdSt = document.createElement('td');
+      var badge = document.createElement('span');
+      badge.className = 'badge ' + u.status;
+      var dot = document.createElement('span');
+      dot.className = 'dot ' + u.status;
+      badge.appendChild(dot);
+      badge.appendChild(document.createTextNode(' ' + statusLabel(u)));
+      tdSt.appendChild(badge);
+
+      // Show countdown only when at least one slot is taken
+      if (u.seconds_remaining > 0) {
+        var cd = document.createElement('div');
+        cd.className = 'countdown';
+        cd.id = 'cd-' + u.num;
+        cd.dataset.secs = u.seconds_remaining;
+        tdSt.appendChild(cd);
+      }
+
+      // Action
+      var tdAct = document.createElement('td');
+      var btn = document.createElement('button');
+
+      if (isMyRow) {
+        // This user's own reserved row
+        btn.className = 'btn btn-reserved-mine';
+        btn.textContent = 'Reserved';
+        btn.disabled = true;
+      } else if (iHaveReservation || isFull) {
+        // Already reserved something else, or credential is full
+        btn.className = 'btn btn-reserve';
+        btn.textContent = 'Reserve';
+        btn.disabled = true;
+      } else {
+        btn.className = 'btn btn-reserve';
+        btn.textContent = 'Reserve';
+        (function(num) {
+          btn.addEventListener('click', function() { doReserve(num); });
+        })(u.num);
+      }
+
+      tdAct.appendChild(btn);
+      tr.append(tdNum, tdVpn, tdSsh, tdPw, tdSt, tdAct);
+      tbody.appendChild(tr);
+    });
+
+    startCountdowns();
+  }
+
+  function updateStats(users) {
+    // Count credentials that still have at least 1 free slot
+    var avail = users.filter(function(u){ return u.status !== 'full'; }).length;
+    document.getElementById('statAvail').textContent = avail;
+  }
+
+  // ── Reserve (no modal, no name) ───────────────────────────────────────────
+  async function doReserve(userNum) {
+    var token = generateToken();
+    try {
+      var resp = await fetch(API + '/reservations/' + userNum + '/reserve', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: token }),
+      });
+      var data = await resp.json();
+      if (data.success) {
+        saveMyReservation(userNum, token, data.expires_at);
+        hideError();
+      } else {
+        showError(data.message);
+      }
+      await loadData();
+    } catch (e) {
+      showError('Failed to reserve. Please try again.');
+    }
+  }
+
+  // ── Countdown ─────────────────────────────────────────────────────────────
+  function startCountdowns() {
+    if (countdownInterval) clearInterval(countdownInterval);
+    countdownInterval = setInterval(function() {
+      // Also check if our own reservation expired
+      var myRes = getMyReservation();
+      if (!myRes && document.querySelector('.mine')) {
+        loadData(); return;
+      }
+
+      document.querySelectorAll('[id^="cd-"]').forEach(function(el) {
+        var secs = parseInt(el.dataset.secs, 10);
+        if (isNaN(secs)) return;
+        if (secs <= 0) { loadData(); return; }
+        secs--;
+        el.dataset.secs = secs;
+        el.textContent = formatTime(secs) + ' remaining';
+      });
+    }, 1000);
+  }
+
+  function formatTime(secs) {
+    var m = Math.floor(secs / 60).toString().padStart(2, '0');
+    var s = (secs % 60).toString().padStart(2, '0');
+    return m + ':' + s;
+  }
+
+  // ── Helpers ───────────────────────────────────────────────────────────────
+  function showError(msg) {
+    var el = document.getElementById('errorBanner');
+    el.textContent = msg; el.classList.add('show');
+  }
+  function hideError() {
+    document.getElementById('errorBanner').classList.remove('show');
+  }
+
+  // ── Auto-resize parent iframe ─────────────────────────────────────────────
+  function notifyHeight() {
+    window.parent.postMessage({ iframeHeight: document.documentElement.scrollHeight }, '*');
+  }
+  new ResizeObserver(notifyHeight).observe(document.body);
+
+  // ── Boot ──────────────────────────────────────────────────────────────────
+  loadData();
+  setInterval(loadData, 30000);   // full refresh every 30s
+
+  // Lightweight token check every 5s — catches external releases quickly
+  setInterval(async function() {
+    var myRes = getMyReservation();
+    if (!myRes) return;
+    try {
+      var chk = await fetch(API + '/reservations/check-token?token=' + encodeURIComponent(myRes.token));
+      if (chk.ok) {
+        var data = await chk.json();
+        if (!data.active) { clearMyReservation(); loadData(); }
+      }
+    } catch (e) {}
+  }, 5000);
+</script>
+</body>
+</html>

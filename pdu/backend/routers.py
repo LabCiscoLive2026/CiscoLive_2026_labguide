@@ -8,6 +8,8 @@ from splunk_connect import (
     refresh_excel_cache,
 )
 from fastapi import APIRouter, Query
+from pydantic import BaseModel
+import reservations as res_store
 
 
 router = APIRouter(prefix="/api", tags=["functions"])
@@ -40,3 +42,29 @@ def get_pdus_for_threshold(threshold: int):
 @router.post('/refresh-cache')
 def refresh_cache():
     return refresh_excel_cache()
+
+
+# ---------- Credential Reservation Routes ----------
+
+class ReserveRequest(BaseModel):
+    token: str = ""          # client-generated token stored in localStorage
+
+
+@router.get('/reservations')
+def get_reservations():
+    return {"users": res_store.get_all_statuses()}
+
+
+@router.get('/reservations/check-token')
+def check_token(token: str = Query(default="")):
+    return {"active": res_store.check_token(token)}
+
+
+@router.post('/reservations/{user_num}/reserve')
+def reserve_credential(user_num: int, body: ReserveRequest):
+    return res_store.reserve(user_num, body.token)
+
+
+@router.post('/reservations/{user_num}/release')
+def release_credential(user_num: int):
+    return res_store.release(user_num)

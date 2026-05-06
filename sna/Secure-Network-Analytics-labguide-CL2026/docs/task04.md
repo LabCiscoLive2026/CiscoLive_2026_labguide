@@ -176,6 +176,6 @@ Use the results to answer the following questions about your network:
 
 ## Result
 
-In this task, you analyzed the top network flows to understand who is accessing what, how they are accessing it, and how long the access spanned. This flow-level visibility complements the host-level view from **Task 3**. A short **Lab summary** and wrap-up are on the **Conclusion** page.
+In this task, you analyzed the top network flows to understand who is accessing what, how they are accessing it, and how long the access spanned. This flow-level visibility complements the host-level view from **Task 3**.
 
 ---
