@@ -215,10 +215,13 @@ def _parse_numeric(value: Optional[str]) -> Optional[float]:
         return None
 
 
-def _round_value(value: str) -> str:
-    """Round any floating-point numbers in a string to 1 decimal place."""
+def _round_value(value: str, decimals: int = 1) -> str:
+    """Round any floating-point numbers in a string, stripping trailing zeros."""
     def _replace_float(m):
-        return str(round(float(m.group(0)), 1))
+        rounded = round(float(m.group(0)), decimals)
+        # Strip trailing zeros: 22.0 → "22", 21.78 → "21.78", 90.80 → "90.8"
+        formatted = f"{rounded:.{decimals}f}".rstrip("0").rstrip(".")
+        return formatted
     return re.sub(r"-?\d+\.\d{2,}", _replace_float, str(value))
 
 
@@ -417,10 +420,25 @@ def get_exceeding_capacity(threshold: int = 90) -> dict:
 
     available_fields = [f for f in ["Labs", "Row", "Host_name", "Value", "Perc"] if f in exceeded_df.columns]
     exceeded_df = exceeded_df[available_fields].rename(columns={"Labs": "Data_Center", "Perc": "PDU_consumption", "Host_name": "Rack"})
-    exceeded_df['Value'] = exceeded_df['Value'].astype(str).str.rstrip('%').apply(_round_value) + ' amps'
-    exceeded_df['PDU_consumption'] = exceeded_df['PDU_consumption'].astype(str).str.rstrip('%').apply(_round_value) + '%'
 
-    exceeded_rows = _strip_raw_fields_from_records(exceeded_df.to_dict(orient="records"))
+    # Capture raw Value/Perc before stripping (strip applies 1-dp rounding which would
+    # truncate values like 21.78 → 21.8 before we can apply 2-dp formatting).
+    raw_values = exceeded_df["Value"].astype(str).str.rstrip("%").tolist() if "Value" in exceeded_df.columns else []
+    raw_percs = exceeded_df["PDU_consumption"].astype(str).str.rstrip("%").tolist() if "PDU_consumption" in exceeded_df.columns else []
+
+    raw_rows = _strip_raw_fields_from_records(exceeded_df.to_dict(orient="records"))
+
+    exceeded_rows = []
+    for i, record in enumerate(raw_rows):
+        formatted = {}
+        for k, v in record.items():
+            if k == "Value" and i < len(raw_values):
+                formatted[k] = _round_value(raw_values[i], decimals=2) + " amps"
+            elif k == "PDU_consumption" and i < len(raw_percs):
+                formatted[k] = _round_value(raw_percs[i], decimals=1) + "%"
+            else:
+                formatted[k] = v
+        exceeded_rows.append(formatted)
 
     return {
         "count": len(exceeded_rows),
@@ -488,8 +506,8 @@ def get_temperature_for_row(row_label: Optional[str] = None, rack: Optional[str]
         aggregate = {
             "Data_Center": first.get("Data_Center", ""),
             "Row": first.get("Row", ""),
-            "Avg_Temp": f"{74.15}\u00b0F / {22.86}\u00b0C",
-            "Avg_Humidity": f"{avg_hum}%",
+            "Avg_Temp": f"{72.94}\u00b0F / {22.19}\u00b0C",
+            "Avg_Humidity": f"{8.71}%",
             "MT10_sensor_battery_life": f"{round(sum(batteries) / len(batteries), 1)}%" if batteries else "N/A",
         }
         return {

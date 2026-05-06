@@ -12,6 +12,6 @@ RUN mkdir -p /app/exports && chmod 777 /app/exports
 RUN useradd --create-home appuser
 USER appuser
 
-EXPOSE 8001
+EXPOSE 3888
 
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8001"]
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "3888"]

@@ -9,7 +9,7 @@
 import requests
 import json
 
-BASE_URL = "http://localhost:8001/api"
+BASE_URL = "http://localhost:3888/api"
 
 SITES = [
     "SEATTLE (Preferred)",
